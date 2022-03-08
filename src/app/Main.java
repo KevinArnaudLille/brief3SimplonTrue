@@ -20,6 +20,6 @@ public class Main {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");
 		System.out.println(CurrentSessionData.getConnectedConseiller().getPrenom());
 
-//		new ListeClientsForm();
+		new ListeClientsForm();
 	}
 }
