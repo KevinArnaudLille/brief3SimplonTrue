@@ -17,6 +17,7 @@ public class DbReadQueries {
 	private static ArrayList<Client> clientFullList = new ArrayList<Client>();
 	private static ArrayList<Client> clientOfConseillerList = new ArrayList<Client>();
 
+	
 	// Get a list of all conseiller as Conseiller object
 	public static ArrayList<Conseiller> dbReadConseillers() {
 
@@ -36,6 +37,7 @@ public class DbReadQueries {
 		return conseillerList;
 	}
 
+	
 	// Get a list of all client as Client object
 	public static ArrayList<Client> dbReadAllClient() {
 

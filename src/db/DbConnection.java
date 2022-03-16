@@ -13,7 +13,7 @@ public class DbConnection {
 
 	public static Connection connectToDb() {
 
-		//Try to connect with Imen/Kevin param.
+		// Try to connect with Imen/Kevin param.
 		try {
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Banque", "root", "");
 			myConnToReturn = myConn;
@@ -23,8 +23,7 @@ public class DbConnection {
 			System.out.println("Imen/Kevin n'est pas connecte");
 		}
 
-		 //Try to connect with Yasmine param.
-		 
+		// Try to connect with Yasmine param.
 		try {
 			Connection myConn2 = DriverManager.getConnection("jdbc:mysql://localhost:8889/Banque", "root", "root");
 			myConnToReturn = myConn2;

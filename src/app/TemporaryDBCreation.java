@@ -63,7 +63,6 @@ public class TemporaryDBCreation {
 //		dataAddingQuery[24] ="INSERT INTO operation VALUES('operation_transfert_01','compte_courant_04','compte_epargne_02',33333,122222,1000,'2022-03-03',false,false,true,'achat_voiture')";
 	}
 
-
 	private static Statement connectToDB(int port, String id, String mdp) {
 		try {
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/Banque", id, mdp);
@@ -76,6 +75,7 @@ public class TemporaryDBCreation {
 	}
 
 	public static void createDB(int port, String id, String mdp) {
+		// Add data to the table query
 		privateSetTablesCreationQuery();
 
 		try {
@@ -95,7 +95,7 @@ public class TemporaryDBCreation {
 			// create database
 			myStat.execute("CREATE DATABASE Banque");
 
-			// connection to just creates db
+			// connection to just creates db (banque)
 			Statement myNewStat = connectToDB(port, id, mdp);
 
 			// create tables
@@ -117,11 +117,11 @@ public class TemporaryDBCreation {
 		privateSetDataToAdd();
 
 		for (String dataToAdd : dataAddingQuery) {
-		try {
-			myStat.executeUpdate(dataToAdd);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				myStat.executeUpdate(dataToAdd);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	}
 	}
 }
