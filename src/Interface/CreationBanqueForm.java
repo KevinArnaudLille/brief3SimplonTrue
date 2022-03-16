@@ -33,6 +33,7 @@ public class CreationBanqueForm extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
+	private JLabel errorMsgField;
 
 	/**
 	 * Launch the application.
@@ -67,7 +68,7 @@ public class CreationBanqueForm extends JFrame {
 
 		JPanel Username = new JPanel();
 		Username.setBackground(Color.WHITE);
-		Username.setBounds(327, 207, 352, 55);
+		Username.setBounds(327, 174, 352, 55);
 		contentPane.add(Username);
 		Username.setLayout(null);
 
@@ -81,7 +82,7 @@ public class CreationBanqueForm extends JFrame {
 
 		JPanel Password = new JPanel();
 		Password.setBackground(Color.WHITE);
-		Password.setBounds(327, 286, 352, 55);
+		Password.setBounds(327, 253, 352, 55);
 		contentPane.add(Password);
 		Password.setLayout(null);
 
@@ -94,7 +95,7 @@ public class CreationBanqueForm extends JFrame {
 
 		JButton btnNewButton = new JButton("LOG IN");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
-		btnNewButton.setBounds(327, 368, 352, 45);
+		btnNewButton.setBounds(327, 335, 352, 45);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			//Go to next page
@@ -112,6 +113,14 @@ public class CreationBanqueForm extends JFrame {
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 42));
 		lblNewLabel.setBounds(301, 77, 394, 55);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setForeground(new Color(165, 42, 42));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(10, 391, 966, 61);
+		contentPane.add(lblNewLabel_1);
+		this.errorMsgField = lblNewLabel_1;
 	}
 
 	public void setIdentifiantTextField(String textField) {
@@ -120,5 +129,9 @@ public class CreationBanqueForm extends JFrame {
 
 	public void setMdpTextField(String textField) {
 		this.txtPasseword.setText(textField);
+	}
+
+	public void setErrorMsgTextField(String errorMsg) {
+		this.errorMsgField.setText(errorMsg);
 	}
 }
