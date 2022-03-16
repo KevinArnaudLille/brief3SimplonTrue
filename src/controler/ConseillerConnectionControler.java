@@ -1,6 +1,7 @@
 package controler;
 
 import Interface.CreationBanqueForm;
+import Interface.ListeClientsForm;
 import checking.CheckConseillerConnection;
 import sessionData.CurrentSessionData;
 
@@ -22,6 +23,9 @@ public class ConseillerConnectionControler {
 		} else {
 			CurrentSessionData.setConnectedConseiller(identifiant);
 			System.out.println("Well done " + CurrentSessionData.getConnectedConseiller().getPrenom() + " " + CurrentSessionData.getConnectedConseiller().getNom());
+			ListeClientsForm pi = new ListeClientsForm();
+			CurrentSessionData.setConnectedConseillerClientsPage(pi);
+			CurrentSessionData.getConnectedConseillerClientsPage().setVisible(true);
 		}
 		
 		

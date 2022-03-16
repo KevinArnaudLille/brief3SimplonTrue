@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 
 import controler.ConseillerConnectionControler;
+import sessionData.CurrentSessionData;
 
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -96,10 +97,13 @@ public class CreationBanqueForm extends JFrame {
 		btnNewButton.setBounds(327, 368, 352, 45);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
+			//Go to next page
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("here is addActionListener");
 				String myPass = String.valueOf(txtPasseword.getPassword());
 				ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+			
+			
 			}
 		});
 
