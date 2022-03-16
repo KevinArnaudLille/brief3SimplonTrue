@@ -65,6 +65,7 @@ public class CreationBanqueForm extends JFrame {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 128), 2));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 
 		JPanel Username = new JPanel();
 		Username.setBackground(Color.WHITE);
