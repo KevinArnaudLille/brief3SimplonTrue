@@ -12,11 +12,13 @@ public class CheckConseillerConnection {
 	private static String errorMsgsWrongMdp = "Le mot de passe de connexion n'est pas valide.";
 	private static String errorMsgsIdentifiantMdpNotMatching = "L'identifiant et le mot de passe ne correspondent pas.";
 
-
+	
 
 	public static ArrayList<Conseiller> getConseillerList() {
+		conseillerList = DbReadQueries.dbReadConseillers();
 		return conseillerList;
 	}
+	
 
 	// Get error msg if conseiller identifiant not in db
 	public static String getErrorMsgsWrongIdentifiant() {
@@ -56,6 +58,7 @@ public class CheckConseillerConnection {
 		return false;
 	}
 
+	
 	// Check all verifications at once
 	public static boolean isConseillerConnectionValid(String identifiant, String mdp) {
 		return isConseillerIdentifiantInList(identifiant) && isConseillerMdpInList(mdp) && isConseillerMdpMatchingIdentifiant(identifiant, mdp); 
@@ -69,5 +72,28 @@ public class CheckConseillerConnection {
 			return getErrorMsgsIdentifiantMdpNotMatching();
 		}
 		return getErrorMsgsWrongMdp();
+	}
+
+	// Return the appropriate error msg
+	public static String[][] appriopriateMsgErrorWithTextFieldToEdit(String identifiant, String mdp) {
+//		String[] textFieldToEdit = new String[2];
+		String[][] toSend = new String[2][2];
+		if (!isConseillerIdentifiantInList(identifiant)) {
+//			textFieldToEdit[0] = identifiant;
+//			textFieldToEdit[1] = "";
+			toSend[0][0] = getErrorMsgsWrongIdentifiant();
+			toSend[1][0] = "";
+			toSend[1][1] = "";
+			return toSend;
+		} else if (!isConseillerMdpMatchingIdentifiant(identifiant, mdp)) {
+			toSend[0][0] = getErrorMsgsIdentifiantMdpNotMatching();
+			toSend[1][0] = identifiant;
+			toSend[1][1] = "";
+			return toSend;
+		}
+		toSend[0][0] = getErrorMsgsWrongMdp();
+		toSend[1][0] = "";
+		toSend[1][1] = "";
+		return toSend;
 	}
 }
