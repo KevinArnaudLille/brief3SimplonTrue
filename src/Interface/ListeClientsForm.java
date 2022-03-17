@@ -23,11 +23,10 @@ import java.awt.Window;
 
 import javax.swing.SwingConstants;
 
-<<<<<<< HEAD
-=======
+
 import checking.CheckClientAdd;
 
->>>>>>> c3429803f388fe761c3137ed2709e6e6482bf53d
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -39,7 +38,7 @@ public class ListeClientsForm extends JFrame {
 	private ArrayList<Client> conseillerClients;
 	
 	public ListeClientsForm() {
-		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
+		getContentPane().setFont(new Font("Arial", Font.BOLD, 20));
 		getContentPane().setForeground(Color.WHITE);
 
 		Conseiller conseiller = DbReadQueries.dbReadConseillers().get(0);
@@ -54,7 +53,7 @@ public class ListeClientsForm extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 128));
-		panel.setBounds(0, 0, 1000, 40);
+		panel.setBounds(0, 0, 986, 40);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -62,25 +61,22 @@ public class ListeClientsForm extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 6, 830, 29);
+		lblNewLabel.setBounds(10, 6, 776, 29);
 		panel.add(lblNewLabel);
 		
-		JButton btnBtnBack = new JButton("Return");
-		btnBtnBack.setBackground(new Color(192, 192, 192));
-		btnBtnBack.setBounds(846, 6, 116, 29);
-		panel.add(btnBtnBack);
-		
-		
-	
-       
-		btnBtnBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                Window frame = null;
-				frame.setVisible(false);
-                ListeClientsForm listC = new ListeClientsForm();
-                listC.main(null);
-            }
-        });
+		JButton btnBtnback = new JButton("Back");
+		btnBtnback.setFont(new Font("Arial", Font.BOLD, 20));
+		btnBtnback.setBounds(848, 6, 114, 29);
+		panel.add(btnBtnback);
+		btnBtnback.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OuvrirCompteForm openAccountFrame = new OuvrirCompteForm();
+				CurrentSessionData.setOpenAccountPage(openAccountFrame);
+				CheckClientAdd.setFrame(openAccountFrame);
+				CurrentSessionData.getOpenAccountPage().setVisible(true);
+			}
+		});
 	
 		
 
@@ -148,7 +144,7 @@ public class ListeClientsForm extends JFrame {
 		// TODO Auto-generated method stub
 		
 	}
-}
+
 
 
 	public ArrayList<Client> getConseillerClients() {
@@ -158,6 +154,6 @@ public class ListeClientsForm extends JFrame {
 	public void setConseillerClients(ArrayList<Client> conseillerClients) {
 		this.conseillerClients = conseillerClients;
 	}
-	
 }
+
 
