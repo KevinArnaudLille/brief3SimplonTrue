@@ -3,12 +3,14 @@
 package Interface;
 
 import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import db.DbReadQueries;
 import model.Client;
 import model.Conseiller;
+import sessionData.CurrentSessionData;
 
 import java.awt.Color;
 
@@ -21,6 +23,11 @@ import java.awt.Window;
 
 import javax.swing.SwingConstants;
 
+<<<<<<< HEAD
+=======
+import checking.CheckClientAdd;
+
+>>>>>>> c3429803f388fe761c3137ed2709e6e6482bf53d
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -29,12 +36,14 @@ import java.awt.event.MouseEvent;
 public class ListeClientsForm extends JFrame {
 	private JTextField txtNomClient;
 	private ButtonGroup group;
+	private ArrayList<Client> conseillerClients;
+	
 	public ListeClientsForm() {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		getContentPane().setForeground(Color.WHITE);
 
 		Conseiller conseiller = DbReadQueries.dbReadConseillers().get(0);
-		ArrayList<Client> clients = DbReadQueries.dbReadClientOfConseiller(conseiller);
+		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
 		
 		getContentPane().setBackground(new Color(0, 128, 128));
 		setAutoRequestFocus(false);
@@ -76,10 +85,21 @@ public class ListeClientsForm extends JFrame {
 		
 
 		JButton btnNewButton = new JButton("Créer un nouveau client");
+
 		btnNewButton.setBackground(Color.WHITE);
+
 		btnNewButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(btnNewButton);
-
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				OuvrirCompteForm openAccountFrame = new OuvrirCompteForm();
+				CurrentSessionData.setOpenAccountPage(openAccountFrame);
+				CheckClientAdd.setFrame(openAccountFrame);
+				CurrentSessionData.getOpenAccountPage().setVisible(true);
+			}
+		});
+		
 		JButton btnNewButton_1 = new JButton("Ouvrir la session client");
 		btnNewButton_1.setBounds(729, 289, 176, 49);
 		getContentPane().add(btnNewButton_1);
@@ -91,7 +111,7 @@ public class ListeClientsForm extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				  System.out.println("Le radio bouton sélectionné est: " + 
+				  System.out.println("Le radio bouton sï¿½lectionnï¿½ est: " + 
 		                  group.getSelection().getActionCommand());
 				  
 			}
@@ -105,14 +125,14 @@ public class ListeClientsForm extends JFrame {
 		
 		group = new ButtonGroup();
 		
-		for (Client client : clients) {			
+		for (Client client : this.conseillerClients) {			
 			JRadioButton rdbtnNewRadioButton = new JRadioButton(client.getId() + " " + client.getPrenom()+  " " + client.getNom());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
+			
+			txtNomClient = new JTextField();
 			rdbtnNewRadioButton.setActionCommand(client.getId());
 			group.add(rdbtnNewRadioButton);
-			
-			
 			
 
 			/*txtNomClient = new JTextField();
@@ -120,19 +140,24 @@ public class ListeClientsForm extends JFrame {
 			txtNomClient.setBounds(x + JRadioBtnWidth, y, JTextFieldWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(txtNomClient);
 			txtNomClient.setColumns(10);*/
-			
-			
-			
-			
 			y += 50;
 		}
-		
-
-
-		//setVisible(true);
 	}
+
 	protected void main(Object object) {
 		// TODO Auto-generated method stub
 		
 	}
 }
+
+
+	public ArrayList<Client> getConseillerClients() {
+		return conseillerClients;
+	}
+
+	public void setConseillerClients(ArrayList<Client> conseillerClients) {
+		this.conseillerClients = conseillerClients;
+	}
+	
+}
+

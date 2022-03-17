@@ -19,7 +19,7 @@ public class DbCreateQueries {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		} else {
 			System.out.println("Client " + clientToAdd.getId() + " est déja dans la base de donnée" );
 		}
