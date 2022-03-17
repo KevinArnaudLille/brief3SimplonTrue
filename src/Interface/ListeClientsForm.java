@@ -32,9 +32,10 @@ public class ListeClientsForm extends JFrame {
 		getContentPane().setBackground(new Color(0, 128, 128));
 		setAutoRequestFocus(false);
 		setUndecorated(false);
-		setBounds(200, 200, 1000, 500);
+		setBounds(100, 100, 1000, 500);
 		getContentPane().setLayout(null);
-
+		setResizable(false);
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 128));
 		panel.setBounds(0, 0, 1000, 40);
