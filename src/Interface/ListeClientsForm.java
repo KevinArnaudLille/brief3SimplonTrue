@@ -63,7 +63,7 @@ public class ListeClientsForm extends JFrame {
 		lblNewLabel.setBounds(10, 6, 830, 29);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("Cr�er un nouveau client");
+		JButton btnNewButton = new JButton("Créer un nouveau client");
 		btnNewButton.setBackground(new Color(192, 192, 192));
 		btnNewButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(btnNewButton);
@@ -74,7 +74,7 @@ public class ListeClientsForm extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				  System.out.println("Le radio bouton s�lectionn� est: " + 
+				  System.out.println("Le radio bouton sélectionné est: " + 
 		                  group.getSelection().getActionCommand());
 			}
 		});
@@ -91,8 +91,6 @@ public class ListeClientsForm extends JFrame {
 			JRadioButton rdbtnNewRadioButton = new JRadioButton(client.getId() + " " + client.getPrenom()+  " " + client.getNom());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
-
-			
 			txtNomClient = new JTextField();
 			rdbtnNewRadioButton.setActionCommand(client.getId());
 			group.add(rdbtnNewRadioButton);
