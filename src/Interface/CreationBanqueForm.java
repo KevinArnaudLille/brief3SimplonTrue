@@ -1,12 +1,9 @@
 package Interface;
 
-import java.awt.BorderLayout;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -35,23 +32,6 @@ public class CreationBanqueForm extends JFrame {
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
 	private JLabel errorMsgField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreationBanqueForm frame = new CreationBanqueForm();
-					ConseillerConnectionControler.setFrame(frame);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -104,7 +84,6 @@ public class CreationBanqueForm extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			//Go to next page
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("here is addActionListener");
 				String myPass = String.valueOf(txtPasseword.getPassword());
 				ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
 			

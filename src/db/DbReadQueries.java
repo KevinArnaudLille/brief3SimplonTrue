@@ -20,7 +20,6 @@ public class DbReadQueries {
 	
 	// Get a list of all conseiller as Conseiller object
 	public static ArrayList<Conseiller> dbReadConseillers() {
-
 		conseillerResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM conseiller");
 
 		try {
@@ -33,7 +32,6 @@ public class DbReadQueries {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return conseillerList;
 	}
 
@@ -60,7 +58,7 @@ public class DbReadQueries {
 	// Get a list of client for a given conseiller as Client object
 	public static ArrayList<Client> dbReadClientOfConseiller(Conseiller conseiller) {
 		clientResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM client");
-
+		clientOfConseillerList = new ArrayList<Client>();
 		try {
 			while (clientResultSetFromDb.next()) {
 				if (clientResultSetFromDb.getString("id_1").equals(conseiller.getId())) {

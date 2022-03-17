@@ -21,10 +21,10 @@ public class ConseillerConnectionControler {
 			frame.setMdpTextField(errorMsgAndNewTextFieldEdit[1][1]);
 		} else {
 			CurrentSessionData.setConnectedConseiller(identifiant);
-			System.out.println("Well done " + CurrentSessionData.getConnectedConseiller().getPrenom() + " " + CurrentSessionData.getConnectedConseiller().getNom());
-			ListeClientsForm pi = new ListeClientsForm();
-			CurrentSessionData.setConnectedConseillerClientsPage(pi);
+			ListeClientsForm listClientPage = new ListeClientsForm();
+			CurrentSessionData.setConnectedConseillerClientsPage(listClientPage);
 			CurrentSessionData.getConnectedConseillerClientsPage().setVisible(true);
+			CurrentSessionData.getHomePage().setVisible(false);
 			System.out.println("Well done " + CurrentSessionData.getConnectedConseiller().getPrenom() + " "
 				+ CurrentSessionData.getConnectedConseiller().getNom());
 		}
