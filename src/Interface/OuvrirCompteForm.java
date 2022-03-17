@@ -118,6 +118,7 @@ public class OuvrirCompteForm extends JFrame {
 		btnCancel.setBounds(540, 383, 229, 40);
 		getContentPane().add(btnCancel);
 	}
+	
 
 	public static void main(String[] args) {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");
