@@ -23,6 +23,7 @@ public class OuvrirCompteForm extends JFrame {
 	private JTextField textFieldAdresse;
 	private JTextField textFieldTel;
 	public OuvrirCompteForm() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(new Color(0, 128, 128));
 		setAutoRequestFocus(false);
@@ -123,5 +124,10 @@ public class OuvrirCompteForm extends JFrame {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");
 		OuvrirCompteForm testFrame = new OuvrirCompteForm();
 		testFrame.setVisible(true);
+	}
+	
+	// For futur factorisation
+	private JLabel generateJLabel() {
+		return null;
 	}
 }

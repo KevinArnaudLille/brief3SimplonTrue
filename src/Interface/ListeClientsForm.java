@@ -85,7 +85,6 @@ public class ListeClientsForm extends JFrame {
 			y += 50;
 		}
 
-
 		setVisible(true);
 	}
 	
