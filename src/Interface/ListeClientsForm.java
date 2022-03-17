@@ -1,6 +1,7 @@
 package Interface;
 
 import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 import javax.swing.JRadioButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -55,7 +59,7 @@ public class ListeClientsForm extends JFrame {
 		lblNewLabel.setBounds(10, 6, 830, 29);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("Créer un nouveau client");
+		JButton btnNewButton = new JButton("Crï¿½er un nouveau client");
 		btnNewButton.setBackground(new Color(192, 192, 192));
 		btnNewButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(btnNewButton);
@@ -74,7 +78,7 @@ public class ListeClientsForm extends JFrame {
 			JRadioButton rdbtnNewRadioButton = new JRadioButton("");
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
-
+			
 			txtNomClient = new JTextField();
 			txtNomClient.setText(client.getNom() + " " + client.getPrenom());
 			txtNomClient.setBounds(x + JRadioBtnWidth, y, JTextFieldWidth, JRadioBtnAndJTextFieldHeigth);
