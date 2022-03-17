@@ -9,6 +9,8 @@ import model.Client;
 import model.Conseiller;
 
 import java.awt.Color;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.util.ArrayList;
 import javax.swing.JRadioButton;
@@ -19,6 +21,7 @@ import java.awt.event.MouseEvent;
 
 public class ListeClientsForm extends JFrame {
 	private JTextField txtNomClient;
+	private ButtonGroup group;
 	public ListeClientsForm() {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		getContentPane().setForeground(Color.WHITE);
@@ -63,29 +66,47 @@ public class ListeClientsForm extends JFrame {
 		JButton btnNewButton_1 = new JButton("Ouvrir la session client");
 		btnNewButton_1.setBounds(729, 289, 176, 49);
 		getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				  System.out.println("Le radio bouton sélectionné est: " + 
+		                  group.getSelection().getActionCommand());
+			}
+		});
 
 		int x = 40;
 		int y = 144;
-		int JRadioBtnWidth = 25;
-		int JTextFieldWidth = 300;
+		int JRadioBtnWidth = 500;
 		int JRadioBtnAndJTextFieldHeigth = 26;
 		
+		
+		group = new ButtonGroup();
+		
 		for (Client client : clients) {			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton("");
+			JRadioButton rdbtnNewRadioButton = new JRadioButton(client.getId() + " " + client.getPrenom()+  " " + client.getNom());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
+			rdbtnNewRadioButton.setActionCommand(client.getId());
+			group.add(rdbtnNewRadioButton);
+			
+			
 
-			txtNomClient = new JTextField();
+			/*txtNomClient = new JTextField();
 			txtNomClient.setText(client.getNom() + " " + client.getPrenom());
 			txtNomClient.setBounds(x + JRadioBtnWidth, y, JTextFieldWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(txtNomClient);
-			txtNomClient.setColumns(10);
+			txtNomClient.setColumns(10);*/
+			
+			
+			
 			
 			y += 50;
 		}
+		
 
 
-		setVisible(true);
+		//setVisible(true);
 	}
+		
 	
 }
