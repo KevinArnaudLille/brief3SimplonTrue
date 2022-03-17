@@ -45,11 +45,9 @@ public class DbConnection {
 		}
 
 		return myStatToReturn;
-
 	}
 
 	public static ResultSet getResultSetFromDbWithQuery(String query) {
-
 		try {
 			Statement myStat = statementGeneration();
 			myResToReturn = myStat.executeQuery(query);
@@ -57,8 +55,6 @@ public class DbConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return myResToReturn;
-
 	}
 }

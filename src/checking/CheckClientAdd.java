@@ -14,7 +14,7 @@ public class CheckClientAdd {
 	private static String properlyFilledFieldMsg = "OK";
 	private static String fieldIsEmptyErrorMsg = "Champ nécessaire !";
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";
-	private static String fieldIsNotAnEmailErrorMsg = "Courriel incorrect !";
+	private static String fieldIsNotAnEmailErrorMsg = "Email incorrect !";
 	
 	// GLOBAL FUNCTIONS
 	private static boolean isStringContainSpecialCharacter(String stringToCheck) {
@@ -79,7 +79,7 @@ public class CheckClientAdd {
 		return fieldIsWrongErrorMsg;
 	}
 	
-	// Adresse FIELD
+	// ADRESSE FIELD
 	public static boolean isAdresseFieldOk() {
 		String stringToCheck = frame.getAdresse();
 		return !stringToCheck.isEmpty() && !isStringContainSpecialCharacter(stringToCheck);
@@ -92,10 +92,10 @@ public class CheckClientAdd {
 		return fieldIsWrongErrorMsg;
 	}
 	
-	// Tel FIELD
+	// TEL FIELD
 	public static boolean isTelFieldOk() {
 		String stringToCheck = frame.getTel();
-		return stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+");
+		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+");
 	}
 	public static String generateTelProperErrorMsg() {
 		String stringToCheck = frame.getTel();
