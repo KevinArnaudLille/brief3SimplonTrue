@@ -11,5 +11,4 @@ public class Launcher {
 		ConseillerConnectionControler.setFrame(firstFrame);
 		firstFrame.setVisible(true);
 	}
-
 }
