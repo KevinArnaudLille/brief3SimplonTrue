@@ -2,15 +2,16 @@ package sessionData;
 
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
-import Interface.OuvrirCompteForm;
+import Interface.OuvrirClientForm;
 import checking.CheckConseillerConnection;
+import db.DbReadQueries;
 import model.Conseiller;
 
 public class CurrentSessionData {
 	private static Conseiller connectedConseiller;
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
-	private static OuvrirCompteForm openAccountPage;
+	private static OuvrirClientForm openAccountPage;
 	
 	// === GETTERS AND SETTERS ===
 	public static CreationBanqueForm getHomePage() {
@@ -21,18 +22,18 @@ public class CurrentSessionData {
 		CurrentSessionData.homePage = homePage;
 	}
 
-	public static OuvrirCompteForm getOpenAccountPage() {
+	public static OuvrirClientForm getOpenAccountPage() {
 		return openAccountPage;
 	}
 
-	public static void setOpenAccountPage(OuvrirCompteForm openAccountPage) {
+	public static void setOpenAccountPage(OuvrirClientForm openAccountPage) {
 		CurrentSessionData.openAccountPage = openAccountPage;
 	}
 
 	
 	// Set the logged conseiller
 	public static void setConnectedConseiller(String identifiant) {
-		connectedConseiller = CheckConseillerConnection.getConseillerList().stream()
+		connectedConseiller = DbReadQueries.dbReadConseillers().stream()
 				.filter(conseiller -> conseiller.getIdentifiant().equals(identifiant)).findAny().orElse(null);
 	}
 

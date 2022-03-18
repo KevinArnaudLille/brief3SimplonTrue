@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class OuvrirCompteForm extends JFrame {
+public class OuvrirClientForm extends JFrame {
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
 	private JTextField textFieldCourriel;
@@ -37,7 +37,7 @@ public class OuvrirCompteForm extends JFrame {
 	
 	private JButton btnAddClient;
 
-	public OuvrirCompteForm() {
+	public OuvrirClientForm() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(new Color(0, 128, 128));
@@ -321,7 +321,7 @@ public class OuvrirCompteForm extends JFrame {
 	// MAIN FOR TESTING
 	public static void main(String[] args) {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");
-		OuvrirCompteForm testFrame = new OuvrirCompteForm();
+		OuvrirClientForm testFrame = new OuvrirClientForm();
 		testFrame.setVisible(true);
 	}
 }

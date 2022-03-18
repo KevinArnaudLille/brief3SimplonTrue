@@ -20,6 +20,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import checking.CheckClientAdd;
+import controler.ConseillerConnectionControler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +36,7 @@ public class ListeClientsForm extends JFrame {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		getContentPane().setForeground(Color.WHITE);
 
-		Conseiller conseiller = DbReadQueries.dbReadConseillers().get(0);
+		Conseiller conseiller = CurrentSessionData.getConnectedConseiller();
 		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
 		
 		getContentPane().setBackground(new Color(0, 128, 128));
@@ -55,7 +56,12 @@ public class ListeClientsForm extends JFrame {
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+//				System.exit(0);
+				CreationBanqueForm firstFrame = new CreationBanqueForm();
+				CurrentSessionData.setHomePage(firstFrame);
+				ConseillerConnectionControler.setFrame(firstFrame);
+				firstFrame.setVisible(true);
+				CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			}
 		});
 		btnNewButton_2.setBounds(842, 6, 117, 29);
@@ -74,7 +80,7 @@ public class ListeClientsForm extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OuvrirCompteForm openAccountFrame = new OuvrirCompteForm();
+				OuvrirClientForm openAccountFrame = new OuvrirClientForm();
 				CurrentSessionData.setOpenAccountPage(openAccountFrame);
 				CheckClientAdd.setFrame(openAccountFrame);
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
@@ -104,16 +110,12 @@ public class ListeClientsForm extends JFrame {
 			JRadioButton rdbtnNewRadioButton = new JRadioButton(client.getId() + " " + client.getPrenom()+  " " + client.getNom());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
+			rdbtnNewRadioButton.setSelected(true);
 			
 			txtNomClient = new JTextField();
 			rdbtnNewRadioButton.setActionCommand(client.getId());
 			group.add(rdbtnNewRadioButton);
-			
-			/*txtNomClient = new JTextField();
-			txtNomClient.setText(client.getNom() + " " + client.getPrenom());
-			txtNomClient.setBounds(x + JRadioBtnWidth, y, JTextFieldWidth, JRadioBtnAndJTextFieldHeigth);
-			getContentPane().add(txtNomClient);
-			txtNomClient.setColumns(10);*/
+
 			y += 50;
 		}
 	}

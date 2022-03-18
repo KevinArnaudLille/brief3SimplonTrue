@@ -24,7 +24,7 @@ public class ConseillerConnectionControler {
 			ListeClientsForm listClientPage = new ListeClientsForm();
 			CurrentSessionData.setConnectedConseillerClientsPage(listClientPage);
 			CurrentSessionData.getConnectedConseillerClientsPage().setVisible(true);
-			CurrentSessionData.getHomePage().setVisible(false);
+			CurrentSessionData.getHomePage().dispose();
 			System.out.println("Well done " + CurrentSessionData.getConnectedConseiller().getPrenom() + " "
 				+ CurrentSessionData.getConnectedConseiller().getNom());
 		}
