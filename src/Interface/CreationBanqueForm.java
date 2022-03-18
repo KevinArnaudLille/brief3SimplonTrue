@@ -41,6 +41,8 @@ public class CreationBanqueForm extends BaseTemplateForm {
 
 		super();
 
+		panel.setVisible(false);
+		
 		JPanel Username = new JPanel();
 		Username.setBackground(Color.WHITE);
 		Username.setBounds(327, 189, 352, 55);

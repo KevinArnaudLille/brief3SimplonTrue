@@ -41,13 +41,8 @@ public class OuvrirClientForm extends BaseTemplateForm {
 
 		super();
 
-		JLabel lblNewLabel = new JLabel("Ajouter un nouveau client");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 0, 962, 40);
-		panel.add(lblNewLabel);
-
+		titlePageLabel.setText("Ajouter un nouveau client");
+		
 		// TEXT FIELDS
 		// To factorize (one day)
 		// Nom

@@ -28,7 +28,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ListeClientsForm extends BaseTemplateForm {
-	private JTextField txtNomClient;
 	private ButtonGroup group;
 	private ArrayList<Client> conseillerClients;
 	
@@ -39,8 +38,10 @@ public class ListeClientsForm extends BaseTemplateForm {
 		Conseiller conseiller = CurrentSessionData.getConnectedConseiller();
 		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
 
-		JButton btnNewButton_2 = new JButton("Quitter");
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
+		titlePageLabel.setText("Clients de " + conseiller.getPrenom() + " " + conseiller.getNom());
+
+		JButton quitButton = new JButton("Quitter");
+		quitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 //				System.exit(0);
@@ -51,20 +52,14 @@ public class ListeClientsForm extends BaseTemplateForm {
 				CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			}
 		});
-		btnNewButton_2.setBounds(842, 6, 117, 29);
-		panel.add(btnNewButton_2);
+		quitButton.setBounds(842, 6, 117, 29);
+		panel.add(quitButton);
 		
-		JLabel lblNewLabel = new JLabel("Clients de " + conseiller.getPrenom() + " " + conseiller.getNom());
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 6, 830, 29);
-		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("Créer un nouveau client");
-		btnNewButton.setBounds(729, 184, 176, 49);
-		getContentPane().add(btnNewButton);
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton addNewClientButton = new JButton("Créer un nouveau client");
+		addNewClientButton.setBounds(729, 184, 176, 49);
+		getContentPane().add(addNewClientButton);
+		addNewClientButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				OuvrirClientForm openAccountFrame = new OuvrirClientForm();
@@ -74,10 +69,10 @@ public class ListeClientsForm extends BaseTemplateForm {
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("Ouvrir la session client");
-		btnNewButton_1.setBounds(729, 289, 176, 49);
-		getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		JButton openClientSessionsButton = new JButton("Ouvrir la session client");
+		openClientSessionsButton.setBounds(729, 289, 176, 49);
+		getContentPane().add(openClientSessionsButton);
+		openClientSessionsButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				  System.out.println("Le radio bouton sï¿½lectionnï¿½ est: " + 
@@ -90,7 +85,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 		int JRadioBtnWidth = 500;
 		int JRadioBtnAndJTextFieldHeigth = 26;
 		
-		
 		group = new ButtonGroup();
 		
 		for (Client client : this.conseillerClients) {			
@@ -99,7 +93,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 			getContentPane().add(rdbtnNewRadioButton);
 			rdbtnNewRadioButton.setSelected(true);
 			
-			txtNomClient = new JTextField();
 			rdbtnNewRadioButton.setActionCommand(client.getId());
 			group.add(rdbtnNewRadioButton);
 
