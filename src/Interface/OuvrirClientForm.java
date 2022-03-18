@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class OuvrirClientForm extends JFrame {
+public class OuvrirClientForm extends BaseTemplateForm {
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
 	private JTextField textFieldCourriel;
@@ -39,19 +39,7 @@ public class OuvrirClientForm extends JFrame {
 
 	public OuvrirClientForm() {
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(0, 128, 128));
-		setAutoRequestFocus(false);
-		setUndecorated(false);
-		setBounds(100, 100, 1000, 500);
-		getContentPane().setLayout(null);
-		setResizable(false);
-
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 128));
-		panel.setBounds(0, 0, 1000, 40);
-		getContentPane().add(panel);
-		panel.setLayout(null);
+		super();
 
 		JLabel lblNewLabel = new JLabel("Ajouter un nouveau client");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

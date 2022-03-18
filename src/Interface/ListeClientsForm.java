@@ -27,30 +27,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListeClientsForm extends JFrame {
+public class ListeClientsForm extends BaseTemplateForm {
 	private JTextField txtNomClient;
 	private ButtonGroup group;
 	private ArrayList<Client> conseillerClients;
 	
 	public ListeClientsForm() {
-		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		getContentPane().setForeground(Color.WHITE);
+
+		super();
 
 		Conseiller conseiller = CurrentSessionData.getConnectedConseiller();
 		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
-		
-		getContentPane().setBackground(new Color(0, 128, 128));
-		setAutoRequestFocus(false);
-		setUndecorated(false);
-		setBounds(100, 100, 1000, 500);
-		getContentPane().setLayout(null);
-		setResizable(false);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 128));
-		panel.setBounds(0, 0, 1000, 40);
-		getContentPane().add(panel);
-		panel.setLayout(null);
 
 		JButton btnNewButton_2 = new JButton("Quitter");
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
