@@ -64,19 +64,19 @@ public class ListeClientsForm extends JFrame {
 		lblNewLabel.setBounds(10, 6, 776, 29);
 		panel.add(lblNewLabel);
 		
-		JButton btnBtnback = new JButton("Back");
+	/*	JButton btnBtnback = new JButton("Back");
 		btnBtnback.setFont(new Font("Arial", Font.BOLD, 20));
 		btnBtnback.setBounds(848, 6, 114, 29);
 		panel.add(btnBtnback);
 		btnBtnback.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OuvrirCompteForm openAccountFrame = new OuvrirCompteForm();
+				CreationBanqueForm openAccountFrame = new CreationBanqueForm();
 				CurrentSessionData.setOpenAccountPage(openAccountFrame);
 				CheckClientAdd.setFrame(openAccountFrame);
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
-		});
+		});*/
 	
 		
 
@@ -95,8 +95,19 @@ public class ListeClientsForm extends JFrame {
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
 		});
+	/*====================== ouvrir la page ListeComptesForm =====================================================*/	
 		
 		JButton btnNewButton_1 = new JButton("Ouvrir la session client");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Window frame = null;
+				frame.setVisible(false);
+                ListeComptesForm listC = new ListeComptesForm();
+                listC.main(null);
+			}
+			
+			
+		});
 		btnNewButton_1.setBounds(729, 289, 176, 49);
 		getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {

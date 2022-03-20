@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-public class GestionDesComptesClients extends JFrame {
+public class ListeComptesForm extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtGestionDesComptes;
@@ -38,7 +38,7 @@ public class GestionDesComptesClients extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GestionDesComptesClients frame = new GestionDesComptesClients();
+					ListeComptesForm frame = new ListeComptesForm();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class GestionDesComptesClients extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GestionDesComptesClients() {
+	public ListeComptesForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
 		contentPane = new JPanel();
@@ -202,5 +202,7 @@ public class GestionDesComptesClients extends JFrame {
 		txtListeDesClients.setBounds(91, 70, 252, 35);
 		contentPane.add(txtListeDesClients);
 		txtListeDesClients.setColumns(10);
+		
 	}
+	
 }

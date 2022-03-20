@@ -27,6 +27,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class CreationBanqueForm extends JFrame {
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
@@ -37,6 +43,8 @@ public class CreationBanqueForm extends JFrame {
 	 * Create the frame.
 	 */
 	public CreationBanqueForm() {
+		
+	
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
