@@ -168,27 +168,8 @@ public class CheckCompteAdd {
 		public static String getProperlyFilledFieldMsg() {
 			return properlyFilledFieldMsg;
 		}
-		
-		//Button Radio
-		/*int x = 40;
-		int y = 144;
-		int JRadioBtnWidth = 500;
-		int JRadioBtnAndJTextFieldHeigth = 26;
-		
-		
-		group = new ButtonGroup();
-		
-		for (Compte compte : this.conseillerClients) {			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton(compte.getId());
-			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
-			getContentPane().add(rdbtnNewRadioButton);
-			txtCompte = new JTextField();
-			rdbtnNewRadioButton.setActionCommand(compte.getId());
-			group.add(rdbtnNewRadioButton);
-			
-			y += 50;
-		}*/
+	
 		
 	}
 
-}
+

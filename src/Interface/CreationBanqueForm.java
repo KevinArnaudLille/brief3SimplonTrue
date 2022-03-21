@@ -25,10 +25,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
 
-public class CreationBanqueForm extends JFrame {
 
-	private JPanel contentPane;
+/*public class CreationBanqueForm extends JFrame {
+	
+	public static void main(String[] args) {
+		
+	}*/
+	
+	
+
+public class CreationBanqueForm extends BaseTemplateForm {
+
+
+//	private JPanel panel;
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
 	private JLabel errorMsgField;
@@ -37,57 +48,67 @@ public class CreationBanqueForm extends JFrame {
 	 * Create the frame.
 	 */
 	public CreationBanqueForm() {
+		
+	
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 500);
-		contentPane = new JPanel();
-		contentPane.setFont(new Font("Arial", Font.BOLD, 20));
-		contentPane.setBackground(new Color(0, 139, 139));
-		contentPane.setBorder(new LineBorder(new Color(0, 0, 128), 2));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		setResizable(false);
+		super();
 
+		panel.setVisible(false);
+		
 		JPanel Username = new JPanel();
 		Username.setBackground(Color.WHITE);
-
-		Username.setBounds(327, 200, 352, 55);
-
-		contentPane.add(Username);
+		Username.setBounds(327, 189, 352, 55);
+		getContentPane().add(Username);
 		Username.setLayout(null);
 
 		txtUsername = new JTextField();
 		txtUsername.setBorder(null);
 		txtUsername.setFont(new Font("Arial", Font.BOLD, 20));
-		txtUsername.setText("Username");
+		txtUsername.setText("Identifiant");
 		txtUsername.setBounds(10, 10, 215, 35);
 		Username.add(txtUsername);
 		txtUsername.setColumns(10);
+		txtUsername.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String myPass = String.valueOf(txtPasseword.getPassword());
+					ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+				}
+			}
+		});
 
 		JPanel Password = new JPanel();
 		Password.setBackground(Color.WHITE);
-		Password.setBounds(327, 253, 352, 55);
-		contentPane.add(Password);
+		Password.setBounds(327, 258, 352, 55);
+		getContentPane().add(Password);
 		Password.setLayout(null);
 
 		txtPasseword = new JPasswordField();
 		txtPasseword.setBorder(null);
 		txtPasseword.setFont(new Font("Arial", Font.BOLD, 20));
-		txtPasseword.setText("Password");
+		txtPasseword.setText("");
 		txtPasseword.setBounds(10, 10, 201, 35);
 		Password.add(txtPasseword);
+		txtPasseword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String myPass = String.valueOf(txtPasseword.getPassword());
+					ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+				}
+			}
+		});
 
 		JButton btnNewButton = new JButton("LOG IN");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(327, 335, 352, 45);
-		contentPane.add(btnNewButton);
+		getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-			//Go to next page
+			// Go to next page
 			public void actionPerformed(ActionEvent e) {
 				String myPass = String.valueOf(txtPasseword.getPassword());
 				ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
-			
-			
 			}
 		});
 
@@ -95,14 +116,14 @@ public class CreationBanqueForm extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 42));
 		lblNewLabel.setBounds(301, 77, 394, 55);
-		contentPane.add(lblNewLabel);
-		
+		getContentPane().add(lblNewLabel);
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setForeground(new Color(165, 42, 42));
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(10, 391, 966, 61);
-		contentPane.add(lblNewLabel_1);
+		getContentPane().add(lblNewLabel_1);
 		this.errorMsgField = lblNewLabel_1;
 	}
 

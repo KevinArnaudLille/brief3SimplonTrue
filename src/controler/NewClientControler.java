@@ -29,7 +29,7 @@ public class NewClientControler {
 			DbCreateQueries.addClientToDb(clientToAdd);
 			CurrentSessionData.getOpenAccountPage().setVisible(false);
 		
-			CurrentSessionData.getConnectedConseillerClientsPage().dispose();;
+			CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			ListeClientsForm newFrame = new ListeClientsForm();
 			CurrentSessionData.setConnectedConseillerClientsPage(newFrame);
 			CurrentSessionData.getConnectedConseillerClientsPage().setVisible(true);
@@ -38,7 +38,7 @@ public class NewClientControler {
 
 	public static void onCancelClick() {
 		// Close the current page
-		CurrentSessionData.getOpenAccountPage().setVisible(false);
+		CurrentSessionData.getOpenAccountPage().dispose();
 	}
 
 	public static void onLeavingNomTextField() {

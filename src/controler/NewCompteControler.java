@@ -5,20 +5,22 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import Interface.ListeClientsForm;
+import Interface.ListeComptesForm;
 import Interface.OuvrirClientForm;
 import checking.CheckClientAdd;
 import checking.CheckCompteAdd;
 import db.DbCreateQueries;
 import db.DbReadQueries;
 import model.Client;
+import model.Compte;
 import sessionData.CurrentSessionData;
 
 public class NewCompteControler {
-	public static void onAddClientClick() {
+	public static void onAddCompteClick() {
 		
 		if (CheckCompteAdd.AreAllFieldOk()) {
 			Compte compteToAdd = new Compte(
-					"compte_0"+(DbReadQueries.dbReadAllCompte().size()+1),
+					"compte_0"+(DbReadQueries.dbReadAllCompteList().size()+1),
 					CurrentSessionData.getOpenAccountForm().getNom(),
 					CurrentSessionData.getOpenAccountForm().getNumero(),
 					//CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(),
@@ -30,11 +32,12 @@ public class NewCompteControler {
 					);
 		
 			
-			DbCreateQueries.addCompteToDb(compteToAdd);
+			DbCreateQueries.addCompteCourantToDb(comptecourantToAdd);
+			DbCreateQueries.addCompteEpargneToDb(compteepargneToAdd);
 			CurrentSessionData.getOpenAccountForm().setVisible(false);
 		
 			CurrentSessionData.getOpenAccountForm().dispose();;
-			ListeCompteForm newFrame = new ListeCompteForm();
+			ListeComptesForm newFrame = new ListeComptesForm();
 			CurrentSessionData.setOpenAccountForm(newFrame);
 			CurrentSessionData.getOpenAccountForm().setVisible(true);
 		}
@@ -45,20 +48,19 @@ public class NewCompteControler {
 		CurrentSessionData.getOpenAccountForm().setVisible(false);
 	}
 
-	public static void onLeavingNomTextField() {
-		// check if field is correct
-		if(CheckCompteAdd.isNomFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
-		} else {
-			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.generateNomProperErrorMsg());
-		}
-	}
-
 	public static void onLeavingNumeroTextField() {
 		if(CheckCompteAdd.isNumeroFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.generateNumeroProperErrorMsg());
+		}
+	}
+	
+	public static void onLeavingNomTextField() {
+		if(CheckCompteAdd.isNomFieldOk()) {
+			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
+		} else {
+			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.generateNomProperErrorMsg());
 		}
 	}
 
