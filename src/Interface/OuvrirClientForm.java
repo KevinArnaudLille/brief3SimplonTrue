@@ -210,10 +210,6 @@ public class OuvrirClientForm extends BaseTemplateForm {
 
 		// return to previous client list page
 		JButton btnCancel = new JButton("Annuler");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 24));
 		btnCancel.setBounds(540, 383, 229, 40);
 		getContentPane().add(btnCancel);
