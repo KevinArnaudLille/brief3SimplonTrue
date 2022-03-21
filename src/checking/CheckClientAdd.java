@@ -4,15 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import Interface.CreationBanqueForm;
-import Interface.OuvrirCompteForm;
+import Interface.OuvrirClientForm;
 
 public class CheckClientAdd {
 	
-	private static OuvrirCompteForm frame;
+	private static OuvrirClientForm frame;
 
 	// Correct Msg and Error Msg
 	private static String properlyFilledFieldMsg = "OK";
-	private static String fieldIsEmptyErrorMsg = "Champ nécessaire !";
+	private static String fieldIsEmptyErrorMsg = "Champ nï¿½cessaire !";
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";
 	private static String fieldIsNotAnEmailErrorMsg = "Email incorrect !";
 	
@@ -29,7 +29,7 @@ public class CheckClientAdd {
 		return m.matches();
 	}
 	
-	public static void setFrame(OuvrirCompteForm IncommingFrame) {
+	public static void setFrame(OuvrirClientForm IncommingFrame) {
 		frame = IncommingFrame;
 	}
 	

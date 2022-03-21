@@ -71,13 +71,13 @@ public class ListeClientsForm extends JFrame {
 		JButton btnNewButton = new JButton("Créer un nouveau client");
 		btnNewButton.setBackground(new Color(192, 192, 192));
 
-		JButton btnNewButton = new JButton("Cr�er un nouveau client");
+		//JButton btnNewButton = new JButton("Cr�er un nouveau client");
 		btnNewButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(btnNewButton);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OuvrirCompteForm openAccountFrame = new OuvrirCompteForm();
+				OuvrirClientForm openAccountFrame = new OuvrirClientForm();
 				CurrentSessionData.setOpenAccountPage(openAccountFrame);
 				CheckClientAdd.setFrame(openAccountFrame);
 				CurrentSessionData.getOpenAccountPage().setVisible(true);

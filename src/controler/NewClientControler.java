@@ -3,7 +3,7 @@ package controler;
 import javax.swing.SwingUtilities;
 
 import Interface.ListeClientsForm;
-import Interface.OuvrirCompteForm;
+import Interface.OuvrirClientForm;
 import checking.CheckClientAdd;
 import db.DbCreateQueries;
 import db.DbReadQueries;
