@@ -128,11 +128,11 @@ public class ListeClientsForm extends BaseTemplateForm {
 	/*====================== ouvrir la page ListeComptesForm =====================================================*/	
 		
 
-		/*JButton btnNewButton_1 = new JButton("Ouvrir la session client");
+		/*JButton btnNewButton_1 = new JButton("Ouvrir ListeCompteForm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Window frame = null;
-				frame.setVisible(false);
+				frame.setVisible(true);
                 ListeComptesForm listC = new ListeComptesForm();
                 listC.main(null);
 			}
@@ -141,7 +141,7 @@ public class ListeClientsForm extends BaseTemplateForm {
 		});
 		btnNewButton_1.setBounds(729, 289, 176, 49);
 		getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addMouseListener(new MouseAdapter() {*/
+		//btnNewButton_1.addMouseListener(new MouseAdapter() {*/
 			
 			
 			
@@ -182,7 +182,7 @@ public class ListeClientsForm extends BaseTemplateForm {
 	}
 
 	protected void main(Object object) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
