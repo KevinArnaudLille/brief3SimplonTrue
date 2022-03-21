@@ -15,7 +15,11 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 public class ListeComptesForm extends JFrame {
+	// CORR - La liste des comptes doit être généré automatiquement avec une boucle for
+	// CORR - le texte 'Liste des comptes" ne doit pas être éditable
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionné (selectClientByClick)
 
+	// CORR - Les noms des composants doivent être explicite
 	private JPanel contentPane;
 	private JTextField txtGestionDesComptes;
 	private JPanel panel;
