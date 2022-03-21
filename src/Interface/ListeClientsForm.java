@@ -105,7 +105,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 		getContentPane().add(btnNewButton);
 		btnNewButton.addMouseListener(new MouseAdapter() {*/
 
-
 		titlePageLabel.setText("Clients de " + conseiller.getPrenom() + " " + conseiller.getNom());
 
 		JButton quitButton = new JButton("Quitter");
@@ -128,7 +127,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 		addNewClientButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(addNewClientButton);
 		addNewClientButton.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
@@ -138,14 +136,12 @@ public class ListeClientsForm extends BaseTemplateForm {
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
 		});
-	/*====================== ouvrir la page ListeComptesForm =====================================================*/	
-		
 
-		/*JButton btnNewButton_1 = new JButton("Ouvrir la session client");
+		/*JButton btnNewButton_1 = new JButton("Ouvrir ListeCompteForm");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Window frame = null;
-				frame.setVisible(false);
+				frame.setVisible(true);
                 ListeComptesForm listC = new ListeComptesForm();
                 listC.main(null);
 			}
@@ -154,23 +150,25 @@ public class ListeClientsForm extends BaseTemplateForm {
 		});
 		btnNewButton_1.setBounds(729, 289, 176, 49);
 		getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addMouseListener(new MouseAdapter() {*/
+		//btnNewButton_1.addMouseListener(new MouseAdapter() {*/
 			
-			
-			
-			
-			
-
 		JButton openClientSessionsButton = new JButton("Ouvrir la session client");
 		openClientSessionsButton.setBounds(729, 289, 176, 49);
 		getContentPane().add(openClientSessionsButton);
 		openClientSessionsButton.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				  System.out.println("Le radio bouton sélectionné est: " + 
 		                  group.getSelection().getActionCommand());
+				  // CORR --
+				  // mettre en m�moire le client selectionn� � partir de seulement son id, en le retrouvant dans this.conseillerClients
 				  
+				  // ouvrir la page ListCompteForm cr�er une instance de la classe
+				  	// cr�er une instance de la classe
+				  	// mettre en m�moire cette instance de la classe dans CurrentSessionData (setter de selectClientComptesList)
+				  	// afficher l'instance
+				  
+				  // fermer (.dispose()) l'instance de la page ListeClientsForm en cours (accessible depuis CurrentSessionData)
 			}
 		});
 
@@ -198,7 +196,7 @@ public class ListeClientsForm extends BaseTemplateForm {
 	}
 
 	protected void main(Object object) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 

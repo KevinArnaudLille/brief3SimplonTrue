@@ -4,14 +4,20 @@ import java.util.Date;
 
 public class Compte {
 	
+	
+	// CORR - Les noms de variables doit être en camelCase
+	
 	private String id;
 	private int Numero;
 	private int Solde;
 	private String Actif;
 	private String Proprietaire_tutelle;
-	protected Date Date_ouverture;
+	private Date Date_ouverture;
+	// CORR - ajouter variable clef etrangère, nommé clientProprietaire String
 	
-	private Compte(String id, int numero, int solde, String actif, String proprietaire_tutelle, Date date_ouverture) {
+	public Compte(String id, int numero, int solde, String actif, String proprietaire_tutelle, Date date_ouverture) {
+		
+		// CORR - c'est ok de mettre this, mais si c'est mis une fois, il faut le mettre partout
 		
 		super();
 		this.id = id;
@@ -21,16 +27,6 @@ public class Compte {
 		Proprietaire_tutelle = proprietaire_tutelle;
 		Date_ouverture = date_ouverture;
 	}
-
-	public Compte() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
-
+	// ajouter getters et setters (à générer automatiquement)
 }
