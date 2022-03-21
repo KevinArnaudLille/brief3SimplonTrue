@@ -9,20 +9,20 @@ import Interface.OuvrirClientForm;
 
 import checking.CheckConseillerConnection;
 import db.DbReadQueries;
+import model.Client;
 import model.Conseiller;
 
 public class CurrentSessionData {
+	// CORR - voir en bas de ligne
+	
 	private static Conseiller connectedConseiller;
+	private static Client selectClientByClick;
+	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
-
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
-	private static ListeComptesForm managementCustomerAccount;
-	private static ListeClientsForm selectClientByClick;
-
-
-
+	private static ListeComptesForm selectClientComptesList;
 	
 	// ==== GETTERS AND SETTERS ===
 	public static CreationBanqueForm getHomePage() {
@@ -80,25 +80,23 @@ public class CurrentSessionData {
 	
 	
 	public static ListeComptesForm getGestionCompteClient() {
-		return managementCustomerAccount;
+		return selectClientComptesList;
 	}
 
 	public static void setGestionCompteClient(ListeComptesForm gestionCompteClient) {
-		CurrentSessionData.managementCustomerAccount = gestionCompteClient;
+		CurrentSessionData.selectClientComptesList = gestionCompteClient;
 	}
 	
 /*****************************************************************************************************************************************/
 	
    
 
-	public static ListeClientsForm getSelectClientByClick() {
+	public static Client getSelectClientByClick() {
 		return selectClientByClick;
 	}
 
-	public static void setSelectClientByClick(ListeClientsForm selectClientByClick) {
+	public static void setSelectClientByClick(Client selectClientByClick) {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
 	}
-	
-	
-	
+
 }

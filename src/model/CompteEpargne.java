@@ -2,6 +2,7 @@ package model;
 
 
 public class CompteEpargne extends Compte {
+	// CORR - voir Compte-courant
 	private String id;
 	private String Taux_interet;
 	private String Plafond;
