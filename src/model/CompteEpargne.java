@@ -15,7 +15,6 @@ public class CompteEpargne extends Compte {
 		
 		super(id,  numero,  solde,  actif,  proprietaire_tutelle,  date_ouverture, client_id);
 		
-		
 		this.taux_interet= taux_interet;
 		this.plafond = plafond;
 	
@@ -36,5 +35,4 @@ public class CompteEpargne extends Compte {
 	public void setPlafond(String plafond) {
 		this.plafond = plafond;
 	}
-
 }

@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Compte {
 	
+
 	private String id;
 	private String client_id;
-	
 	public Integer numero;
-	private Integer  solde;
+	private Integer solde;
 	private String actif;
 	private String proprietaire_tutelle;
 	private Date date_ouverture;
 	
 	
-	    public Compte(String id, Integer numero, Integer solde, String actif, String proprietaire_tutelle, Date date_ouverture,String client_id) {
+	    public Compte(String id, Integer numero, Integer solde, String actif, String proprietaire_tutelle, Date date_ouverture, String client_id) {
 		
 		this.id = id;
 		this.client_id =client_id;
@@ -26,30 +26,15 @@ public class Compte {
 	}
 
 	
-
-		
-
-
+	// ajouter getters et setters (� g�n�rer automatiquement)
 
 		public String getClient_id() {
 			return client_id;
 		}
 
-
-
-
-
-
-
 		public void setClient_id(String client_id) {
 			this.client_id = client_id;
 		}
-
-
-
-
-
-
 
 		public String getId() {
 			return id;
@@ -58,8 +43,6 @@ public class Compte {
 		public void setId(String id) {
 			this.id = id;
 		}
-
-		
 
 		public int getNumero() {
 			return numero;
@@ -102,18 +85,7 @@ public class Compte {
 		}
 
 
-
-
-
-
-
-
-
-
-
-
-
-		public String getCompteCourant() {
+         public String getCompteCourant() {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -128,5 +100,6 @@ public class Compte {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
 
 }

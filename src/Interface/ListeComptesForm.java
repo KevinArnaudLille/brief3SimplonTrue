@@ -31,19 +31,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
-	// CORR - La liste des comptes doit être généré automatiquement avec une boucle for
+
+	// CORR - La liste des comptes doit ï¿½tre gï¿½nï¿½rï¿½ automatiquement avec une boucle for
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionnï¿½ (selectClientByClick)
+	// CORR - Les noms des composants doivent ï¿½tre explicite*//
+
+	// CORR - La liste des comptes doit ï¿½tre gï¿½nï¿½rï¿½ automatiquement avec une boucle for
 	
-	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionné (selectClientByClick)***********/////////
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionnï¿½ (selectClientByClick)***********/////////
 
 	
+
 	
 	private static final int JRadioBtnWidth = 0;
 	private static final int JRadioBtnAndJTextFieldHeigth = 0;
-	//private static final Compte[] compteClient  ;
 	private JPanel contentPane;
 	private JTextField txtGestionDesComptes;
 	private JPanel panel;
-	private Client[] conseillerClients;
+	
 	private ButtonGroup group;
 	
 	ArrayList<Compte> CompteClient;
@@ -51,29 +56,32 @@ public class ListeComptesForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListeComptesForm() {
-		/*Conseiller compte;
-		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(compte);
 
-		int x = 40;
-		int y = 144;
+	public ListeComptesForm() {
+		
+		
+		/*Client compte1;
+		this.CompteClient = DbReadQueries.dbReadClientCompteInBdd(compte1);
+		
+	    int x = 40;
+        int y = 144;
 		int JRadioBtnWidth = 500;
 		int JRadioBtnAndJTextFieldHeigth = 26;
 		
 		group = new ButtonGroup();
 		
-		for (Compte compte: this.CompteClient) {
+		for (Compte compte1: this.CompteClient) {
 			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton(compte.getId() + " " + compte.getCompteCourant()+  " " + compte.CompteEpargne());
+			JRadioButton rdbtnNewRadioButton = new JRadioButton(compte1.getId() + " " + compte1.getCompteCourant()+  " " + compte1.CompteEpargne());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
 			rdbtnNewRadioButton.setSelected(true);
 			
-			rdbtnNewRadioButton.setActionCommand(compte.getId());
+			rdbtnNewRadioButton.setActionCommand(compte1.getId());
 			group.add(rdbtnNewRadioButton);
 
 			y += 50;
-		}*/
+		}*/git 
 		
 		
 		
@@ -117,8 +125,13 @@ public class ListeComptesForm extends JFrame {
 		rdbtnNewRadioButton.setBounds(6, 6, 21, 21);
 		panel.add(rdbtnNewRadioButton);
 		
+
 		JButton btnOuvrireCompte = new JButton("Ouvrire");
-		btnOuvrireCompte.setBackground(Color.WHITE);
+
+		
+		
+		JButton btnOuvrireCompte2 = new JButton("Ouvrir");
+        btnOuvrireCompte.setBackground(Color.WHITE);
 		btnOuvrireCompte.setBounds(576, 258, 132, 45);
 		contentPane.add(btnOuvrireCompte);
 		
@@ -161,10 +174,7 @@ public class ListeComptesForm extends JFrame {
 		return CompteClient;
 	}
 
-	
-	
-
-
 	public static void main(String[] args) {
+		
 	}
 }

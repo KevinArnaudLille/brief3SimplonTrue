@@ -1,5 +1,6 @@
 package Interface;
 
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -23,6 +24,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class OuvrirClientForm extends BaseTemplateForm {
+
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
 	private JTextField textFieldCourriel;
@@ -43,6 +45,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 
 		titlePageLabel.setText("Ajouter un nouveau client");
 		
+
 		// TEXT FIELDS
 		// To factorize (one day)
 		// Nom
@@ -165,7 +168,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		adresseReturnMsg.setBounds(825, 251, 151, 31);
 		getContentPane().add(adresseReturnMsg);
 
-		// Téléphone
+		// Tï¿½lï¿½phone
 		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone :");
 		lblTlphone.setForeground(Color.WHITE);
 		lblTlphone.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -189,6 +192,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 			}
 		});
 		
+			
 		telReturnMsg = new JLabel("");
 		telReturnMsg.setForeground(new Color(165, 42, 42));
 		telReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
@@ -229,7 +233,6 @@ public class OuvrirClientForm extends BaseTemplateForm {
 	public String getNom() {
 		return this.textFieldNom.getText();
 	}
-	
 
 	public String getPrenom() {
 		return this.textFieldPrenom.getText();
@@ -304,4 +307,5 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		OuvrirClientForm testFrame = new OuvrirClientForm();
 		testFrame.setVisible(true);
 	}
+
 }
