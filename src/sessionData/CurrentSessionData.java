@@ -19,12 +19,9 @@ public class CurrentSessionData {
 	
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
-	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
-
 	private static OuvrirCompteForm openAccountForm;
-
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;

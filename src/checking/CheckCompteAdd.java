@@ -1,21 +1,15 @@
 package checking;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-
-import Interface.OuvrirCompteCourant;
 import Interface.OuvrirCompteForm;
-import model.Client;
-import Interface.OuvrirClientForm;
+import db.DbReadQueries;
+import model.Compte;
 
 public class CheckCompteAdd {
 	
 	private static OuvrirCompteForm frame;
-	private ButtonGroup group;
 
 
 	// Correct Msg and Error Msg
@@ -30,17 +24,7 @@ public class CheckCompteAdd {
 			return m.find();
 		}
 		
-		private static boolean isStringContainSpecialCharacter(String stringToCheck) {
-			Pattern p = Pattern.compile("[0-9]");
-	        Matcher m = p.matcher(stringToCheck);
-			return m.matches();
-		}
 		
-		private static boolean isStringContainSpecialCharacter(String stringToCheck) {
-			Pattern p = Pattern.compile("");
-	        Matcher m = p.matcher(stringToCheck);
-			return m.matches();
-		}
 		
 		public static void setFrame(OuvrirCompteForm IncommingFrame) {
 			frame = IncommingFrame;
@@ -53,17 +37,13 @@ public class CheckCompteAdd {
 		}
 		
 		// NUM COMPTE FIELD
-		public static boolean isNumeroFieldOk() {
-			String stringToCheck = frame.getNumero();
-			return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]");
+		public static boolean isNumCompteAlreadyInDb(int numToCheck) {
+			ArrayList<Compte> comptes = DbReadQueries.dbReadAllCompteInBdd();
+			boolean numberExists = comptes.stream().anyMatch(compte -> numToCheck.equals(compte.number));
+			System.out.println("Compte number is in the list: " + numberExists);
 		}
-		public static String generateNumeroProperErrorMsg() {
-			String stringToCheck = frame.getNumero();
-			if (stringToCheck.isEmpty()) {
-				return fieldIsEmptyErrorMsg;
-			}
-			return fieldIsWrongErrorMsg;
-		}
+		
+	
 		
 		
 		// NOM CLIENT FIELD
@@ -152,15 +132,11 @@ public class CheckCompteAdd {
 		
 		// PROPRIETAIRE TUTELLE
 		public static boolean isProprietaire_tutelleFieldOk() {
-			String stringToCheck = frame.getPlafond();
-			return !stringToCheck.isEmpty()  && stringToCheck.matches("");
+			String stringToCheck = frame.getProprietaire_tutelle();
+			return !stringToCheck.contains(" ");
 
 		}
 		public static String generateProprietaire_tutelleFieldOkProperErrorMsg() {
-			String stringToCheck = frame.getProprietaire_tutelle();
-			if (stringToCheck.isEmpty()) {
-				return fieldIsEmptyErrorMsg;
-			}
 			return fieldIsWrongErrorMsg;
 		}
 		

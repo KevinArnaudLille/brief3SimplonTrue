@@ -1,5 +1,8 @@
 package controler;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -13,6 +16,8 @@ import db.DbCreateQueries;
 import db.DbReadQueries;
 import model.Client;
 import model.Compte;
+import model.CompteCourant;
+import model.CompteEpargne;
 import sessionData.CurrentSessionData;
 
 public class NewCompteControler {
@@ -32,9 +37,9 @@ public class NewCompteControler {
 					);
 		
 			
-			DbCreateQueries.addCompteCourantToDb(comptecourantToAdd);
-			DbCreateQueries.addCompteEpargneToDb(compteepargneToAdd);
-			CurrentSessionData.getOpenAccountForm().setVisible(false);
+			DbCreateQueries.addCompteCourantToDb(compteToAdd);
+			DbCreateQueries.addCompteEpargneToDb(compteToAdd);
+			CurrentSessionData.getOpenAccountForm().setVisible(true);
 		
 			CurrentSessionData.getOpenAccountForm().dispose();;
 			ListeComptesForm newFrame = new ListeComptesForm();
@@ -45,8 +50,14 @@ public class NewCompteControler {
 
 	public static void onCancelClick() {
 		// Close the current page
-		CurrentSessionData.getOpenAccountForm().setVisible(false);
+		CurrentSessionData.getOpenAccountForm().dispose();
 	}
+	
+	public static int generateRandomCompteNumber() {
+		return (int)Math.floor(Math.random()*(999999-100000+1)+100000);
+		
+	}
+	
 
 	public static void onLeavingNumeroTextField() {
 		if(CheckCompteAdd.isNumeroFieldOk()) {
@@ -113,8 +124,8 @@ public class NewCompteControler {
 	}
 	
 	public static void onAddingTextAnywhere() {
-		if (CheckClientAdd.AreAllFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().enableAddClientBtn();
+		if (CheckCompteAdd.AreAllFieldOk()) {
+			CurrentSessionData.getOpenAccountForm().enablebtnValidate();
 		}
 	}
 }

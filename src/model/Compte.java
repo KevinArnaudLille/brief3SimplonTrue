@@ -5,7 +5,7 @@ import java.util.Date;
 public class Compte {
 	
 	
-	// CORR - Les noms de variables doit être en camelCase
+	// CORR - Les noms de variables doit ï¿½tre en camelCase
 	
 	private String id;
 	private int Numero;
@@ -13,7 +13,7 @@ public class Compte {
 	private String Actif;
 	private String Proprietaire_tutelle;
 	private Date Date_ouverture;
-	// CORR - ajouter variable clef etrangère, nommé clientProprietaire String
+	// CORR - ajouter variable clef etrangï¿½re, nommï¿½ clientProprietaire String
 	
 	public Compte(String id, int numero, int solde, String actif, String proprietaire_tutelle, Date date_ouverture) {
 		
@@ -28,5 +28,5 @@ public class Compte {
 		Date_ouverture = date_ouverture;
 	}
 	
-	// ajouter getters et setters (à générer automatiquement)
+	// ajouter getters et setters (ï¿½ gï¿½nï¿½rer automatiquement)
 }
