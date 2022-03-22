@@ -80,4 +80,9 @@ public class DbCreateQueries {
 	}
 
 
+	public static Object dbReClientofConseiller(Client client) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

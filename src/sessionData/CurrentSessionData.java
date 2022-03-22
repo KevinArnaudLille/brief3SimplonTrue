@@ -26,6 +26,7 @@ public class CurrentSessionData {
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;
 	
+	
 	// ==== GETTERS AND SETTERS ===
 	public static CreationBanqueForm getHomePage() {
 		return homePage;
@@ -108,6 +109,11 @@ public class CurrentSessionData {
 
 	public static void setSelectClientByClick(Client selectClientByClick) {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
+	}
+
+	public static void setSelectClientComptesList(ListeComptesForm openAccountFrame) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

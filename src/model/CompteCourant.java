@@ -1,56 +1,32 @@
 package model;
 
+import java.util.Date;
+
 public class CompteCourant extends Compte {
-     
-	// CORR - Les noms de variables doit être en camelCase
-	private String id; // pas besoin de id car deja dans classe parente
-	private String Frais_transfert;
-	private String Solde_minimum_autorise;
-	private String Raison; // ????? n'a pas ça place ici
-	
-	// CORR - Il faut que le constructeur de CompteCourant reçoive les paramètres de ses variables ET les variables de la classe parente (ici Compte), les variables relatives à la classe parente reçu doivent être renvoyé au constructeur de la classe parente vie la fonction super();
-	private CompteCourant(String id, String frais_transfert, String solde_minimum_autorise, String raison) {
-		super();
-		this.id = id;
-		Frais_transfert = frais_transfert;
-		Solde_minimum_autorise = solde_minimum_autorise;
-		Raison = raison;
-	}
+    private String frais_transfert;
+	private String solde_minimum_autorise;
 
-	public String getId() {
-		return id;
-	}
+	public CompteCourant(String id, Integer numero, Integer solde, String actif, String proprietaire_tutelle, Date date_ouverture,String client_id,String frais_transfert, String solde_minimum_autorise) {
+		
+		super( id,  numero,  solde,  actif,  proprietaire_tutelle,  date_ouverture, client_id);
 
-	public void setId(String id) {
-		this.id = id;
+		this.frais_transfert = frais_transfert;
+		this.solde_minimum_autorise = solde_minimum_autorise;
 	}
 
 	public String getFrais_transfert() {
-		return Frais_transfert;
+		return frais_transfert;
 	}
 
 	public void setFrais_transfert(String frais_transfert) {
-		Frais_transfert = frais_transfert;
+		this.frais_transfert = frais_transfert;
 	}
 
 	public String getSolde_minimum_autorise() {
-		return Solde_minimum_autorise;
+		return solde_minimum_autorise;
 	}
 
 	public void setSolde_minimum_autorise(String solde_minimum_autorise) {
-		Solde_minimum_autorise = solde_minimum_autorise;
+		this.solde_minimum_autorise = solde_minimum_autorise;
 	}
-
-	public String getRaison() {
-		return Raison;
-	}
-
-	public void setRaison(String raison) {
-		Raison = raison;
-	}
-	
-
-
-
-
 }

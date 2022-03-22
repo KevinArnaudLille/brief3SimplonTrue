@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import db.DbReadQueries;
 import model.Client;
+import model.Compte;
 import model.Conseiller;
 import sessionData.CurrentSessionData;
 
@@ -37,13 +38,14 @@ public class ListeClientsForm extends BaseTemplateForm {
 	private ButtonGroup group;
 	private ArrayList<Client> conseillerClients;
 	
+	
 	public ListeClientsForm() {
 
-		/*getContentPane().setFont(new Font("Arial", Font.BOLD, 20));
-		getContentPane().setForeground(Color.WHITE);*/
+		
 
 
 		super();
+		titlePageLabel.setLocation(10, 3);
 
 		Conseiller conseiller = CurrentSessionData.getConnectedConseiller();
 		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
@@ -122,7 +124,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 		quitButton.setBounds(842, 6, 117, 29);
 		panel.add(quitButton);
 		
-
 		JButton addNewClientButton = new JButton("Cr�er un nouveau client");
 		addNewClientButton.setBounds(729, 184, 176, 49);
 		getContentPane().add(addNewClientButton);
@@ -136,41 +137,33 @@ public class ListeClientsForm extends BaseTemplateForm {
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
 		});
-
-		/*JButton btnNewButton_1 = new JButton("Ouvrir ListeCompteForm");
-		btnNewButton_1.addActionListener(new ActionListener() {
+			
+		JButton addClientSessionsButton = new JButton("Ouvrir la session client");
+		addClientSessionsButton.setBounds(729, 289, 176, 49);
+		getContentPane().add(addClientSessionsButton);
+		addClientSessionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Window frame = null;
-				frame.setVisible(true);
-                ListeComptesForm listC = new ListeComptesForm();
-                listC.main(null);
+				ListeComptesForm openAccountFrame = new ListeComptesForm ();
+				CurrentSessionData.setSelectClientComptesList(openAccountFrame);
+				CheckClientAdd.setFrame(openAccountFrame);
+				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
-			
-			
 		});
-		btnNewButton_1.setBounds(729, 289, 176, 49);
-		getContentPane().add(btnNewButton_1);
-		//btnNewButton_1.addMouseListener(new MouseAdapter() {*/
-			
-		JButton openClientSessionsButton = new JButton("Ouvrir la session client");
-		openClientSessionsButton.setBounds(729, 289, 176, 49);
-		getContentPane().add(openClientSessionsButton);
-		openClientSessionsButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				  System.out.println("Le radio bouton sélectionné est: " + 
-		                  group.getSelection().getActionCommand());
+				  
 				  // CORR --
-				  // mettre en m�moire le client selectionn� � partir de seulement son id, en le retrouvant dans this.conseillerClients
+				  // mettre en m�moire le client selectionn� � partir de seulement son id, en le retrouvant dans this.conseillerClients**//
 				  
 				  // ouvrir la page ListCompteForm cr�er une instance de la classe
+		
 				  	// cr�er une instance de la classe
+		
 				  	// mettre en m�moire cette instance de la classe dans CurrentSessionData (setter de selectClientComptesList)
+		
+
 				  	// afficher l'instance
 				  
 				  // fermer (.dispose()) l'instance de la page ListeClientsForm en cours (accessible depuis CurrentSessionData)
-			}
-		});
+		
 
 		int x = 40;
 		int y = 144;
@@ -184,10 +177,8 @@ public class ListeClientsForm extends BaseTemplateForm {
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
 
-
 			rdbtnNewRadioButton.setSelected(true);
 			
-
 			rdbtnNewRadioButton.setActionCommand(client.getId());
 			group.add(rdbtnNewRadioButton);
 
@@ -199,8 +190,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 	
 		
 	}
-
-
 
 	public ArrayList<Client> getConseillerClients() {
 		return conseillerClients;

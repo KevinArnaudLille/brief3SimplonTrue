@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import Interface.CreationBanqueForm;
+import Interface.ListeComptesForm;
 import Interface.OuvrirClientForm;
 
 public class CheckClientAdd {
@@ -108,5 +109,10 @@ public class CheckClientAdd {
 	// Getters
 	public static String getProperlyFilledFieldMsg() {
 		return properlyFilledFieldMsg;
+	}
+
+	public static void setFrame(ListeComptesForm openAccountFrame) {
+		// TODO Auto-generated method stub
+		
 	}
 }
