@@ -17,12 +17,12 @@ public class CurrentSessionData {
 	
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
-	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;
+	
 	
 	// ==== GETTERS AND SETTERS ===
 	public static CreationBanqueForm getHomePage() {
@@ -97,6 +97,11 @@ public class CurrentSessionData {
 
 	public static void setSelectClientByClick(Client selectClientByClick) {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
+	}
+
+	public static void setSelectClientComptesList(ListeComptesForm openAccountFrame) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
