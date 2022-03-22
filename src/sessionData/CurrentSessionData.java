@@ -6,24 +6,27 @@ import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
 
 import Interface.ListeComptesForm;
-
+import Interface.ModifierCompteForm;
 import Interface.OuvrirClientForm;
 
 import checking.CheckConseillerConnection;
 import db.DbReadQueries;
 import model.Client;
+import model.Compte;
 import model.Conseiller;
 
 public class CurrentSessionData {
-	// CORR - voir en bas de ligne
 	
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
+	private static Compte compteToUpdate;
+	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;
+	private static ModifierCompteForm updateComptePage;
 	
 	
 	// ==== GETTERS AND SETTERS ===
@@ -100,11 +103,27 @@ public class CurrentSessionData {
 	public static void setSelectClientByClick(Client selectClientByClick) {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
 	}
+	
+	public static Compte getCompteToUpdate() {
+		return compteToUpdate;
+	}
+	
+	public static void setCompteToUpdate(Compte compteToUpdate) {
+		CurrentSessionData.compteToUpdate = compteToUpdate;
+	}
 
 	public static void setSelectClientByClick(String clientId) {
 		System.out.println(clientId);
 		CurrentSessionData.selectClientByClick = DbReadQueries.dbReadClientOfConseiller(getConnectedConseiller()).stream().filter(client -> clientId.equals(client.getId())).findFirst().orElse(null);
 		System.out.println(CurrentSessionData.selectClientByClick.getId());
+	}
+
+	public static ModifierCompteForm getUpdateComptePage() {
+		return updateComptePage;
+	}
+
+	public static void setUpdateComptePage(ModifierCompteForm updateComptePage) {
+		CurrentSessionData.updateComptePage = updateComptePage;
 	}
 
 }

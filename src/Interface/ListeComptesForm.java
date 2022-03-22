@@ -2,7 +2,6 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -47,17 +46,11 @@ public class ListeComptesForm extends JFrame {
 	
 	ArrayList<Compte>clientsConseiller;
 
-	
-	public static void main(String[] args) {
-		
-          }
-
 	/**
 	 * Create the frame.
 	 */
 	public ListeComptesForm() {
-		
-		
+
 		/*int x = 40;
 		int y = 144;
 		int JRadioBtnWidth = 500;
@@ -87,6 +80,7 @@ public class ListeComptesForm extends JFrame {
 		
 		
 		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
 		contentPane = new JPanel();
@@ -163,7 +157,9 @@ public class ListeComptesForm extends JFrame {
 		btnListeComptes.setFont(new Font("Arial", Font.BOLD, 25));
 		btnListeComptes.setBounds(29, 69, 380, 36);
 		contentPane.add(btnListeComptes);
-		
 	}
 	
+	
+	public static void main(String[] args) {
+	}
 }
