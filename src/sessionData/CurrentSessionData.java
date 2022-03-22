@@ -1,5 +1,6 @@
 package sessionData;
 
+import java.awt.Window;
 import java.util.Optional;
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
@@ -47,7 +48,7 @@ public class CurrentSessionData {
 		CurrentSessionData.openAccountPage = openAccountPage;
 	}
 	
-	//GETTER ET SETTER OUVRIR UN COMPTE: getOpenAccountForm is the good name or not ???
+	//GETTER ET SETTER OUVRIR UN COMPTE
 	public static OuvrirCompteForm getOpenAccountForm() {
 		return openAccountForm;
 	}
@@ -134,6 +135,11 @@ public class CurrentSessionData {
 
 	public static void setUpdateComptePage(ModifierCompteForm updateComptePage) {
 		CurrentSessionData.updateComptePage = updateComptePage;
+	}
+
+	public static Window enableValidateBtn() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -17,7 +17,7 @@ public class Compte {
 	    public Compte(String id, Integer numero, Double solde, boolean actif, String proprietaire_tutelle, Date date_ouverture, String client_id) {
 		
 		this.id = id;
-		this.client_id =client_id;
+		this.client_id = client_id;
 		this.numero = numero;
 		this.solde = solde;
 		this.actif = actif;
@@ -28,8 +28,8 @@ public class Compte {
 	
 	// ajouter getters et setters (� g�n�rer automatiquement)
 
-		public Compte(String id2, String nom, String taux_interet, String plafond, String solde2,
-				String frais_transfert, String solde_minimum_autorise) {
+		public Compte(String string, String nom, String numero, String proprietaire_tutelle, String taux_interet,
+				String plafond, String solde, String frais_transfert, String solde_minimum_autorise, String id) {
 			// TODO Auto-generated constructor stub
 		}
 

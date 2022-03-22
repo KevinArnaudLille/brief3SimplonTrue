@@ -32,7 +32,7 @@ public class CheckCompteAdd {
 		
 		// ALL FIELD
 		public static boolean AreAllFieldOk() {
-			return isNomFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
+			return isClient_idFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
 					&& isPlafondFieldOk() && isProprietaire_tutelleFieldOk() && isTaux_interetFieldOk();
 		}
 		
@@ -46,12 +46,12 @@ public class CheckCompteAdd {
 		
 		
 		// NOM CLIENT FIELD
-		public static boolean isNomFieldOk() {
-			String stringToCheck = frame.getNom();
+		public static boolean isClient_idFieldOk() {
+			String stringToCheck = frame.getClient();
 			return !stringToCheck.isEmpty() && !stringToCheck.contains(" ") && !isStringContainSpecialCharacter(stringToCheck);
 		}
 		public static String generateNomProperErrorMsg() {
-			String stringToCheck = frame.getNom();
+			String stringToCheck = frame.getClient();
 			if (stringToCheck.isEmpty()) {
 				return fieldIsEmptyErrorMsg;
 			}
@@ -107,7 +107,7 @@ public class CheckCompteAdd {
 			return !stringToCheck.isEmpty()  && stringToCheck.matches("[0-9]");
 
 		}
-		public static String generateTauxInteretFieldOkProperErrorMsg() {
+		public static String generateTauxInteretProperErrorMsg() {
 			String stringToCheck = frame.getTaux_interet();
 			if (stringToCheck.isEmpty()) {
 				return fieldIsEmptyErrorMsg;
@@ -121,7 +121,7 @@ public class CheckCompteAdd {
 			return !stringToCheck.isEmpty()  && stringToCheck.matches("[0-9]");
 
 		}
-		public static String generatePlafondFieldOkProperErrorMsg() {
+		public static String generatePlafondProperErrorMsg() {
 			String stringToCheck = frame.getPlafond();
 			if (stringToCheck.isEmpty()) {
 				return fieldIsEmptyErrorMsg;
@@ -135,7 +135,7 @@ public class CheckCompteAdd {
 			return !stringToCheck.contains(" ");
 
 		}
-		public static String generateProprietaire_tutelleFieldOkProperErrorMsg() {
+		public static String generateProprietaire_tutelleProperErrorMsg() {
 			return fieldIsWrongErrorMsg;
 		}
 		

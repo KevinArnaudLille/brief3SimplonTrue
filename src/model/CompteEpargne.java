@@ -7,7 +7,7 @@ public class CompteEpargne extends Compte {
 	private Double taux_interet;
 	private Double plafond;
 
-	public CompteEpargne(String id, Integer numero, Double solde, boolean actif, String proprietaire_tutelle,
+	public CompteEpargne(String id, int numero, Double solde, boolean actif, String proprietaire_tutelle,
 			Date date_ouverture, String client_id, Double taux_interet, Double plafond) {
 
 		super(id, numero, solde, actif, proprietaire_tutelle, date_ouverture, client_id);

@@ -22,9 +22,11 @@ import javax.swing.SwingConstants;
 
 //import checking.CheckClientAdd;
 import checking.CheckCompteAdd;
+import controler.NewClientControler;
 //import controler.NewClientControler;
 import controler.NewCompteControler;
 //import sessionData.CurrentSessionData;
+import sessionData.CurrentSessionData;
 
 public class OuvrirCompteForm extends BaseTemplateForm {
 
@@ -37,7 +39,7 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 
 	// private JLabel IdReturnMsg;
 	private JLabel Proprietaire_tutelleReturnMsg;
-	//private JLabel NumeroReturnMsg;
+	private JLabel NumeroReturnMsg;
 	private JLabel SoldeReturnMsg;
 	private JLabel Frais_transfertReturnMsg;
 	private JLabel Solde_minimum_autoriseReturnMsg;
@@ -53,8 +55,8 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	
 	private JButton btnValidate;
 	
-	private JLabel NomReturnMsg;
-	private JLabel Nom;
+	private JLabel ClientReturnMsg;
+	private JLabel Client;
 	
 	private ButtonGroup group;
 	private JLabel clientNom;
@@ -128,12 +130,12 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		getContentPane().add(compteNum);
 
 		// NOM DU CLIENT
-		JLabel Nom = new JLabel("Nom du client:");
-		Nom.setForeground(Color.WHITE);
-		Nom.setBounds(592, 123, 99, 16);
-		getContentPane().add(Nom);
+		JLabel Client = new JLabel("Nom du client:");
+		Client.setForeground(Color.WHITE);
+		Client.setBounds(592, 123, 99, 16);
+		getContentPane().add(Client);
 		
-		clientNom = new JLabel("");
+		clientNom = new JLabel();
 		clientNom.setBounds(703, 123, 130, 16);
 		getContentPane().add(clientNom);
 		
@@ -148,18 +150,18 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		textFieldSolde.setColumns(10);
 		textFieldSolde.setBounds(309, 189, 130, 26);
 		getContentPane().add(textFieldSolde);
-
-		textFieldSolde.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewCompteControler.onLeavingSoldeTextField();
-			}
-		});
-		textFieldSolde.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-				NewCompteControler.onAddingTextAnywhere();
-			}
-		});
+		textFieldSolde.setColumns(10);
+	        textFieldSolde.addFocusListener(new FocusAdapter() {
+	            public void focusLost(FocusEvent e) {
+	                NewCompteControler.onLeavingSoldeTextField();
+	            }
+	        });
+	        textFieldSolde.addKeyListener(new KeyAdapter() {
+	            @Override
+	            public void keyReleased(KeyEvent e) {
+	                NewCompteControler.onAddingTextAnywhere();
+	            }
+	        });
 
 		SoldeReturnMsg = new JLabel("");
 		SoldeReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
@@ -213,10 +215,11 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		btnValidate = new JButton("Valider");
 		btnValidate.setBounds(437, 401, 117, 29);
 		getContentPane().add(btnValidate);
-		btnValidate.addMouseListener(new MouseAdapter() {
+		btnValidate.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e){
 				//quand je clique sur "valider" je supprime la page
+				NewCompteControler.onAddCompteClick();
 			}
 		});
 		
@@ -356,15 +359,20 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	public void enableAddCompte_epargneBtn() {
 		this.btnAddCompte_epargne.setEnabled(true);
 	}
+	
+	// addValidateBtn enabler
+		public void enableAddClientBtn() {
+			this.btnValidate.setEnabled(true);
+		}
 
 	// Textfields getters and setters
-	public String getNom() {
-		return this.Nom.getText();
+	public String getClient() {
+		return this.clientNom.getText();
 	}
 
-	/*public String getNumero() {
-		return this.textFieldNumero.getText();
-	}*/
+	public String getNumero() {
+		return this.compteNum.getText();
+	}
 
 	public String getProprietaire_tutelle() {
 		return this.textFieldProprietaire_tutelle.getText();
@@ -390,13 +398,13 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		return this.textFieldPlafond.getText();
 	}
 
-	public void setNom(String newText) {
-		this.Nom.setText(newText);
+	public void setClient(String newText) {
+		this.clientNom.setText(newText);
 	}
 
-	/*public void setNumero(String newText) {
-		this.textFieldNumero.setText(newText);
-	}*/
+	public void setNumero(String newText) {
+		this.compteNum.setToolTipText(newText);
+	}
 
 	public void setProprietaire_tutelle(String newText) {
 		this.textFieldProprietaire_tutelle.setText(newText);
@@ -423,13 +431,13 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	}
 
 	// Error msgs setters
-	public void setErrorMsg(String newText) {
-		this.NomReturnMsg.setText(newText);
+	public void setClientErrorMsg(String newText) {
+		this.ClientReturnMsg.setText(newText);
 	}
 
-	/*public void setNumeroErrorMsg(String newText) {
+	public void setNumeroErrorMsg(String newText) {
 		this.NumeroReturnMsg.setText(newText);
-	}*/
+	}
 
 	public void setProprietaire_tutelleErrorMsg(String newText) {
 		this.Proprietaire_tutelleReturnMsg.setText(newText);
@@ -457,10 +465,9 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 
 	// MAIN FOR TESTING
 	public static void main(String[] args) {
-		// CurrentSessionData.setOpenAccountForm();
+		CurrentSessionData.setConnectedConseiller("MPTremblay");
 		OuvrirCompteForm testFrame = new OuvrirCompteForm();
 		CheckCompteAdd.setFrame(testFrame);
 		testFrame.setVisible(true);
 	}
-
 }

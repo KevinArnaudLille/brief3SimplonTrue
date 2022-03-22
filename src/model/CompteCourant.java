@@ -6,7 +6,7 @@ public class CompteCourant extends Compte {
     private Double frais_transfert;
 	private Double solde_minimum_autorise;
 
-	public CompteCourant(String id, Integer numero, Double solde, boolean actif, String proprietaire_tutelle, Date date_ouverture,String client_id,Double frais_transfert, Double solde_minimum_autorise) {
+	public CompteCourant(String id, int numero, Double solde, boolean actif, String proprietaire_tutelle, Date date_ouverture, String client_id, Double frais_transfert, Double solde_minimum_autorise) {
 		
 		super(id,numero,solde,actif,proprietaire_tutelle,date_ouverture,client_id);
 

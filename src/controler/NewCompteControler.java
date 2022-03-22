@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import Interface.ListeClientsForm;
 import Interface.ListeComptesForm;
 import Interface.OuvrirClientForm;
+import Interface.OuvrirCompteForm;
 import checking.CheckClientAdd;
 import checking.CheckCompteAdd;
 import db.DbCreateQueries;
@@ -25,28 +26,30 @@ public class NewCompteControler {
 	public static void onAddCompteClick() {
 		
 		if (CheckCompteAdd.AreAllFieldOk()) {
-			Compte comptecourantToAdd = new Compte(
+			Compte compteToAdd = new Compte(
 					"compte_0"+(DbReadQueries.dbReadAllCompteInBdd().size()+1),
-					CurrentSessionData.getOpenAccountForm().getNom(),
-					//CurrentSessionData.getOpenAccountForm().getNumero(),
-					//CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(),
+					CurrentSessionData.getOpenAccountForm().getClient(),
+					CurrentSessionData.getOpenAccountForm().getNumero(),
+					CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(),
 					CurrentSessionData.getOpenAccountForm().getTaux_interet(),
 					CurrentSessionData.getOpenAccountForm().getPlafond(),
 					CurrentSessionData.getOpenAccountForm().getSolde(),
 					CurrentSessionData.getOpenAccountForm().getFrais_transfert(),
-					CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise()
+					CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise(), 
+					CurrentSessionData.getConnectedConseiller().getId()
 					);
-		
+			DbCreateQueries.addCompteCourantToDb((CompteCourant) compteToAdd);
+			CurrentSessionData.getOpenAccountForm().setVisible(true);
 			
-			DbCreateQueries.addCompteCourantToDb(comptecourantToAdd);
-			DbCreateQueries.addCompteEpargneToDb(comptepargneToAdd);
+			DbCreateQueries.addCompteEpargneToDb((CompteEpargne) compteToAdd);
 			CurrentSessionData.getOpenAccountForm().setVisible(true);
 		
-			CurrentSessionData.getOpenAccountForm().dispose();;
-			ListeComptesForm newFrame = new ListeComptesForm();
+			//CurrentSessionData.getConnectedConseillerClientsPage().dispose();
+			OuvrirCompteForm newFrame = new OuvrirCompteForm();
 			CurrentSessionData.setOpenAccountForm(newFrame);
 			CurrentSessionData.getOpenAccountForm().setVisible(true);
 		}
+		
 	}
 
 	public static void onCancelClick() {
@@ -64,7 +67,12 @@ public class NewCompteControler {
 		return numberToCheck;
 	}
 	
+	
+	/*public static int generateClient_id() {
+		
+	}*/
 
+	
 	/*public static void onLeavingNumeroTextField() {
 		if(CheckCompteAdd.isNumCompteAlreadyInDb()) {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
@@ -93,7 +101,8 @@ public class NewCompteControler {
 		if(CheckCompteAdd.isTaux_interetFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setTaux_interetErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountForm().setTaux_interetErrorMsg(CheckCompteAdd.generateTauxInteretFieldOkProperErrorMsg() );
+			CurrentSessionData.getOpenAccountForm().setTaux_interetErrorMsg(CheckCompteAdd.generateTauxInteretProperErrorMsg());
+
 		}
 	}
 
@@ -101,7 +110,7 @@ public class NewCompteControler {
 		if(CheckCompteAdd.isPlafondFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setPlafondErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountForm().setPlafondErrorMsg(CheckCompteAdd.generatePlafondFieldOkProperErrorMsg());
+			CurrentSessionData.getOpenAccountForm().setPlafondErrorMsg(CheckCompteAdd.generatePlafondProperErrorMsg());
 		}
 	}
 	
@@ -110,6 +119,7 @@ public class NewCompteControler {
 			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.generateSoldeProperErrorMsg());
+			//System.out.println("ALLER");
 		}
 	}
 	
@@ -131,7 +141,7 @@ public class NewCompteControler {
 	
 	public static void onAddingTextAnywhere() {
 		if (CheckCompteAdd.AreAllFieldOk()) {
-			//CurrentSessionData.getOpenAccountForm().enablebtnValidate();
+			CurrentSessionData.enableValidateBtn().dispose();
 		}
 	}
 }
