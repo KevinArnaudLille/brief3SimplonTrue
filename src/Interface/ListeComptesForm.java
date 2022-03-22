@@ -30,11 +30,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
-	// CORR - La liste des comptes doit être généré automatiquement avec une boucle for
-	
-	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionné (selectClientByClick)
-
-	// CORR - Les noms des composants doivent être explicite*//
+	// CORR - La liste des comptes doit ï¿½tre gï¿½nï¿½rï¿½ automatiquement avec une boucle for
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionnï¿½ (selectClientByClick)
+	// CORR - Les noms des composants doivent ï¿½tre explicite*//
 	
 	private static final int JRadioBtnWidth = 0;
 	private static final int JRadioBtnAndJTextFieldHeigth = 0;
@@ -47,7 +45,6 @@ public class ListeComptesForm extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
 
         /*ArrayList<Compte> Comptes = new ArrayList<Compte>();
 		Comptes.add(new Compte("1",5005, 3000, "true", "no", new Date(), "name"));

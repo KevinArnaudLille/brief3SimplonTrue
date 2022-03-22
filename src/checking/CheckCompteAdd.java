@@ -32,18 +32,17 @@ public class CheckCompteAdd {
 		
 		// ALL FIELD
 		public static boolean AreAllFieldOk() {
-			return isNumeroFieldOk() && isNomFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
+			return isNumCompteAlreadyInDb() && isNomFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
 					&& isPlafondFieldOk() && isProprietaire_tutelleFieldOk() && isTaux_interetFieldOk();
 		}
 		
-		// NUM COMPTE FIELD
+		// NUMERO COMPTE FIELD
 		public static boolean isNumCompteAlreadyInDb(int numToCheck) {
 			ArrayList<Compte> comptes = DbReadQueries.dbReadAllCompteInBdd();
-			boolean numberExists = comptes.stream().anyMatch(compte -> numToCheck.equals(compte.number));
-			System.out.println("Compte number is in the list: " + numberExists);
+			boolean numberExists = comptes.stream().anyMatch(compte -> numToCheck == compte.getNumero());
+			System.out.println("The account number already exists " + numberExists);
+			return numberExists;
 		}
-		
-	
 		
 		
 		// NOM CLIENT FIELD

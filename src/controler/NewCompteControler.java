@@ -2,6 +2,7 @@ package controler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -52,15 +53,20 @@ public class NewCompteControler {
 		// Close the current page
 		CurrentSessionData.getOpenAccountForm().dispose();
 	}
-	
-	public static int generateRandomCompteNumber() {
-		return (int)Math.floor(Math.random()*(999999-100000+1)+100000);
-		
+
+	public static int generateNewRandomCompteNumber() {
+		//à l'aide d'une boucle do while, s'assurer que le num de compte retourné par la fonction n'est pas déjà dans la bdd
+		int numberToCheck;
+		do {
+			numberToCheck = (int) Math.floor(Math.random()*(999999-100000+1)+100000);
+		}
+		while (CheckCompteAdd.isNumCompteAlreadyInDb(numberToCheck));
+		return numberToCheck;
 	}
 	
 
 	public static void onLeavingNumeroTextField() {
-		if(CheckCompteAdd.isNumeroFieldOk()) {
+		if(CheckCompteAdd.isNumCompteAlreadyInDb()) {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.generateNumeroProperErrorMsg());
