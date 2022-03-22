@@ -77,6 +77,16 @@ public class Client {
 		this.conseillerId = conseillerId;
 	}
 
+	public String getCompteCourant() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String CompteEpargne() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 

@@ -33,7 +33,7 @@ import java.util.Date;
 public class ListeComptesForm extends JFrame {
 
 	// CORR - La liste des comptes doit �tre g�n�r� automatiquement avec une boucle for
-	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionn� (selectClientByClick)
+	// CORR - 
 	// CORR - Les noms des composants doivent �tre explicite*//
 
 	// CORR - La liste des comptes doit �tre g�n�r� automatiquement avec une boucle for
@@ -55,13 +55,14 @@ public class ListeComptesForm extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param compte 
 	 */
 
 	public ListeComptesForm() {
 		
 		
-		/*Client compte1;
-		this.CompteClient = DbReadQueries.dbReadClientCompteInBdd(compte1);
+	  
+		this.CompteClient = DbReadQueries.dbReadClientCompteInBdd(CurrentSessionData.getSelectClientByClick());
 		
 	    int x = 40;
         int y = 144;
@@ -70,18 +71,18 @@ public class ListeComptesForm extends JFrame {
 		
 		group = new ButtonGroup();
 		
-		for (Compte compte1: this.CompteClient) {
+		for (Compte compte: this.CompteClient) {
 			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton(compte1.getId() + " " + compte1.getCompteCourant()+  " " + compte1.CompteEpargne());
+			JRadioButton rdbtnNewRadioButton = new JRadioButton(compte.getId() + " " + compte.getCompteCourant()+  " " + compte.CompteEpargne());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
 			getContentPane().add(rdbtnNewRadioButton);
 			rdbtnNewRadioButton.setSelected(true);
 			
-			rdbtnNewRadioButton.setActionCommand(compte1.getId());
+			rdbtnNewRadioButton.setActionCommand(compte.getId());
 			group.add(rdbtnNewRadioButton);
 
 			y += 50;
-		}*/git 
+		}
 		
 		
 		
