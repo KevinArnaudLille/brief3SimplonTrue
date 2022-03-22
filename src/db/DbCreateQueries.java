@@ -53,7 +53,7 @@ public class DbCreateQueries {
 	}
 	
 	private static boolean checkIfCompteCourantAlreadyInDb(CompteCourant comptecourantToAdd) {
-		ArrayList<Compte> allCompte = DbReadQueries.dbReadallCompteList();
+		ArrayList<Compte> allCompte = DbReadQueries.dbReadAllCompteInBdd();
 		return allCompte.stream().anyMatch(compte -> compte.getId().equals(comptecourantToAdd.getId()));
 	}
 	
@@ -75,7 +75,7 @@ public class DbCreateQueries {
 	}
 	
 	private static boolean checkIfCompteEpargneAlreadyInDb(CompteEpargne compteepargneToAdd) {
-		ArrayList<Compte> allCompte = DbReadQueries.dbReadallCompteList();
+		ArrayList<Compte> allCompte = DbReadQueries.dbReadAllCompteInBdd();
 		return allCompte.stream().anyMatch(compte -> compte.getId().equals(compteepargneToAdd.getId()));
 	}
 

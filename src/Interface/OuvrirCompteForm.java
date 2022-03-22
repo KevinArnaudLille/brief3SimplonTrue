@@ -29,7 +29,6 @@ import sessionData.CurrentSessionData;
 public class OuvrirCompteForm extends BaseTemplateForm {
 
 	private JTextField textFieldProprietaire_tutelle;
-	private JTextField textFieldNumero;
 	private JTextField textFieldSolde;
 	private JTextField textFieldFrais_transfert;
 	private JTextField textFieldSolde_minimum_autorise;
@@ -58,6 +57,8 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	private JLabel Nom;
 	
 	private ButtonGroup group;
+	private JLabel clientNom;
+	private JLabel compteNum;
 
 
 	public OuvrirCompteForm() {
@@ -119,19 +120,23 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		lblNumero.setBounds(172, 123, 125, 16);
 		getContentPane().add(lblNumero);
 
-		textFieldNumero = new JTextField();
-		textFieldNumero.setBounds(309, 118, 130, 26);
-		getContentPane().add(textFieldNumero);
-		textFieldNumero.setColumns(10);
-
 		// NUMERO DE COMPTE GENERE ALEATOIREMENT
 		// Random random = new Random();
+		compteNum = new JLabel(""+NewCompteControler.generateNewRandomCompteNumber());
+		compteNum.setForeground(Color.WHITE);
+		compteNum.setBounds(309, 123, 107, 16);
+		getContentPane().add(compteNum);
 
 		// NOM DU CLIENT
 		JLabel Nom = new JLabel("Nom du client:");
 		Nom.setForeground(Color.WHITE);
 		Nom.setBounds(592, 123, 99, 16);
 		getContentPane().add(Nom);
+		
+		clientNom = new JLabel("");
+		clientNom.setBounds(703, 123, 130, 16);
+		getContentPane().add(clientNom);
+		
 
 		// SOLDE INITIAL
 		JLabel lblsoldeInitial = new JLabel("Solde initial:");
@@ -211,7 +216,6 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		btnValidate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				//quand je clique sur "valider" je retourne à la page "Liste des clients ou liste des compte ?"
 			}
 		});
@@ -341,11 +345,6 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		Taux_interetReturnMsg.setForeground(new Color(165, 42, 42));
 		Taux_interetReturnMsg.setBounds(825, 64, 151, 31);
 		getContentPane().add(Taux_interetReturnMsg);
-
-		Nom = new JLabel("");
-		Nom.setBounds(703, 123, 130, 16);
-		getContentPane().add(Nom);
-
 	}
 
 	// addCompteCourantBtn enabler

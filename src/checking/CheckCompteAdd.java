@@ -3,6 +3,8 @@ package checking;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import Interface.ListeComptesForm;
 import Interface.OuvrirCompteForm;
 import db.DbReadQueries;
 import model.Compte;
@@ -23,8 +25,6 @@ public class CheckCompteAdd {
 			Matcher m = p.matcher(stringToCheck);
 			return m.find();
 		}
-		
-		
 		
 		public static void setFrame(OuvrirCompteForm IncommingFrame) {
 			frame = IncommingFrame;
@@ -142,6 +142,11 @@ public class CheckCompteAdd {
 		// Getters
 		public static String getProperlyFilledFieldMsg() {
 			return properlyFilledFieldMsg;
+		}
+		
+		public static void setFrame(ListeComptesForm openAccountFrame) {
+			// TODO Auto-generated method stub
+			
 		}
 	
 		

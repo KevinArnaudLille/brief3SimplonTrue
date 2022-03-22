@@ -127,7 +127,7 @@ public class ListeComptesForm extends JFrame {
 		panel.add(txtComptepargneNnumro);
 		txtComptepargneNnumro.setColumns(10);
 		
-		JButton btnOuvrireCompte = new JButton("Ouvrire");
+		JButton btnOuvrireCompte = new JButton("Ouvrir");
 		btnOuvrireCompte.setBackground(Color.WHITE);
 		btnOuvrireCompte.setBounds(576, 258, 132, 45);
 		contentPane.add(btnOuvrireCompte);
