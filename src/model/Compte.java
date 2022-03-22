@@ -83,4 +83,23 @@ public class Compte {
 		public void setDate_ouverture(Date date_ouverture) {
 			this.date_ouverture = date_ouverture;
 		}
+
+
+         public String getCompteCourant() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+
+
+
+
+
+		public String CompteEpargne() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
 }
