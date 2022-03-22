@@ -1,5 +1,7 @@
 package sessionData;
 
+import java.util.Optional;
+
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
 
@@ -108,6 +110,12 @@ public class CurrentSessionData {
 	
 	public static void setCompteToUpdate(Compte compteToUpdate) {
 		CurrentSessionData.compteToUpdate = compteToUpdate;
+	}
+
+	public static void setSelectClientByClick(String clientId) {
+		System.out.println(clientId);
+		CurrentSessionData.selectClientByClick = DbReadQueries.dbReadClientOfConseiller(getConnectedConseiller()).stream().filter(client -> clientId.equals(client.getId())).findFirst().orElse(null);
+		System.out.println(CurrentSessionData.selectClientByClick.getId());
 	}
 
 	public static ModifierCompteForm getUpdateComptePage() {
