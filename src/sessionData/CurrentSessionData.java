@@ -1,5 +1,7 @@
 package sessionData;
 
+import java.util.Optional;
+
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
 
@@ -99,9 +101,10 @@ public class CurrentSessionData {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
 	}
 
-	public static void setSelectClientComptesList(ListeComptesForm openAccountFrame) {
-		// TODO Auto-generated method stub
-		
+	public static void setSelectClientByClick(String clientId) {
+		System.out.println(clientId);
+		CurrentSessionData.selectClientByClick = DbReadQueries.dbReadClientOfConseiller(getConnectedConseiller()).stream().filter(client -> clientId.equals(client.getId())).findFirst().orElse(null);
+		System.out.println(CurrentSessionData.selectClientByClick.getId());
 	}
 
 }

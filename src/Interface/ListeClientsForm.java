@@ -36,7 +36,7 @@ import java.awt.event.MouseEvent;
 
 public class ListeClientsForm extends BaseTemplateForm {
 	private ButtonGroup group;
-	private ArrayList<Client> conseillerClients;
+	private ArrayList<Client>conseillerClients;
 	
 	
 	public ListeClientsForm() {
@@ -88,10 +88,13 @@ public class ListeClientsForm extends BaseTemplateForm {
 		getContentPane().add(addClientSessionsButton);
 		addClientSessionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListeComptesForm openAccountFrame = new ListeComptesForm ();
-				CurrentSessionData.setSelectClientComptesList(openAccountFrame);
-				CheckClientAdd.setFrame(openAccountFrame);
-				CurrentSessionData.getOpenAccountPage().setVisible(true);
+				
+				System.out.println(group.getSelection().getActionCommand());
+				
+				CurrentSessionData.setSelectClientByClick(group.getSelection().getActionCommand());
+				ListeComptesForm openAccountFrame = new ListeComptesForm();
+				CurrentSessionData.setGestionCompteClient(openAccountFrame);
+				CurrentSessionData.getGestionCompteClient().setVisible(true);
 			}
 		});
 		
