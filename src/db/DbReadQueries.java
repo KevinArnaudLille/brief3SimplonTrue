@@ -19,16 +19,13 @@ public class DbReadQueries {
 	private static ResultSet clientResultSetFromDb = null;
 	private static ArrayList<Client> clientFullList = new ArrayList<Client>();
 	private static ArrayList<Client> clientOfConseillerList = new ArrayList<Client>();
-	
+
 	// COMPTE //
-	
-		private static ResultSet compteResultSetFromDb = null;
-		private static ArrayList<Compte> allCompteList = new ArrayList<Compte>();
-		private static ArrayList<Compte> compteOfClientList = new ArrayList<Compte>();
+	private static ResultSet compteResultSetFromDb = null;
+	private static ArrayList<Compte> allCompteList = new ArrayList<Compte>();
+	private static ArrayList<Compte> compteOfClientList = new ArrayList<Compte>();
 
 	// private static Connection myConnToReturn = null;
-	
-	
 
 	// Get a list of all conseiller as Conseiller object
 
@@ -88,29 +85,31 @@ public class DbReadQueries {
 		}
 		return clientOfConseillerList;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Compte> dbReadAllCompteInBdd(Client Client) {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
-        allCompteList = new ArrayList<Compte>();
-        try {
+		allCompteList = new ArrayList<Compte>();
+		try {
 			while (compteResultSetFromDb.next()) {
 				if (compteResultSetFromDb.getString("id_1").equals(Client.getId())) {
-					allCompteList.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
-							compteResultSetFromDb.getString("compte_courant"), compteResultSetFromDb.getString("compte_courant"),
-							compteResultSetFromDb.getString("compte_epargne"), compteResultSetFromDb.getString("compte_epargne"),
-							compteResultSetFromDb.getString("Date_ouverture"), compteResultSetFromDb.getString("ad_1")));
+					allCompteList
+							.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
+									compteResultSetFromDb.getString("compte_courant"),
+									compteResultSetFromDb.getString("compte_courant"),
+									compteResultSetFromDb.getString("compte_epargne"),
+									compteResultSetFromDb.getString("compte_epargne"),
+									compteResultSetFromDb.getString("Date_ouverture"),
+									compteResultSetFromDb.getString("ad_1")));
 				}
 			}
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        
-        return allCompteList;
-        
-     }
-	
-	
+
+		return allCompteList;
+
+	}
+
 }
