@@ -25,10 +25,10 @@ public class NewCompteControler {
 	public static void onAddCompteClick() {
 		
 		if (CheckCompteAdd.AreAllFieldOk()) {
-			Compte compteToAdd = new Compte(
-					"compte_0"+(DbReadQueries.dbReadAllCompteList().size()+1),
+			Compte comptecourantToAdd = new Compte(
+					"compte_0"+(DbReadQueries.dbReadAllCompteInBdd().size()+1),
 					CurrentSessionData.getOpenAccountForm().getNom(),
-					CurrentSessionData.getOpenAccountForm().getNumero(),
+					//CurrentSessionData.getOpenAccountForm().getNumero(),
 					//CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(),
 					CurrentSessionData.getOpenAccountForm().getTaux_interet(),
 					CurrentSessionData.getOpenAccountForm().getPlafond(),
@@ -38,8 +38,8 @@ public class NewCompteControler {
 					);
 		
 			
-			DbCreateQueries.addCompteCourantToDb(compteToAdd);
-			DbCreateQueries.addCompteEpargneToDb(compteToAdd);
+			DbCreateQueries.addCompteCourantToDb(comptecourantToAdd);
+			DbCreateQueries.addCompteEpargneToDb(comptepargneToAdd);
 			CurrentSessionData.getOpenAccountForm().setVisible(true);
 		
 			CurrentSessionData.getOpenAccountForm().dispose();;
@@ -65,21 +65,21 @@ public class NewCompteControler {
 	}
 	
 
-	public static void onLeavingNumeroTextField() {
+	/*public static void onLeavingNumeroTextField() {
 		if(CheckCompteAdd.isNumCompteAlreadyInDb()) {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.generateNumeroProperErrorMsg());
 		}
-	}
+	}*/
 	
-	public static void onLeavingNomTextField() {
+	/*public static void onLeavingNomTextField() {
 		if(CheckCompteAdd.isNomFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.generateNomProperErrorMsg());
 		}
-	}
+	}*/
 
 	/*public static void onLeavingProprietaire_tutelleTextField() {
 		if(CheckCompteAdd.isProprietaire_tutelleFieldOk()) {
@@ -131,7 +131,7 @@ public class NewCompteControler {
 	
 	public static void onAddingTextAnywhere() {
 		if (CheckCompteAdd.AreAllFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().enablebtnValidate();
+			//CurrentSessionData.getOpenAccountForm().enablebtnValidate();
 		}
 	}
 }

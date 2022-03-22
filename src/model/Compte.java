@@ -28,6 +28,12 @@ public class Compte {
 	
 	// ajouter getters et setters (� g�n�rer automatiquement)
 
+		public Compte(String id2, String nom, String taux_interet, String plafond, String solde2,
+				String frais_transfert, String solde_minimum_autorise) {
+			// TODO Auto-generated constructor stub
+		}
+
+
 		public String getClient_id() {
 			return client_id;
 		}

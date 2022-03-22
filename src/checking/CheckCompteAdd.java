@@ -32,7 +32,7 @@ public class CheckCompteAdd {
 		
 		// ALL FIELD
 		public static boolean AreAllFieldOk() {
-			return isNumCompteAlreadyInDb() && isNomFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
+			return isNomFieldOk() && isSoldeFieldOk() && isFrais_transfertFieldOk() && isSolde_minimum_autoriseFieldOk() 
 					&& isPlafondFieldOk() && isProprietaire_tutelleFieldOk() && isTaux_interetFieldOk();
 		}
 		

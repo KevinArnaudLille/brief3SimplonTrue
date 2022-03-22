@@ -10,7 +10,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
+//import java.util.Random;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -20,11 +20,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import checking.CheckClientAdd;
+//import checking.CheckClientAdd;
 import checking.CheckCompteAdd;
-import controler.NewClientControler;
+//import controler.NewClientControler;
 import controler.NewCompteControler;
-import sessionData.CurrentSessionData;
+//import sessionData.CurrentSessionData;
 
 public class OuvrirCompteForm extends BaseTemplateForm {
 
@@ -37,7 +37,7 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 
 	// private JLabel IdReturnMsg;
 	private JLabel Proprietaire_tutelleReturnMsg;
-	private JLabel NumeroReturnMsg;
+	//private JLabel NumeroReturnMsg;
 	private JLabel SoldeReturnMsg;
 	private JLabel Frais_transfertReturnMsg;
 	private JLabel Solde_minimum_autoriseReturnMsg;
@@ -216,7 +216,7 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		btnValidate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//quand je clique sur "valider" je retourne à la page "Liste des clients ou liste des compte ?"
+				//quand je clique sur "valider" je supprime la page
 			}
 		});
 		
@@ -362,9 +362,9 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		return this.Nom.getText();
 	}
 
-	public String getNumero() {
+	/*public String getNumero() {
 		return this.textFieldNumero.getText();
-	}
+	}*/
 
 	public String getProprietaire_tutelle() {
 		return this.textFieldProprietaire_tutelle.getText();
@@ -394,9 +394,9 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		this.Nom.setText(newText);
 	}
 
-	public void setNumero(String newText) {
+	/*public void setNumero(String newText) {
 		this.textFieldNumero.setText(newText);
-	}
+	}*/
 
 	public void setProprietaire_tutelle(String newText) {
 		this.textFieldProprietaire_tutelle.setText(newText);
@@ -427,9 +427,9 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		this.NomReturnMsg.setText(newText);
 	}
 
-	public void setNumeroErrorMsg(String newText) {
+	/*public void setNumeroErrorMsg(String newText) {
 		this.NumeroReturnMsg.setText(newText);
-	}
+	}*/
 
 	public void setProprietaire_tutelleErrorMsg(String newText) {
 		this.Proprietaire_tutelleReturnMsg.setText(newText);
