@@ -8,13 +8,13 @@ public class Compte {
 	private String id;
 	private String client_id;
 	public Integer numero;
-	private Integer solde;
-	private String actif;
+	private Double solde;
+	private boolean actif;
 	private String proprietaire_tutelle;
 	private Date date_ouverture;
 	
 	
-	    public Compte(String id, Integer numero, Integer solde, String actif, String proprietaire_tutelle, Date date_ouverture, String client_id) {
+	    public Compte(String id, Integer numero, Double solde, boolean actif, String proprietaire_tutelle, Date date_ouverture, String client_id) {
 		
 		this.id = id;
 		this.client_id =client_id;
@@ -58,19 +58,19 @@ public class Compte {
 			this.numero = numero;
 		}
 
-		public int getSolde() {
+		public double getSolde() {
 			return solde;
 		}
 
-		public void setSolde(int solde) {
+		public void setSolde(double solde) {
 			this.solde = solde;
 		}
 
-		public String getActif() {
+		public boolean getActif() {
 			return actif;
 		}
 
-		public void setActif(String actif) {
+		public void setActif(boolean actif) {
 			this.actif = actif;
 		}
 

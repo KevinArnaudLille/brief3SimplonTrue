@@ -41,9 +41,6 @@ public class ListeClientsForm extends BaseTemplateForm {
 	
 	public ListeClientsForm() {
 
-		
-
-
 		super();
 		titlePageLabel.setLocation(10, 3);
 

@@ -19,16 +19,13 @@ public class DbReadQueries {
 	private static ResultSet clientResultSetFromDb = null;
 	private static ArrayList<Client> clientFullList = new ArrayList<Client>();
 	private static ArrayList<Client> clientOfConseillerList = new ArrayList<Client>();
-	
+
 	// COMPTE //
-	
-		private static ResultSet compteResultSetFromDb = null;
-		private static ArrayList<Compte> allCompteList = new ArrayList<Compte>();
-		private static ArrayList<Compte> compteOfClientList = new ArrayList<Compte>();
+	private static ResultSet compteResultSetFromDb = null;
+	private static ArrayList<Compte> allCompteList = new ArrayList<Compte>();
+	private static ArrayList<Compte> compteOfClientList = new ArrayList<Compte>();
 
 	// private static Connection myConnToReturn = null;
-	
-	
 
 	// Get a list of all conseiller as Conseiller object
 
@@ -88,49 +85,52 @@ public class DbReadQueries {
 		}
 		return clientOfConseillerList;
 	}
-	
 
-	@SuppressWarnings("unchecked")
 	public static ArrayList<Compte> dbReadClientCompteInBdd(Client Client) {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
-		compteOfClientList = new ArrayList<Compte>();
-        try {
+		allCompteList = new ArrayList<Compte>();
+		try {
 			while (compteResultSetFromDb.next()) {
 				if (compteResultSetFromDb.getString("id_1").equals(Client.getId())) {
-					compteOfClientList.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
-							compteResultSetFromDb.getString("compte_courant"), compteResultSetFromDb.getString("compte_courant"),
-							compteResultSetFromDb.getString("compte_epargne"), compteResultSetFromDb.getString("compte_epargne"),
-							compteResultSetFromDb.getString("Date_ouverture"), compteResultSetFromDb.getString("ad_1")));
-				}
+					if (compteResultSetFromDb.getString("id").contains("courant")) {
+						allCompteList.add(new Compte(
+								compteResultSetFromDb.getString("id"),
+								compteResultSetFromDb.getInt("Numero"),
+								compteResultSetFromDb.getDouble("Solde"),
+								compteResultSetFromDb.getBoolean("Actif"),
+								compteResultSetFromDb.getString("Proprietaire_tutelle"),
+								compteResultSetFromDb.getDate("Date_ouverture"),
+								compteResultSetFromDb.getString("id_1")));
+					}
+						
+					}
+					
 			}
-
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        
-        return compteOfClientList; 
-     }
-	
-	@SuppressWarnings("unchecked")
+		return allCompteList;
+	}
+
 	public static ArrayList<Compte> dbReadAllCompteInBdd() {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
-        allCompteList = new ArrayList<Compte>();
-        try {
+		allCompteList = new ArrayList<Compte>();
+		try {
 			while (compteResultSetFromDb.next()) {
-			
-					allCompteList.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
-							compteResultSetFromDb.getString("compte_courant"), compteResultSetFromDb.getString("compte_courant"),
-							compteResultSetFromDb.getString("compte_epargne"), compteResultSetFromDb.getString("compte_epargne"),
-							compteResultSetFromDb.getString("Date_ouverture"), compteResultSetFromDb.getString("ad_1")));
-				
+				allCompteList.add(new Compte(
+						compteResultSetFromDb.getString("id"),
+						compteResultSetFromDb.getInt("Numero"),
+						compteResultSetFromDb.getDouble("Solde"),
+						compteResultSetFromDb.getBoolean("Actif"),
+						compteResultSetFromDb.getString("Proprietaire_tutelle"),
+						compteResultSetFromDb.getDate("Date_ouverture"),
+						compteResultSetFromDb.getString("id_1")));
 			}
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        
-        return allCompteList; 
-     }
-	
-	
+
+		return allCompteList;
+	}
 }
