@@ -5,8 +5,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Interface.OuvrirCompteForm;
-import Interface.OuvrirCompte_courantForm;
-import Interface.OuvrirCompte_epargneForm;
 import model.Client;
 import model.Compte;
 import model.CompteCourant;
