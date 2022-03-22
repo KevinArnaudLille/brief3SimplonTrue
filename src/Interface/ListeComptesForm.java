@@ -2,7 +2,6 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -30,9 +29,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
+
 	// CORR - La liste des comptes doit �tre g�n�r� automatiquement avec une boucle for
 	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionn� (selectClientByClick)
 	// CORR - Les noms des composants doivent �tre explicite*//
+
+	// CORR - La liste des comptes doit �tre g�n�r� automatiquement avec une boucle for
+	
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionn� (selectClientByClick)***********/////////
+
+	
+
 	
 	private static final int JRadioBtnWidth = 0;
 	private static final int JRadioBtnAndJTextFieldHeigth = 0;
@@ -41,40 +48,47 @@ public class ListeComptesForm extends JFrame {
 	private JPanel panel;
 	private JTextField txtComptepargneNnumro;
 	private Client[] conseillerClients;
+	private ButtonGroup group;
+	
+	ArrayList<Compte>clientsConseiller;
 
 	/**
-	 * Launch the application.
+	 * Create the frame.
 	 */
 
-        /*ArrayList<Compte> Comptes = new ArrayList<Compte>();
-		Comptes.add(new Compte("1",5005, 3000, "true", "no", new Date(), "name"));
+	public ListeComptesForm() {
+
+
+		/*int x = 40;
+		int y = 144;
+		int JRadioBtnWidth = 500;
+		int JRadioBtnAndJTextFieldHeigth = 26;
+		
+		group = new ButtonGroup();
+		
+		for (Client client : this.conseillerClients) {			
+			JRadioButton rdbtnNewRadioButton = new JRadioButton(client.getId() + " " + client.getPrenom()+  " " + client.getNom());
+			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
+			getContentPane().add(rdbtnNewRadioButton);
+			rdbtnNewRadioButton.setSelected(true);
+			
+			rdbtnNewRadioButton.setActionCommand(client.getId());
+			group.add(rdbtnNewRadioButton);
+
+			y += 50;
+		}*/
+		
+		
+		
+		
+		/*Comptes.add(new Compte("1",5005, 3000, "true", "no", new Date(), "name"));
 		Comptes.add(new Compte("2",5006, 4000, "false", "yes", new Date(), "name"));
 		Comptes.add(new Compte("1",5007, 5000, "true", "non", new Date(), "nom"));*/
 		
 		
 		
 		
-	/**/	/*Super();
-		
-		JTextField jTextField2 = new JTextField();
-		jTextField2.setLocation(10, 3);
-		Client client = CurrentSessionData.getSelectClientByClick();
-		/*this.conseillerClients = DbCreateQueries.dbReClientofConseiller(client);
-		JTextComponent titlePageLabel;
-		JTextField jTextField = new JTextField();
-		jTextField.setText("Compte de  " + client.getPrenom() + " " + client.getNom());
-		
-}
 
-	private static void Super() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ListeComptesForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
 		contentPane = new JPanel();
@@ -82,13 +96,15 @@ public class ListeComptesForm extends JFrame {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 128), 2));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		Client client = CurrentSessionData.getSelectClientByClick();
 		
 		txtGestionDesComptes = new JTextField();
 		txtGestionDesComptes.setForeground(Color.WHITE);
 		txtGestionDesComptes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtGestionDesComptes.setFont(new Font("Arial", Font.BOLD, 25));
 		txtGestionDesComptes.setBackground(new Color(0, 0, 128));
-		txtGestionDesComptes.setText("Gestion des comptes<dynamic><dynamic>");
+		txtGestionDesComptes.setText("Gestion des comptes de " + client.getPrenom() + " " + client.getNom());
 		txtGestionDesComptes.setBounds(0, 0, 986, 52);
 		contentPane.add(txtGestionDesComptes);
 		txtGestionDesComptes.setColumns(10);//
@@ -149,7 +165,9 @@ public class ListeComptesForm extends JFrame {
 		btnListeComptes.setFont(new Font("Arial", Font.BOLD, 25));
 		btnListeComptes.setBounds(29, 69, 380, 36);
 		contentPane.add(btnListeComptes);
-		
 	}
 	
+	
+	public static void main(String[] args) {
+	}
 }
