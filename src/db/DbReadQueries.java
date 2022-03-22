@@ -86,22 +86,25 @@ public class DbReadQueries {
 		return clientOfConseillerList;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static ArrayList<Compte> dbReadClientCompteInBdd(Client Client) {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
 		allCompteList = new ArrayList<Compte>();
 		try {
 			while (compteResultSetFromDb.next()) {
 				if (compteResultSetFromDb.getString("id_1").equals(Client.getId())) {
-					allCompteList
-							.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
-									compteResultSetFromDb.getString("compte_courant"),
-									compteResultSetFromDb.getString("compte_courant"),
-									compteResultSetFromDb.getString("compte_epargne"),
-									compteResultSetFromDb.getString("compte_epargne"),
-									compteResultSetFromDb.getString("Date_ouverture"),
-									compteResultSetFromDb.getString("ad_1")));
-				}
+					if (compteResultSetFromDb.getString("id").contains("courant")) {
+						allCompteList.add(new Compte(
+								compteResultSetFromDb.getString("id"),
+								compteResultSetFromDb.getInt("Numero"),
+								compteResultSetFromDb.getDouble("Solde"),
+								compteResultSetFromDb.getBoolean("Actif"),
+								compteResultSetFromDb.getString("Proprietaire_tutelle"),
+								compteResultSetFromDb.getDate("Date_ouverture"),
+								compteResultSetFromDb.getString("id_1")));
+					}
+						
+					}
+					
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,19 +112,19 @@ public class DbReadQueries {
 		return allCompteList;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static ArrayList<Compte> dbReadAllCompteInBdd() {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
 		allCompteList = new ArrayList<Compte>();
 		try {
 			while (compteResultSetFromDb.next()) {
-
-				allCompteList.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
-						compteResultSetFromDb.getString("compte_courant"),
-						compteResultSetFromDb.getString("compte_courant"),
-						compteResultSetFromDb.getString("compte_epargne"),
-						compteResultSetFromDb.getString("compte_epargne"),
-						compteResultSetFromDb.getString("Date_ouverture"), compteResultSetFromDb.getString("ad_1")));
+				allCompteList.add(new Compte(
+						compteResultSetFromDb.getString("id"),
+						compteResultSetFromDb.getInt("Numero"),
+						compteResultSetFromDb.getDouble("Solde"),
+						compteResultSetFromDb.getBoolean("Actif"),
+						compteResultSetFromDb.getString("Proprietaire_tutelle"),
+						compteResultSetFromDb.getDate("Date_ouverture"),
+						compteResultSetFromDb.getString("id_1")));
 			}
 
 		} catch (SQLException e) {
