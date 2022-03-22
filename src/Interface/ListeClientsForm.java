@@ -36,7 +36,7 @@ import java.awt.event.MouseEvent;
 
 public class ListeClientsForm extends BaseTemplateForm {
 	private ButtonGroup group;
-	private ArrayList<Client>conseillerClients;
+	private ArrayList<Client> conseillerClients;
 	
 	
 	public ListeClientsForm() {
@@ -56,7 +56,9 @@ public class ListeClientsForm extends BaseTemplateForm {
 		quitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 //				System.exit(0);
+				
 				CreationBanqueForm firstFrame = new CreationBanqueForm();
 				CurrentSessionData.setHomePage(firstFrame);
 				ConseillerConnectionControler.setFrame(firstFrame);

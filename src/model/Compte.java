@@ -101,6 +101,32 @@ public class Compte {
 			this.date_ouverture = date_ouverture;
 		}
 
-	
-	    
+
+
+
+
+
+
+
+
+
+
+
+
+		public String getCompteCourant() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+
+
+
+
+
+		public String CompteEpargne() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }
