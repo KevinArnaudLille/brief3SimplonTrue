@@ -87,7 +87,7 @@ public class DbReadQueries {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Compte> dbReadAllCompteInBdd(Client Client) {
+	public static ArrayList<Compte> dbReadClientCompteInBdd(Client Client) {
 		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
 		allCompteList = new ArrayList<Compte>();
 		try {
@@ -103,13 +103,31 @@ public class DbReadQueries {
 									compteResultSetFromDb.getString("ad_1")));
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allCompteList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Compte> dbReadAllCompteInBdd() {
+		compteResultSetFromDb = DbConnection.getResultSetFromDbWithQuery("SELECT * FROM compte");
+		allCompteList = new ArrayList<Compte>();
+		try {
+			while (compteResultSetFromDb.next()) {
+
+				allCompteList.addAll((Collection<? extends Compte>) new Client(compteResultSetFromDb.getString("id"),
+						compteResultSetFromDb.getString("compte_courant"),
+						compteResultSetFromDb.getString("compte_courant"),
+						compteResultSetFromDb.getString("compte_epargne"),
+						compteResultSetFromDb.getString("compte_epargne"),
+						compteResultSetFromDb.getString("Date_ouverture"), compteResultSetFromDb.getString("ad_1")));
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return allCompteList;
-
 	}
-
 }

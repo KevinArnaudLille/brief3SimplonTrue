@@ -29,11 +29,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
-	// CORR - La liste des comptes doit être généré automatiquement avec une boucle for
+
+	// CORR - La liste des comptes doit ï¿½tre gï¿½nï¿½rï¿½ automatiquement avec une boucle for
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionnï¿½ (selectClientByClick)
+	// CORR - Les noms des composants doivent ï¿½tre explicite*//
+
+	// CORR - La liste des comptes doit ï¿½tre gï¿½nï¿½rï¿½ automatiquement avec une boucle for
 	
-	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionné (selectClientByClick)***********/////////
+	// CORR - Le titre de la page doit contenir dynamiquement le nom du client selectionnï¿½ (selectClientByClick)***********/////////
 
 	
+
 	
 	private static final int JRadioBtnWidth = 0;
 	private static final int JRadioBtnAndJTextFieldHeigth = 0;
@@ -49,7 +55,9 @@ public class ListeComptesForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public ListeComptesForm() {
+
 
 		/*int x = 40;
 		int y = 144;
@@ -119,7 +127,7 @@ public class ListeComptesForm extends JFrame {
 		panel.add(txtComptepargneNnumro);
 		txtComptepargneNnumro.setColumns(10);
 		
-		JButton btnOuvrireCompte = new JButton("Ouvrire");
+		JButton btnOuvrireCompte = new JButton("Ouvrir");
 		btnOuvrireCompte.setBackground(Color.WHITE);
 		btnOuvrireCompte.setBounds(576, 258, 132, 45);
 		contentPane.add(btnOuvrireCompte);

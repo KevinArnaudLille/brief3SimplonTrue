@@ -1,13 +1,13 @@
 package sessionData;
 
 import java.util.Optional;
-
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
-
+import Interface.OuvrirClientForm;
+import Interface.OuvrirCompteForm;
 import Interface.ListeComptesForm;
 import Interface.ModifierCompteForm;
-import Interface.OuvrirClientForm;
+
 
 import checking.CheckConseillerConnection;
 import db.DbReadQueries;
@@ -23,6 +23,7 @@ public class CurrentSessionData {
 	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
+	private static OuvrirCompteForm openAccountForm;
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;
@@ -45,7 +46,15 @@ public class CurrentSessionData {
 	public static void setOpenAccountPage(OuvrirClientForm openAccountPage) {
 		CurrentSessionData.openAccountPage = openAccountPage;
 	}
+	
+	//GETTER ET SETTER OUVRIR UN COMPTE: getOpenAccountForm is the good name or not ???
+	public static OuvrirCompteForm getOpenAccountForm() {
+		return openAccountForm;
+	}
 
+	public static void setOpenAccountForm(OuvrirCompteForm openAccountForm) {
+		CurrentSessionData.openAccountForm = openAccountForm;
+	}
 	
 	// Set the logged conseiller
 	public static void setConnectedConseiller(String identifiant) {
@@ -65,6 +74,7 @@ public class CurrentSessionData {
 	public static void setConnectedConseillerClientsPage(ListeClientsForm connectedConseillerClientsPage) {
 		CurrentSessionData.connectedConseillerClientsPage = connectedConseillerClientsPage;
 	}
+
 
 	public static void setBanqueFormPage(CreationBanqueForm openBanqueFormFrame) {
 		// TODO Auto-generated method stub
