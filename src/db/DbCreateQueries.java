@@ -30,4 +30,9 @@ public class DbCreateQueries {
 		return allClients.stream().anyMatch(client -> client.getId().equals(clientToAdd.getId()));
 	}
 
+	public static Object dbReClientofConseiller(Client client) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

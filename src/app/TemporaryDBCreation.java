@@ -30,19 +30,19 @@ public class TemporaryDBCreation {
 		dataAddingQuery[4] = "INSERT INTO client VALUES('client_03','Jean','Jean','grosFraisier@lol.com','derri�re la cabane','-',(SELECT id FROM conseiller WHERE Nom = 'Tremblay'))";
 
 		// add "compte-courant"
-		dataAddingQuery[5] = "INSERT INTO compte VALUES('compte_courant_01',011111,2000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
+		dataAddingQuery[5] = "INSERT INTO compte VALUES('compte_courant_01',111111,2000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
 		dataAddingQuery[6] = "INSERT INTO compte_courant VALUES('compte_courant_01',5.5,1000)";
-		dataAddingQuery[7] = "INSERT INTO compte VALUES('compte_courant_02',011112,5000,true,null,'2022-02-26',(SELECT id FROM client WHERE Nom='Parker'))";
+		dataAddingQuery[7] = "INSERT INTO compte VALUES('compte_courant_02',111112,5000,true,null,'2022-02-26',(SELECT id FROM client WHERE Nom='Parker'))";
 		dataAddingQuery[8] = "INSERT INTO compte_courant VALUES('compte_courant_02',1.5,10)";
-		dataAddingQuery[9] = "INSERT INTO compte VALUES('compte_courant_03',022222,3000,true,null,'2022-03-01',(SELECT id FROM client WHERE Nom='Wayne'))";
+		dataAddingQuery[9] = "INSERT INTO compte VALUES('compte_courant_03',122222,3000,true,null,'2022-03-01',(SELECT id FROM client WHERE Nom='Wayne'))";
 		dataAddingQuery[10] = "INSERT INTO compte_courant VALUES('compte_courant_03',6.7,100)";
-		dataAddingQuery[11] = "INSERT INTO compte VALUES('compte_courant_04',033333,1000,true,'Jo Jo','2022-03-03',(SELECT id FROM client WHERE Nom='Jean'))";
+		dataAddingQuery[11] = "INSERT INTO compte VALUES('compte_courant_04',133333,1000,true,'JoJo','2022-03-03',(SELECT id FROM client WHERE Nom='Jean'))";
 		dataAddingQuery[12] = "INSERT INTO compte_courant VALUES('compte_courant_04',9.9,1)";
 
 		// add "compte-epargne"
-		dataAddingQuery[13] = "INSERT INTO compte VALUES('compte_epargne_01',111111,10000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
+		dataAddingQuery[13] = "INSERT INTO compte VALUES('compte_epargne_01',211111,10000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
 		dataAddingQuery[14] = "INSERT INTO compte_epargne VALUES('compte_epargne_01',9.9,20000)";
-		dataAddingQuery[15] = "INSERT INTO compte VALUES('compte_epargne_02',122222,500,true,'Jo Jo','2022-03-04',(SELECT id FROM client WHERE Nom='Jean'))";
+		dataAddingQuery[15] = "INSERT INTO compte VALUES('compte_epargne_02',222222,500,true,'JoJo','2022-03-04',(SELECT id FROM client WHERE Nom='Jean'))";
 		dataAddingQuery[16] = "INSERT INTO compte_epargne VALUES('compte_epargne_02',1.1,20000)";
 
 		// add "operation"

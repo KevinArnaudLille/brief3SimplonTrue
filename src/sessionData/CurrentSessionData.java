@@ -14,18 +14,18 @@ import model.Compte;
 import model.Conseiller;
 
 public class CurrentSessionData {
-	// CORR - voir en bas de ligne
 	
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
 	private static Compte compteToUpdate;
-
+	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
 	private static OuvrirClientForm openAccountPage;
 	private static ListeClientsForm registerCustomeInBdd;
 	private static ListeComptesForm selectClientComptesList;
 	private static ModifierCompteForm updateComptePage;
+	
 	
 	// ==== GETTERS AND SETTERS ===
 	public static CreationBanqueForm getHomePage() {
