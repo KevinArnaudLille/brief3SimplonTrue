@@ -81,8 +81,6 @@ public class CurrentSessionData {
 		
 	}
 	
-/***********************************************************************************************************************************/
-	
 	public static ListeClientsForm getRegisterCustomeInBdd() {
 		return registerCustomeInBdd;
 	}
@@ -90,9 +88,6 @@ public class CurrentSessionData {
 	public static void setRegisterCustomeInBdd(ListeClientsForm registerCustomeInBdd) {
 		CurrentSessionData.registerCustomeInBdd = registerCustomeInBdd;
 	}
-	
-/************************************************************************************************************************************/
-	
 	
 	public static ListeComptesForm getGestionCompteClient() {
 		return selectClientComptesList;
@@ -102,9 +97,6 @@ public class CurrentSessionData {
 		CurrentSessionData.selectClientComptesList = gestionCompteClient;
 	}
 	
-/*****************************************************************************************************************************************/
-	
-   
 
 	public static Client getSelectClientByClick() {
 		return selectClientByClick;
@@ -112,6 +104,11 @@ public class CurrentSessionData {
 
 	public static void setSelectClientByClick(Client selectClientByClick) {
 		CurrentSessionData.selectClientByClick = selectClientByClick;
+	}
+	
+	public static void setSelectClientByClick(String clientId) {
+		CurrentSessionData.selectClientByClick = DbReadQueries.dbReadClientOfConseiller(getConnectedConseiller()).stream().filter(client -> clientId.equals(client.getId())).findFirst().orElse(null);
+		System.out.println(CurrentSessionData.selectClientByClick.getId());
 	}
 	
 	public static Compte getCompteToUpdate() {
@@ -122,10 +119,8 @@ public class CurrentSessionData {
 		CurrentSessionData.compteToUpdate = compteToUpdate;
 	}
 
-	public static void setSelectClientByClick(String clientId) {
-		System.out.println(clientId);
-		CurrentSessionData.selectClientByClick = DbReadQueries.dbReadClientOfConseiller(getConnectedConseiller()).stream().filter(client -> clientId.equals(client.getId())).findFirst().orElse(null);
-		System.out.println(CurrentSessionData.selectClientByClick.getId());
+	public static void setCompteToUpdate(String compteId) {
+		CurrentSessionData.compteToUpdate = DbReadQueries.dbReadAllCompteInBdd().stream().filter(compte -> compteId.equals(compte.getId())).findFirst().orElse(null);
 	}
 
 	public static ModifierCompteForm getUpdateComptePage() {

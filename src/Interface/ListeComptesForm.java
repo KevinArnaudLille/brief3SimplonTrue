@@ -3,6 +3,7 @@ package Interface;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -10,6 +11,7 @@ import javax.swing.text.JTextComponent;
 
 import db.DbCreateQueries;
 import db.DbReadQueries;
+import db.DbUpdateQueries;
 import model.Client;
 import model.Compte;
 import model.Conseiller;
@@ -62,7 +64,6 @@ public class ListeComptesForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-
 		txtGestionDesComptes = new JTextField();
 		txtGestionDesComptes.setForeground(Color.WHITE);
 		txtGestionDesComptes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,6 +105,18 @@ public class ListeComptesForm extends JFrame {
 		btnClturerCompte.setBackground(Color.WHITE);
 		btnClturerCompte.setBounds(771, 391, 132, 45);
 		contentPane.add(btnClturerCompte);
+		btnClturerCompte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
+				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
+				JOptionPane.showMessageDialog(CurrentSessionData.getGestionCompteClient(), "Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
+			
+				CurrentSessionData.getGestionCompteClient().dispose();
+				ListeComptesForm openAccountFrame = new ListeComptesForm();
+				CurrentSessionData.setGestionCompteClient(openAccountFrame);
+				CurrentSessionData.getGestionCompteClient().setVisible(true);
+			}
+		});
 
 		JButton btnModifierCompte = new JButton("Modifier");
 		btnModifierCompte.setBackground(Color.WHITE);
@@ -131,17 +144,18 @@ public class ListeComptesForm extends JFrame {
 		group = new ButtonGroup();
 
 		for (Compte compte : this.CompteClient) {
+			if (compte.getActif()) {
+				JRadioButton rdbtnNewRadioButton = new JRadioButton(
+						compte.getId() + " n°" + compte.getNumero() + " - Solde : " + compte.getSolde() + "€");
+				rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
+				getContentPane().add(rdbtnNewRadioButton);
+				rdbtnNewRadioButton.setSelected(true);
 
-			JRadioButton rdbtnNewRadioButton = new JRadioButton(
-					compte.getId() + " n°" + compte.getNumero() + " - Solde : " + compte.getSolde() + "€");
-			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
-			getContentPane().add(rdbtnNewRadioButton);
-			rdbtnNewRadioButton.setSelected(true);
+				rdbtnNewRadioButton.setActionCommand(compte.getId());
+				group.add(rdbtnNewRadioButton);
 
-			rdbtnNewRadioButton.setActionCommand(compte.getId());
-			group.add(rdbtnNewRadioButton);
-
-			y += 50;
+				y += 50;
+			}
 		}
 	}
 

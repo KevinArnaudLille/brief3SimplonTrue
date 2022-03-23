@@ -8,7 +8,7 @@ import model.CompteCourant;
 import model.CompteEpargne;
 
 public class DbUpdateQueries {
-	static public void updateCompteInfoInDb(Compte compteToUpdate, String updatedValue) {
+	public static void updateCompteInfoInDb(Compte compteToUpdate, String updatedValue) {
 		Statement myStat = DbConnection.statementGeneration();
 		if (compteToUpdate instanceof CompteCourant) {
 			try {
@@ -25,6 +25,16 @@ public class DbUpdateQueries {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public static void updateCompteStatusInDb(Compte compteToUpdate, boolean newStatus) {
+		Statement myStat = DbConnection.statementGeneration();
+		try {
+			myStat.executeUpdate("UPDATE compte SET Actif =" + newStatus +" WHERE id='" + compteToUpdate.getId() + "'");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
