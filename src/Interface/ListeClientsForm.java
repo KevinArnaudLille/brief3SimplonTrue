@@ -68,10 +68,8 @@ public class ListeClientsForm extends BaseTemplateForm {
 		addNewClientButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				OuvrirClientForm openAccountFrame = new OuvrirClientForm();
 				CurrentSessionData.setOpenAccountPage(openAccountFrame);
-				CheckClientAdd.setFrame(openAccountFrame);
 				CurrentSessionData.getOpenAccountPage().setVisible(true);
 			}
 		});

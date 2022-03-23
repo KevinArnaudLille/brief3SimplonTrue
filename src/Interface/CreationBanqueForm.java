@@ -27,30 +27,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 
-
-/*public class CreationBanqueForm extends JFrame {
-	
-	public static void main(String[] args) {
-		
-	}*/
-	
-	
-
 public class CreationBanqueForm extends BaseTemplateForm {
 
-
-//	private JPanel panel;
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
 	private JLabel errorMsgField;
 
-	/**
-	 * Create the frame.
-	 */
 	public CreationBanqueForm() {
 		
-	
-
 		super();
 
 		panel.setVisible(false);
@@ -78,6 +62,8 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			}
 		});
 
+		txtUsername.requestFocusInWindow();
+		
 		JPanel Password = new JPanel();
 		Password.setBackground(Color.WHITE);
 		Password.setBounds(327, 258, 352, 55);
@@ -100,7 +86,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			}
 		});
 
-		JButton btnNewButton = new JButton("LOG IN");
+		JButton btnNewButton = new JButton("CONNEXION");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(327, 335, 352, 45);
 		getContentPane().add(btnNewButton);
@@ -127,6 +113,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 		this.errorMsgField = lblNewLabel_1;
 	}
 
+	// ==== Setters ====
 	public void setIdentifiantTextField(String textField) {
 		this.txtUsername.setText(textField);
 	}

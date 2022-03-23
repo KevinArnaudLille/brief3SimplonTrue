@@ -1,7 +1,7 @@
 package app;
 
 import Interface.CreationBanqueForm;
-import controler.ConseillerConnectionControler;
+import db.DbReadQueries;
 import sessionData.CurrentSessionData;
 
 public class Launcher {
@@ -23,6 +23,9 @@ public class Launcher {
 			System.out.println(e);
 		}
 
+		// ==== Set Conseillers List with db data ====
+		CurrentSessionData.setConseillerList(DbReadQueries.dbReadConseillers());
+		
 		// ==== Launch the first Conseiller login frame ====
 		CreationBanqueForm firstFrame = new CreationBanqueForm();
 		CurrentSessionData.setHomePage(firstFrame);

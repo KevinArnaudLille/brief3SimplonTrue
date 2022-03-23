@@ -3,6 +3,7 @@ package controler;
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
 import checking.CheckConseillerConnection;
+import db.DbReadQueries;
 import sessionData.CurrentSessionData;
 
 public class ConseillerConnectionControler {
@@ -26,14 +27,5 @@ public class ConseillerConnectionControler {
 			System.out.println("Well done " + CurrentSessionData.getConnectedConseiller().getPrenom() + " "
 				+ CurrentSessionData.getConnectedConseiller().getNom());
 		}
-
-		/*
-		 * Check if identifiant and mdp are good \o/ if not good \o/ show error msg \o
-		 * empty identifiant and mdp fields\o/
-		 * 
-		 * if good \o/ show success msg \o/ Set current conseiller in SessionData \o/ go
-		 * to next page (clientList)
-		 */
-
 	}
 }

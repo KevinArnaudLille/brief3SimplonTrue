@@ -2,76 +2,81 @@ package checking;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import Interface.CreationBanqueForm;
-import Interface.ListeComptesForm;
-import Interface.OuvrirClientForm;
+import sessionData.CurrentSessionData;
 
 public class CheckClientAdd {
-	
-	private static OuvrirClientForm frame;
 
-	// Correct Msg and Error Msgs
+	// ==== Correct Msg and Error Msgs ====
 	private static String properlyFilledFieldMsg = "OK";
-	private static String fieldIsEmptyErrorMsg = "Champ nï¿½cessaire !";
+	private static String fieldIsEmptyErrorMsg = "Champ nécessaire !";
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";
 	private static String fieldIsNotAnEmailErrorMsg = "Email incorrect !";
+
+	//*******************************************************
+	// ==== Getter ====
+	public static String getProperlyFilledFieldMsg() {
+		return properlyFilledFieldMsg;
+	}
 	
-	// GLOBAL FUNCTIONS
+	//*******************************************************
+	// ==== Global unitary checking function ====
 	private static boolean isStringContainSpecialCharacter(String stringToCheck) {
-		Pattern p = Pattern.compile("[^a-z0-9]",Pattern.CASE_INSENSITIVE);
+		Pattern p = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(stringToCheck);
 		return m.find();
 	}
-	
+
 	private static boolean isStringAnEmail(String stringToCheck) {
 		Pattern p = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Matcher m = p.matcher(stringToCheck);
+		Matcher m = p.matcher(stringToCheck);
 		return m.matches();
 	}
-	
-	public static void setFrame(OuvrirClientForm IncommingFrame) {
-		frame = IncommingFrame;
-	}
-	
-	// ALL FIELD
+
+	// ==== Checking all field at once ====
 	public static boolean AreAllFieldOk() {
 		return isNomFieldOk() && isPrenomFieldOk() && isCourrielFieldOk() && isAdresseFieldOk() && isTelFieldOk();
 	}
-	
-	// NOM FIELD
+
+	//*******************************************************
+	// ==== Checking specific field ====
+	// == NOM ==
 	public static boolean isNomFieldOk() {
-		String stringToCheck = frame.getNom();
-		return !stringToCheck.isEmpty()  && !stringToCheck.contains(" ") && !isStringContainSpecialCharacter(stringToCheck);
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getNom();
+		return !stringToCheck.isEmpty() && !stringToCheck.contains(" ")
+				&& !isStringContainSpecialCharacter(stringToCheck);
 	}
+
 	public static String generateNomProperErrorMsg() {
-		String stringToCheck = frame.getNom();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getNom();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
 		return fieldIsWrongErrorMsg;
 	}
 
-	// PRENOM FIELD
+	// == PRENOM ==
 	public static boolean isPrenomFieldOk() {
-		String stringToCheck = frame.getPrenom();
-		return !stringToCheck.isEmpty()  && !stringToCheck.contains(" ") && !isStringContainSpecialCharacter(stringToCheck);
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getPrenom();
+		return !stringToCheck.isEmpty() && !stringToCheck.contains(" ")
+				&& !isStringContainSpecialCharacter(stringToCheck);
 	}
+
 	public static String generatePrenomProperErrorMsg() {
-		String stringToCheck = frame.getPrenom();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getPrenom();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
 		return fieldIsWrongErrorMsg;
 	}
-	
-	// COURRIEL FIELD
+
+	// == COURRIEL ==
 	public static boolean isCourrielFieldOk() {
-		String stringToCheck = frame.getCourriel();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getCourriel();
 		return !stringToCheck.isEmpty() && isStringAnEmail(stringToCheck);
 	}
+
 	public static String generateCourrielProperErrorMsg() {
-		String stringToCheck = frame.getCourriel();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getCourriel();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		} else if (!isStringAnEmail(stringToCheck)) {
@@ -79,40 +84,32 @@ public class CheckClientAdd {
 		}
 		return fieldIsWrongErrorMsg;
 	}
-	
-	// ADRESSE FIELD
+
+	// == ADRESSE ==
 	public static boolean isAdresseFieldOk() {
-		String stringToCheck = frame.getAdresse();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getAdresse();
 		return !stringToCheck.isEmpty() && !isStringContainSpecialCharacter(stringToCheck);
 	}
+
 	public static String generateAdresseProperErrorMsg() {
-		String stringToCheck = frame.getAdresse();
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getAdresse();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
 		return fieldIsWrongErrorMsg;
-	}
-	
-	// TEL FIELD
-	public static boolean isTelFieldOk() {
-		String stringToCheck = frame.getTel();
-		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+");
-	}
-	public static String generateTelProperErrorMsg() {
-		String stringToCheck = frame.getTel();
-		if (stringToCheck.isEmpty()) {
-			return fieldIsEmptyErrorMsg;
-		}
-		return fieldIsWrongErrorMsg;
-	}
-	
-	// Getters
-	public static String getProperlyFilledFieldMsg() {
-		return properlyFilledFieldMsg;
 	}
 
-	public static void setFrame(ListeComptesForm openAccountFrame) {
-		// TODO Auto-generated method stub
-		
+	// == TEL ==
+	public static boolean isTelFieldOk() {
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getTel();
+		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+");
+	}
+
+	public static String generateTelProperErrorMsg() {
+		String stringToCheck = CurrentSessionData.getOpenAccountPage().getTel();
+		if (stringToCheck.isEmpty()) {
+			return fieldIsEmptyErrorMsg;
+		}
+		return fieldIsWrongErrorMsg;
 	}
 }

@@ -4,22 +4,17 @@ import java.util.ArrayList;
 
 import db.DbReadQueries;
 import model.Conseiller;
+import sessionData.CurrentSessionData;
 
 public class CheckConseillerConnection {
-	private static ArrayList<Conseiller> conseillerList = new ArrayList<Conseiller>();
 
+	// ==== Error Msgs ====
 	private static String errorMsgsWrongIdentifiant = "L'identifiant de connexion n'est pas valide.";
 	private static String errorMsgsWrongMdp = "Le mot de passe de connexion n'est pas valide.";
 	private static String errorMsgsIdentifiantMdpNotMatching = "L'identifiant et le mot de passe ne correspondent pas.";
 
-	
-
-	public static ArrayList<Conseiller> getConseillerList() {
-		conseillerList = DbReadQueries.dbReadConseillers();
-		return conseillerList;
-	}
-	
-
+	//*******************************************************
+	// ==== Getters and Setters ====
 	// Get error msg if conseiller identifiant not in db
 	public static String getErrorMsgsWrongIdentifiant() {
 		return errorMsgsWrongIdentifiant;
@@ -35,22 +30,21 @@ public class CheckConseillerConnection {
 		return errorMsgsIdentifiantMdpNotMatching;
 	}
 
+	//*******************************************************
+	// ==== Checking functions ====
 	// Return if a conseiller Identifiant is in the db
 	public static boolean isConseillerIdentifiantInList(String identifiant) {
-		conseillerList = DbReadQueries.dbReadConseillers();
-		return conseillerList.stream().anyMatch(conseiller -> conseiller.getIdentifiant().equals(identifiant));
+		return CurrentSessionData.getConseillerList().stream().anyMatch(conseiller -> conseiller.getIdentifiant().equals(identifiant));
 	}
 
 	// Return if a conseiller Mdp is in the db
 	public static boolean isConseillerMdpInList(String mdp) {
-		conseillerList = DbReadQueries.dbReadConseillers();
-		return conseillerList.stream().anyMatch(conseiller -> conseiller.getMdp().equals(mdp));
+		return CurrentSessionData.getConseillerList().stream().anyMatch(conseiller -> conseiller.getMdp().equals(mdp));
 	}
 
 	// Return if a conseiller Identifiant and Mdp are matching in the db
 	public static boolean isConseillerMdpMatchingIdentifiant(String identifiant, String mdp) {
-		conseillerList = DbReadQueries.dbReadConseillers();
-		Conseiller conseillerToCheck = (Conseiller) conseillerList.stream()
+		Conseiller conseillerToCheck = (Conseiller) CurrentSessionData.getConseillerList().stream()
 				.filter(conseiller -> conseiller.getIdentifiant().equals(identifiant)).findAny().orElse(null);
 		if (conseillerToCheck != null) {
 			return conseillerToCheck.getMdp().equals(mdp);
@@ -64,7 +58,9 @@ public class CheckConseillerConnection {
 		return isConseillerIdentifiantInList(identifiant) && isConseillerMdpInList(mdp) && isConseillerMdpMatchingIdentifiant(identifiant, mdp); 
 	}
 	
-	// Return the appropriate error msg
+	//*******************************************************
+	// ==== Error msg generation ====
+	// Return the appropriate error msg (DEPRICATED)
 	public static String appriopriateMsgError(String identifiant, String mdp) {
 		if (!isConseillerIdentifiantInList(identifiant)) {
 			return getErrorMsgsWrongIdentifiant();
@@ -76,11 +72,8 @@ public class CheckConseillerConnection {
 
 	// Return the appropriate error msg
 	public static String[][] appriopriateMsgErrorWithTextFieldToEdit(String identifiant, String mdp) {
-//		String[] textFieldToEdit = new String[2];
 		String[][] toSend = new String[2][2];
 		if (!isConseillerIdentifiantInList(identifiant)) {
-//			textFieldToEdit[0] = identifiant;
-//			textFieldToEdit[1] = "";
 			toSend[0][0] = getErrorMsgsWrongIdentifiant();
 			toSend[1][0] = "";
 			toSend[1][1] = "";

@@ -1,16 +1,13 @@
 package sessionData;
 
 import java.awt.Window;
-import java.util.Optional;
+import java.util.ArrayList;
 import Interface.CreationBanqueForm;
 import Interface.ListeClientsForm;
 import Interface.OuvrirClientForm;
 import Interface.OuvrirCompteForm;
 import Interface.ListeComptesForm;
 import Interface.ModifierCompteForm;
-
-
-import checking.CheckConseillerConnection;
 import db.DbReadQueries;
 import model.Client;
 import model.Compte;
@@ -18,6 +15,7 @@ import model.Conseiller;
 
 public class CurrentSessionData {
 	
+	private static ArrayList<Conseiller> conseillerList = new ArrayList<Conseiller>();
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
 	private static Compte compteToUpdate;
@@ -29,8 +27,15 @@ public class CurrentSessionData {
 	private static ListeComptesForm selectClientComptesList;
 	private static ModifierCompteForm updateComptePage;
 	
-	
 	// ==== GETTERS AND SETTERS ===
+	public static ArrayList<Conseiller> getConseillerList() {
+		return conseillerList;
+	}
+	
+	public static void setConseillerList(ArrayList<Conseiller> conseillerList) {
+		CurrentSessionData.conseillerList = conseillerList;
+	}
+
 	public static CreationBanqueForm getHomePage() {
 		return homePage;
 	}
