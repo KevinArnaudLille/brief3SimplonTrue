@@ -52,16 +52,15 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 
 	private JRadioButton btnAddCompte_courant;
 	private JRadioButton btnAddCompte_epargne;
-	
+
 	private JButton btnValidate;
-	
+
 	private JLabel ClientReturnMsg;
 	private JLabel Client;
-	
+
 	private ButtonGroup group;
 	private JLabel clientNom;
 	private JLabel compteNum;
-
 
 	public OuvrirCompteForm() {
 
@@ -89,89 +88,82 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		lblNewLabel.setBounds(10, 6, 984, 29);
 		panel.add(lblNewLabel);
 
-		// TUTELLE
-		textFieldProprietaire_tutelle = new JTextField();
-		textFieldProprietaire_tutelle.setColumns(10);
-		textFieldProprietaire_tutelle.addFocusListener(new FocusAdapter() {
-			/*
-			 * public void focusLost(FocusEvent e) {
-			 * NewCompteControler.onLeavingProprietaire_tutelleTextField(); } });
-			 * textFieldProprietaire_tutelle.addKeyListener(new KeyAdapter() {
-			 * 
-			 * @Override public void keyReleased(KeyEvent e) {
-			 * NewCompteControler.onAddingTextAnywhere(); }
-			 */
-		});
-		/*
-		 * Proprietaire_tutelleReturnMsg = new JLabel("");
-		 * Proprietaire_tutelleReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
-		 * Proprietaire_tutelleReturnMsg.setForeground(new Color(165, 42, 42));
-		 * Proprietaire_tutelleReturnMsg.setBounds(825, 64, 151, 31);
-		 * getContentPane().add(Proprietaire_tutelleReturnMsg);
-		 */
-		textFieldProprietaire_tutelle.setBounds(703, 189, 130, 26);
-		getContentPane().add(textFieldProprietaire_tutelle);
-		JLabel lblProprietaire_tutelle = new JLabel("Si diffÃ©rent (tutelle):");
-		lblProprietaire_tutelle.setForeground(Color.WHITE);
-		lblProprietaire_tutelle.setBounds(561, 192, 130, 21);
-		getContentPane().add(lblProprietaire_tutelle);
-
 		// NUMERO DE COMPTE
-		JLabel lblNumero = new JLabel("NumÃ©ro de compte:");
+		JLabel lblNumero = new JLabel("Numéro de compte:");
 		lblNumero.setForeground(Color.WHITE);
 		lblNumero.setBounds(172, 123, 125, 16);
 		getContentPane().add(lblNumero);
 
 		// NUMERO DE COMPTE GENERE ALEATOIREMENT
 		// Random random = new Random();
-		compteNum = new JLabel(""+NewCompteControler.generateNewRandomCompteNumber());
+		compteNum = new JLabel("" + NewCompteControler.generateNewRandomCompteNumber());
 		compteNum.setForeground(Color.WHITE);
 		compteNum.setBounds(309, 123, 107, 16);
 		getContentPane().add(compteNum);
 
 		// NOM DU CLIENT
-		JLabel Client = new JLabel("Nom du client:");
+		JLabel Client = new JLabel("Nom du client : " + CurrentSessionData.getSelectClientByClick().getPrenom() + " "
+				+ CurrentSessionData.getSelectClientByClick().getNom());
 		Client.setForeground(Color.WHITE);
-		Client.setBounds(592, 123, 99, 16);
+		Client.setBounds(592, 123, 241, 16);
 		getContentPane().add(Client);
-		
+
 		clientNom = new JLabel();
 		clientNom.setBounds(703, 123, 130, 16);
 		getContentPane().add(clientNom);
-		
 
 		// SOLDE INITIAL
-		JLabel lblsoldeInitial = new JLabel("Solde initial:");
+		JLabel lblsoldeInitial = new JLabel("Solde initial :");
 		lblsoldeInitial.setForeground(Color.WHITE);
-		lblsoldeInitial.setBounds(217, 192, 78, 21);
+		lblsoldeInitial.setBounds(97, 192, 78, 21);
 		getContentPane().add(lblsoldeInitial);
 
 		textFieldSolde = new JTextField();
 		textFieldSolde.setColumns(10);
-		textFieldSolde.setBounds(309, 189, 130, 26);
+		textFieldSolde.setBounds(189, 189, 130, 26);
 		getContentPane().add(textFieldSolde);
 		textFieldSolde.setColumns(10);
-	        textFieldSolde.addFocusListener(new FocusAdapter() {
-	            public void focusLost(FocusEvent e) {
-	                NewCompteControler.onLeavingSoldeTextField();
-	            }
-	        });
-	        textFieldSolde.addKeyListener(new KeyAdapter() {
-	            @Override
-	            public void keyReleased(KeyEvent e) {
-	                NewCompteControler.onAddingTextAnywhere();
-	            }
-	        });
+		textFieldSolde.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onAddingTextAnywhere();
+				NewCompteControler.onTypingSoldeTextField();
+			}
+		});
 
 		SoldeReturnMsg = new JLabel("");
 		SoldeReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		SoldeReturnMsg.setForeground(new Color(165, 42, 42));
-		SoldeReturnMsg.setBounds(825, 64, 151, 31);
+		SoldeReturnMsg.setBounds(324, 192, 208, 31);
 		getContentPane().add(SoldeReturnMsg);
+
+		// TUTELLE
+		JLabel lblProprietaire_tutelle = new JLabel("Si différent (tutelle) :");
+		lblProprietaire_tutelle.setForeground(Color.WHITE);
+		lblProprietaire_tutelle.setBounds(561, 192, 130, 21);
+		getContentPane().add(lblProprietaire_tutelle);
+
+		textFieldProprietaire_tutelle = new JTextField();
+		textFieldProprietaire_tutelle.setColumns(10);
+		textFieldProprietaire_tutelle.setBounds(675, 189, 130, 26);
+		getContentPane().add(textFieldProprietaire_tutelle);
+		textFieldProprietaire_tutelle.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onAddingTextAnywhere();
+				NewCompteControler.onTypingProprietaire_tutelleTextField();
+			}
+		});
+		
+		Proprietaire_tutelleReturnMsg = new JLabel("");
+		Proprietaire_tutelleReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
+		Proprietaire_tutelleReturnMsg.setForeground(new Color(165, 42, 42));
+		Proprietaire_tutelleReturnMsg.setBounds(811, 189, 165, 31);
+		getContentPane().add(Proprietaire_tutelleReturnMsg);
 
 		// BOUTON RADIO COMPTE COURANT
 		btnAddCompte_courant = new JRadioButton("Compte courant");
-		btnAddCompte_courant.setForeground(Color.WHITE);
+		btnAddCompte_courant.setForeground(Color.BLACK);
 		btnAddCompte_courant.setBounds(339, 256, 141, 23);
 		getContentPane().add(btnAddCompte_courant);
 		btnAddCompte_courant.addActionListener(new ActionListener() {
@@ -188,8 +180,8 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		});
 
 		// BOUTON RADIO COMPTE EPARGNE
-		btnAddCompte_epargne = new JRadioButton("Compte Ã©pargne");
-		btnAddCompte_epargne.setForeground(Color.WHITE);
+		btnAddCompte_epargne = new JRadioButton("Compte épargne");
+		btnAddCompte_epargne.setForeground(Color.BLACK);
 		btnAddCompte_epargne.setBounds(532, 256, 141, 23);
 		getContentPane().add(btnAddCompte_epargne);
 		btnAddCompte_epargne.addActionListener(new ActionListener() {
@@ -204,46 +196,43 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 				textFieldTaux_interet.setVisible(true);
 			}
 		});
-		
+
 		group = new ButtonGroup();
 
 		group.add(btnAddCompte_courant);
 		group.add(btnAddCompte_epargne);
-		
-		
+
 		// BOUTON VALIDER
 		btnValidate = new JButton("Valider");
-		btnValidate.setBounds(437, 401, 117, 29);
+		btnValidate.setBounds(333, 401, 117, 29);
 		getContentPane().add(btnValidate);
+		btnValidate.setEnabled(false);
 		btnValidate.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
-				//quand je clique sur "valider" je supprime la page
+			public void actionPerformed(ActionEvent e) {
+				// quand je clique sur "valider" je supprime la page
 				NewCompteControler.onAddCompteClick();
 			}
 		});
+
+		
 		
 		// FRAIS TRANSFERT
 		lblFrais_transfert = new JLabel("Frais de transfert:");
 		lblFrais_transfert.setForeground(Color.WHITE);
-		lblFrais_transfert.setBounds(186, 319, 125, 21);
+		lblFrais_transfert.setBounds(186, 341, 125, 21);
 		getContentPane().add(lblFrais_transfert);
 		lblFrais_transfert.setVisible(false);
 
 		textFieldFrais_transfert = new JTextField();
 		textFieldFrais_transfert.setColumns(10);
-		textFieldFrais_transfert.setBounds(309, 316, 130, 26);
+		textFieldFrais_transfert.setBounds(309, 338, 130, 26);
 		getContentPane().add(textFieldFrais_transfert);
 		textFieldFrais_transfert.setVisible(false);
-
-		textFieldFrais_transfert.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewCompteControler.onLeavingFrais_transfertTextField();
-			}
-		});
 		textFieldFrais_transfert.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onTypingFrais_transfertTextField();
 				NewCompteControler.onAddingTextAnywhere();
 			}
 		});
@@ -251,31 +240,25 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		Frais_transfertReturnMsg = new JLabel("");
 		Frais_transfertReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		Frais_transfertReturnMsg.setForeground(new Color(165, 42, 42));
-		Frais_transfertReturnMsg.setBounds(825, 64, 151, 31);
+		Frais_transfertReturnMsg.setBounds(286, 373, 151, 31);
 		getContentPane().add(Frais_transfertReturnMsg);
 
 		// SOLDE MINIMUM AUTORISE
-		lblSolde_minimum_autorise = new JLabel("Solde minimum autorisÃ©:");
+		lblSolde_minimum_autorise = new JLabel("Solde minimum autorisé:");
 		lblSolde_minimum_autorise.setForeground(Color.WHITE);
-		lblSolde_minimum_autorise.setBounds(523, 321, 181, 16);
+		lblSolde_minimum_autorise.setBounds(523, 343, 181, 16);
 		getContentPane().add(lblSolde_minimum_autorise);
 		lblSolde_minimum_autorise.setVisible(false);
 
 		textFieldSolde_minimum_autorise = new JTextField();
 		textFieldSolde_minimum_autorise.setColumns(10);
-		textFieldSolde_minimum_autorise.setBounds(703, 316, 130, 26);
+		textFieldSolde_minimum_autorise.setBounds(703, 338, 130, 26);
 		getContentPane().add(textFieldSolde_minimum_autorise);
 		textFieldSolde_minimum_autorise.setVisible(false);
-
-
-		textFieldSolde_minimum_autorise.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewCompteControler.onLeavingSolde_minimum_autoriseTextField();
-			}
-		});
 		textFieldSolde_minimum_autorise.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onTypingSolde_minimum_autoriseTextField();
 				NewCompteControler.onAddingTextAnywhere();
 			}
 		});
@@ -283,31 +266,25 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		Solde_minimum_autoriseReturnMsg = new JLabel("");
 		Solde_minimum_autoriseReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		Solde_minimum_autoriseReturnMsg.setForeground(new Color(165, 42, 42));
-		Solde_minimum_autoriseReturnMsg.setBounds(825, 64, 151, 31);
+		Solde_minimum_autoriseReturnMsg.setBounds(695, 370, 151, 31);
 		getContentPane().add(Solde_minimum_autoriseReturnMsg);
 
 		// PLAFOND
 		lblPlafond = new JLabel("Plafond:");
 		lblPlafond.setForeground(Color.WHITE);
-		lblPlafond.setBounds(632, 362, 59, 21);
+		lblPlafond.setBounds(632, 344, 59, 21);
 		getContentPane().add(lblPlafond);
 		lblPlafond.setVisible(false);
 
 		textFieldPlafond = new JTextField();
 		textFieldPlafond.setColumns(10);
-		textFieldPlafond.setBounds(703, 359, 130, 26);
+		textFieldPlafond.setBounds(703, 341, 130, 26);
 		getContentPane().add(textFieldPlafond);
 		textFieldPlafond.setVisible(false);
-
-
-		textFieldPlafond.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewCompteControler.onLeavingPlafondTextField();
-			}
-		});
 		textFieldPlafond.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onTypingPlafondTextField();
 				NewCompteControler.onAddingTextAnywhere();
 			}
 		});
@@ -315,30 +292,25 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		PlafondReturnMsg = new JLabel("");
 		PlafondReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		PlafondReturnMsg.setForeground(new Color(165, 42, 42));
-		PlafondReturnMsg.setBounds(825, 64, 151, 31);
+		PlafondReturnMsg.setBounds(695, 370, 151, 31);
 		getContentPane().add(PlafondReturnMsg);
 
 		// TAUX INTERET
-		lblTaux_interet = new JLabel("Taux d'intÃ©rÃªt:");
+		lblTaux_interet = new JLabel("Taux d'intérêt:");
 		lblTaux_interet.setForeground(Color.WHITE);
-		lblTaux_interet.setBounds(186, 362, 125, 21);
+		lblTaux_interet.setBounds(186, 344, 125, 21);
 		getContentPane().add(lblTaux_interet);
 		lblTaux_interet.setVisible(false);
 
 		textFieldTaux_interet = new JTextField();
 		textFieldTaux_interet.setColumns(10);
-		textFieldTaux_interet.setBounds(309, 363, 130, 26);
+		textFieldTaux_interet.setBounds(309, 345, 130, 26);
 		getContentPane().add(textFieldTaux_interet);
 		textFieldTaux_interet.setVisible(false);
-
-		textFieldTaux_interet.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewCompteControler.onLeavingTaux_interetTextField();
-			}
-		});
 		textFieldTaux_interet.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewCompteControler.onTypingTaux_interetTextField();
 				NewCompteControler.onAddingTextAnywhere();
 			}
 		});
@@ -346,8 +318,19 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		Taux_interetReturnMsg = new JLabel("");
 		Taux_interetReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		Taux_interetReturnMsg.setForeground(new Color(165, 42, 42));
-		Taux_interetReturnMsg.setBounds(825, 64, 151, 31);
+		Taux_interetReturnMsg.setBounds(299, 373, 151, 31);
 		getContentPane().add(Taux_interetReturnMsg);
+
+		// CANCEL BTN
+		JButton btnCancel = new JButton("Annuler");
+		btnCancel.setBounds(536, 401, 117, 29);
+		getContentPane().add(btnCancel);
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NewCompteControler.onCancelClick();
+			}
+		});
 	}
 
 	// addCompteCourantBtn enabler
@@ -359,11 +342,16 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	public void enableAddCompte_epargneBtn() {
 		this.btnAddCompte_epargne.setEnabled(true);
 	}
-	
+
 	// addValidateBtn enabler
-		public void enableAddClientBtn() {
-			this.btnValidate.setEnabled(true);
-		}
+	public void enableAddClientBtn() {
+		this.btnValidate.setEnabled(true);
+	}
+
+	// addValidateBtn enabler
+	public void disableAddClientBtn() {
+		this.btnValidate.setEnabled(false);
+	}
 
 	// Textfields getters and setters
 	public String getClient() {
@@ -467,7 +455,6 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	public static void main(String[] args) {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");
 		OuvrirCompteForm testFrame = new OuvrirCompteForm();
-		CheckCompteAdd.setFrame(testFrame);
 		testFrame.setVisible(true);
 	}
 }
