@@ -8,7 +8,7 @@ public class Launcher {
 	public static void main(String[] args) {
 
 		// ==== Generate (or event replace) starting data set in db ====
-		// winOS ids
+		// winOS ids	
 		try {
 			TemporaryDBCreation.createDB(3306, "root", "");
 			TemporaryDBCreation.addDataToDB(3306, "root", "");

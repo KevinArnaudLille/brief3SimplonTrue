@@ -46,9 +46,14 @@ public class ListeComptesForm extends JFrame {
 		btnBack_Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CurrentSessionData.getSelectClientComptesListPage().dispose();
-				ListeComptesForm listCompteFrame = new ListeComptesForm();
-				CurrentSessionData.setSelectClientComptesListPage(listCompteFrame);
-				CurrentSessionData.getSelectClientComptesListPage().setVisible(true);
+				// Create client list frame object
+				ListeClientsForm listClientPage = new ListeClientsForm();
+
+				// Add client list frame object to session storage
+				CurrentSessionData.setConnectedConseillerClientsPage(listClientPage);
+
+				// Display client list frame
+				CurrentSessionData.getConnectedConseillerClientsPage().setVisible(true);
 			}
 		});
 

@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class TemporaryDBCreation {
 
 	private static final String[] tablesCreationQuery = new String[6];
-	private static final String[] dataAddingQuery = new String[18];
+	private static final String[] dataAddingQuery = new String[19];
 
 	private static void privateSetTablesCreationQuery() {
 		tablesCreationQuery[0] = "CREATE TABLE Conseiller(id VARCHAR(255),Nom VARCHAR(255),Prenom VARCHAR(255),Identifiant VARCHAR(255),Mot_de_passe VARCHAR(255),PRIMARY KEY(id));";
@@ -40,16 +40,15 @@ public class TemporaryDBCreation {
 		dataAddingQuery[12] = "INSERT INTO compte_courant VALUES('compte_courant_04',9.9,1)";
 
 		// add "compte-epargne"
-		dataAddingQuery[13] = "INSERT INTO compte VALUES('compte_epargne_01',211111,10000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
-		dataAddingQuery[14] = "INSERT INTO compte_epargne VALUES('compte_epargne_01',9.9,20000)";
-		dataAddingQuery[15] = "INSERT INTO compte VALUES('compte_epargne_02',222222,500,true,'JoJo','2022-03-04',(SELECT id FROM client WHERE Nom='Jean'))";
-		dataAddingQuery[16] = "INSERT INTO compte_epargne VALUES('compte_epargne_02',1.1,20000)";
+		dataAddingQuery[13] = "INSERT INTO compte VALUES('compte_epargne_05',211111,10000,true,null,'2022-02-28',(SELECT id FROM client WHERE Nom='Parker'))";
+		dataAddingQuery[14] = "INSERT INTO compte_epargne VALUES('compte_epargne_05',9.9,20000)";
+		dataAddingQuery[15] = "INSERT INTO compte VALUES('compte_epargne_06',222222,500,true,'JoJo','2022-03-04',(SELECT id FROM client WHERE Nom='Jean'))";
+		dataAddingQuery[16] = "INSERT INTO compte_epargne VALUES('compte_epargne_06',1.1,20000)";
 
 		// add "operation"
 		// "debit"
-
 		dataAddingQuery[17] = "INSERT INTO operation VALUES('compte_courant_01','compte_courant_02','operation_debit_01',null,null,500,'2022-02-28',true,false,false,'PS5')";
-		dataAddingQuery[17] = "INSERT INTO operation VALUES('compte_courant_01','compte_courant_01','operation_debit_01',null,null,500,'2022-02-28',true,false,false,'PS5')";
+		dataAddingQuery[18] = "INSERT INTO operation VALUES('compte_courant_01','compte_courant_01','operation_debit_01',null,null,500,'2022-02-28',true,false,false,'PS5')";
 //		dataAddingQuery[18] = "INSERT INTO operation VALUES('operation_debit_02','compte_courant_04',null,null,null,100,'2022-03-03',true,false,false,'gros_restaurant')";
 //		dataAddingQuery[19] = "INSERT INTO operation VALUES('operation_debit_03','compte_epargne_01',null,null,null,20,'2022-03-04',true,false,false,'cadeau_robert')";
 //
