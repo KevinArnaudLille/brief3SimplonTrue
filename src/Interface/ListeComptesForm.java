@@ -36,8 +36,6 @@ import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
 
-//	private static final int JRadioBtnWidth = 0;
-//	private static final int JRadioBtnAndJTextFieldHeigth = 0;
 	private JPanel contentPane;
 	private JTextField txtGestionDesComptes;
 
@@ -74,9 +72,19 @@ public class ListeComptesForm extends JFrame {
 		contentPane.add(txtGestionDesComptes);
 		txtGestionDesComptes.setColumns(10);
 
+		JButton btnBack_Back = new JButton("Quitter");
+		btnBack_Back.setBounds(832, 11, 144, 35);
+		contentPane.add(btnBack_Back);
+		btnBack_Back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CurrentSessionData.getGestionCompteClient().dispose();
+			}
+		});
+
 		JButton btnOuvrireCompte = new JButton("Ouvrir");
+		btnOuvrireCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnOuvrireCompte.setBackground(Color.WHITE);
-		btnOuvrireCompte.setBounds(576, 258, 132, 45);
+		btnOuvrireCompte.setBounds(561, 160, 132, 45);
 		contentPane.add(btnOuvrireCompte);
 		btnOuvrireCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,30 +95,35 @@ public class ListeComptesForm extends JFrame {
 		});
 
 		JButton btnCrditerUnCompte = new JButton("Cr\u00E9diter");
+		btnCrditerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnCrditerUnCompte.setBackground(Color.WHITE);
-		btnCrditerUnCompte.setBounds(771, 258, 132, 45);
+		btnCrditerUnCompte.setBounds(778, 160, 132, 45);
 		contentPane.add(btnCrditerUnCompte);
 
 		JButton btnTransfrerDeCompte = new JButton("Transf\u00E9rer");
+		btnTransfrerDeCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnTransfrerDeCompte.setBackground(Color.WHITE);
-		btnTransfrerDeCompte.setBounds(771, 324, 132, 45);
+		btnTransfrerDeCompte.setBounds(778, 247, 132, 45);
 		contentPane.add(btnTransfrerDeCompte);
 
 		JButton btnDbiterUnCompte = new JButton("D\u00E9biter ");
+		btnDbiterUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnDbiterUnCompte.setBackground(Color.WHITE);
-		btnDbiterUnCompte.setBounds(576, 324, 132, 45);
+		btnDbiterUnCompte.setBounds(561, 247, 132, 45);
 		contentPane.add(btnDbiterUnCompte);
 
 		JButton btnClturerCompte = new JButton("Cl\u00F4turer");
+		btnClturerCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnClturerCompte.setBackground(Color.WHITE);
-		btnClturerCompte.setBounds(771, 391, 132, 45);
+		btnClturerCompte.setBounds(778, 339, 132, 45);
 		contentPane.add(btnClturerCompte);
 		btnClturerCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
 				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
-				JOptionPane.showMessageDialog(CurrentSessionData.getGestionCompteClient(), "Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
-			
+				JOptionPane.showMessageDialog(CurrentSessionData.getGestionCompteClient(),
+						"Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
+
 				CurrentSessionData.getGestionCompteClient().dispose();
 				ListeComptesForm openAccountFrame = new ListeComptesForm();
 				CurrentSessionData.setGestionCompteClient(openAccountFrame);
@@ -119,18 +132,10 @@ public class ListeComptesForm extends JFrame {
 		});
 
 		JButton btnModifierCompte = new JButton("Modifier");
+		btnModifierCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnModifierCompte.setBackground(Color.WHITE);
-		btnModifierCompte.setBounds(576, 391, 132, 45);
+		btnModifierCompte.setBounds(561, 339, 132, 45);
 		contentPane.add(btnModifierCompte);
-
-		JButton btnBack_Back = new JButton("Quitter");
-		btnBack_Back.setBounds(818, 62, 144, 35);
-		contentPane.add(btnBack_Back);
-		btnBack_Back.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CurrentSessionData.getGestionCompteClient().dispose();
-			}
-		});
 
 		JButton btnListeComptes = new JButton("Liste des Comptes");
 		btnListeComptes.setFont(new Font("Arial", Font.BOLD, 25));

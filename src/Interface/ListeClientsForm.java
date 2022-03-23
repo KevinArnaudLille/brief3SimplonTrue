@@ -50,18 +50,17 @@ public class ListeClientsForm extends BaseTemplateForm {
 		titlePageLabel.setText("Clients de " + conseiller.getPrenom() + " " + conseiller.getNom());
 
 		JButton quitButton = new JButton("Quitter");
+		quitButton.setBounds(842, 6, 117, 29);
+		panel.add(quitButton);
 		quitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				CreationBanqueForm firstFrame = new CreationBanqueForm();
 				CurrentSessionData.setHomePage(firstFrame);
-				ConseillerConnectionControler.setFrame(firstFrame);
-				firstFrame.setVisible(true);
+				CurrentSessionData.getHomePage().setVisible(true);
 				CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			}
 		});
-		quitButton.setBounds(842, 6, 117, 29);
-		panel.add(quitButton);
 		
 		JButton addNewClientButton = new JButton("Créer un nouveau client");
 		addNewClientButton.setBounds(729, 184, 176, 49);

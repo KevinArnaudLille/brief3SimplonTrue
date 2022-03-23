@@ -11,7 +11,7 @@ public class CheckClientAdd {
 	
 	private static OuvrirClientForm frame;
 
-	// Correct Msg and Error Msg
+	// Correct Msg and Error Msgs
 	private static String properlyFilledFieldMsg = "OK";
 	private static String fieldIsEmptyErrorMsg = "Champ n�cessaire !";
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";

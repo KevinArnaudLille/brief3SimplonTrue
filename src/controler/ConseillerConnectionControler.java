@@ -9,16 +9,14 @@ public class ConseillerConnectionControler {
 
 	private static String[][] errorMsgAndNewTextFieldEdit = new String[2][2];
 
-	private static CreationBanqueForm frame;
-
 	public static void logInBtnClicked(String identifiant, String mdp) {
 		if (!CheckConseillerConnection.isConseillerConnectionValid(identifiant, mdp)) {
 			errorMsgAndNewTextFieldEdit = CheckConseillerConnection.appriopriateMsgErrorWithTextFieldToEdit(identifiant,
 					mdp);
 			System.out.println(errorMsgAndNewTextFieldEdit[0][0]);
-			frame.setErrorMsgTextField(errorMsgAndNewTextFieldEdit[0][0]);
-			frame.setIdentifiantTextField(errorMsgAndNewTextFieldEdit[1][0]);
-			frame.setMdpTextField(errorMsgAndNewTextFieldEdit[1][1]);
+			CurrentSessionData.getHomePage().setErrorMsgTextField(errorMsgAndNewTextFieldEdit[0][0]);
+			CurrentSessionData.getHomePage().setIdentifiantTextField(errorMsgAndNewTextFieldEdit[1][0]);
+			CurrentSessionData.getHomePage().setMdpTextField(errorMsgAndNewTextFieldEdit[1][1]);
 		} else {
 			CurrentSessionData.setConnectedConseiller(identifiant);
 			ListeClientsForm listClientPage = new ListeClientsForm();
@@ -38,9 +36,4 @@ public class ConseillerConnectionControler {
 		 */
 
 	}
-
-	public static void setFrame(CreationBanqueForm IncommingFrame) {
-		frame = IncommingFrame;
-	}
-
 }
