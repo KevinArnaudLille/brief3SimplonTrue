@@ -2,6 +2,7 @@ package db;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -14,6 +15,7 @@ import model.Client;
 import model.Compte;
 import model.CompteCourant;
 import model.CompteEpargne;
+import sessionData.CurrentSessionData;
 
 public class DbCreateQueries {
 
@@ -41,11 +43,20 @@ public class DbCreateQueries {
 	
 	//ADD COMPTE COURANT
 	public static void addCompteCourantToDb(CompteCourant comptecourantToAdd) {
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
 		Statement myStat = DbConnection.statementGeneration();
+		
 		if (!checkIfCompteCourantAlreadyInDb(comptecourantToAdd)) {
 			try {
-				myStat.executeUpdate("INSERT INTO compte_courant VALUES('" + comptecourantToAdd.getId() + "','" + comptecourantToAdd.getFrais_transfert()
-						+ "','" + comptecourantToAdd.getSolde_minimum_autorise());
+				myStat.executeUpdate("INSERT INTO compte VALUES('" + comptecourantToAdd.getId() + "'," + comptecourantToAdd.getNumero() + "," + comptecourantToAdd.getSolde() + ",true," 
+			+ (comptecourantToAdd.getProprietaire_tutelle() != null ? "'"+ comptecourantToAdd.getProprietaire_tutelle() +"'" :"null")
+			+ ",'" + simpleDateFormat.format(comptecourantToAdd.getDate_ouverture()) + "','"
+			+ CurrentSessionData.getSelectClientByClick().getId() + "')");
+				
+				myStat.executeUpdate("INSERT INTO compte_courant VALUES('" + comptecourantToAdd.getId() + "'," + comptecourantToAdd.getFrais_transfert()
+									+ "," + comptecourantToAdd.getSolde_minimum_autorise() + ")");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,18 +73,27 @@ public class DbCreateQueries {
 	
 	
 	//ADD COMPTE EPARGNE
-	public static void addCompteEpargneToDb(CompteEpargne compteepargneToAdd) {
+	public static void addCompteEpargneToDb(CompteEpargne compteEpargneToAdd) {
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
 		Statement myStat = DbConnection.statementGeneration();
-		if (!checkIfCompteEpargneAlreadyInDb(compteepargneToAdd)) {
+		
+		if (!checkIfCompteEpargneAlreadyInDb(compteEpargneToAdd)) {
 			try {
-				myStat.executeUpdate("INSERT INTO compte_epargne VALUES('" + compteepargneToAdd.getId() + "','" + compteepargneToAdd.getTaux_interet()
-						+ "','" + compteepargneToAdd.getPlafond());
+				myStat.executeUpdate("INSERT INTO compte VALUES('" + compteEpargneToAdd.getId() + "'," + compteEpargneToAdd.getNumero() + "," + compteEpargneToAdd.getSolde() + ",true," 
+						+ (compteEpargneToAdd.getProprietaire_tutelle() != null ? "'"+ compteEpargneToAdd.getProprietaire_tutelle() +"'" :"null")
+						+ ",'" + simpleDateFormat.format(compteEpargneToAdd.getDate_ouverture()) + "','"
+						+ CurrentSessionData.getSelectClientByClick().getId() + "')");
+							
+							myStat.executeUpdate("INSERT INTO compte_epargne VALUES('" + compteEpargneToAdd.getId() + "'," + compteEpargneToAdd.getTaux_interet()
+												+ "," + compteEpargneToAdd.getPlafond() + ")");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Compte " + compteepargneToAdd.getId() + " est d�ja dans la base de donn�e" );
+			System.out.println("Compte " + compteEpargneToAdd.getId() + " est d�ja dans la base de donn�e" );
 		}
 	}
 	

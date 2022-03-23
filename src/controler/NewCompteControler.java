@@ -3,6 +3,7 @@ package controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,32 +25,36 @@ import sessionData.CurrentSessionData;
 
 public class NewCompteControler {
 	public static void onAddCompteClick() {
-		
-		if (CheckCompteAdd.AreAllFieldOk()) {
-			Compte compteToAdd = new Compte(
-					"compte_0"+(DbReadQueries.dbReadAllCompteInBdd().size()+1),
-					CurrentSessionData.getOpenAccountForm().getClient(),
-					CurrentSessionData.getOpenAccountForm().getNumero(),
-					CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(),
-					CurrentSessionData.getOpenAccountForm().getTaux_interet(),
-					CurrentSessionData.getOpenAccountForm().getPlafond(),
-					CurrentSessionData.getOpenAccountForm().getSolde(),
-					CurrentSessionData.getOpenAccountForm().getFrais_transfert(),
-					CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise(), 
-					CurrentSessionData.getConnectedConseiller().getId()
-					);
-			DbCreateQueries.addCompteCourantToDb((CompteCourant) compteToAdd);
-			CurrentSessionData.getOpenAccountForm().setVisible(true);
-			
-			DbCreateQueries.addCompteEpargneToDb((CompteEpargne) compteToAdd);
-			CurrentSessionData.getOpenAccountForm().setVisible(true);
-		
-			//CurrentSessionData.getConnectedConseillerClientsPage().dispose();
-			OuvrirCompteForm newFrame = new OuvrirCompteForm();
-			CurrentSessionData.setOpenAccountForm(newFrame);
-			CurrentSessionData.getOpenAccountForm().setVisible(true);
+
+		if (CheckCompteAdd.isFrais_transfertFieldOk() && CheckCompteAdd.isSolde_minimum_autoriseFieldOk()) {
+
+			CompteCourant compteToAdd = new CompteCourant(
+					"compte_courant_0" + (DbReadQueries.dbReadAllCompteInBdd().size() + 1),
+					Integer.parseInt(CurrentSessionData.getOpenAccountForm().getNumero()),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getSolde()), true,
+					CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(), new Date(),
+					CurrentSessionData.getSelectClientByClick().getId(),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getFrais_transfert()),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise()));
+			DbCreateQueries.addCompteCourantToDb(compteToAdd);
+		} else {
+			CompteEpargne compteToAdd = new CompteEpargne(
+					"compte_epargne_0" + (DbReadQueries.dbReadAllCompteInBdd().size() + 1),
+					Integer.parseInt(CurrentSessionData.getOpenAccountForm().getNumero()),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getSolde()), true,
+					CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle(), new Date(),
+					CurrentSessionData.getSelectClientByClick().getId(),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getTaux_interet()),
+					Double.parseDouble(CurrentSessionData.getOpenAccountForm().getPlafond()));
+			DbCreateQueries.addCompteEpargneToDb(compteToAdd);
 		}
+
+		CurrentSessionData.getOpenAccountForm().dispose();
 		
+		CurrentSessionData.getGestionCompteClient().dispose();
+		ListeComptesForm openAccountFrame = new ListeComptesForm();
+		CurrentSessionData.setGestionCompteClient(openAccountFrame);
+		CurrentSessionData.getGestionCompteClient().setVisible(true);
 	}
 
 	public static void onCancelClick() {
@@ -58,90 +63,76 @@ public class NewCompteControler {
 	}
 
 	public static int generateNewRandomCompteNumber() {
-		//à l'aide d'une boucle do while, s'assurer que le num de compte retourné par la fonction n'est pas déjà dans la bdd
+		// à l'aide d'une boucle do while, s'assurer que le num de compte retourné par
+		// la fonction n'est pas déjà dans la bdd
 		int numberToCheck;
 		do {
-			numberToCheck = (int) Math.floor(Math.random()*(999999-100000+1)+100000);
-		}
-		while (CheckCompteAdd.isNumCompteAlreadyInDb(numberToCheck));
+			numberToCheck = (int) Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
+		} while (CheckCompteAdd.isNumCompteAlreadyInDb(numberToCheck));
 		return numberToCheck;
 	}
-	
-	
-	/*public static int generateClient_id() {
-		
-	}*/
 
-	
-	/*public static void onLeavingNumeroTextField() {
-		if(CheckCompteAdd.isNumCompteAlreadyInDb()) {
-			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
+	public static void onTypingSoldeTextField() {
+		if (CheckCompteAdd.isSoldeFieldOk()) {
+			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountForm().setNumeroErrorMsg(CheckCompteAdd.generateNumeroProperErrorMsg());
+			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.generateSoldeProperErrorMsg());
 		}
-	}*/
-	
-	/*public static void onLeavingNomTextField() {
-		if(CheckCompteAdd.isNomFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
-		} else {
-			CurrentSessionData.getOpenAccountForm().setNomErrorMsg(CheckCompteAdd.generateNomProperErrorMsg());
-		}
-	}*/
+	}
 
-	/*public static void onLeavingProprietaire_tutelleTextField() {
-		if(CheckCompteAdd.isProprietaire_tutelleFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setProprietaire_tutelleErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
+	public static void onTypingProprietaire_tutelleTextField() {
+		if (CheckCompteAdd.isProprietaire_tutelleFieldOk()) {
+			CurrentSessionData.getOpenAccountForm()
+					.setProprietaire_tutelleErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountForm().setProprietaire_tutelleErrorMsg(CheckCompteAdd.generateProprietaire_tutelleFieldOkProperErrorMsg() );
+			CurrentSessionData.getOpenAccountForm()
+					.setProprietaire_tutelleErrorMsg(CheckCompteAdd.generateProprietaire_tutelleProperErrorMsg());
 		}
-	}*/
+	}
 
-	public static void onLeavingTaux_interetTextField() {
-		if(CheckCompteAdd.isTaux_interetFieldOk()) {
+	public static void onTypingFrais_transfertTextField() {
+		if (CheckCompteAdd.isFrais_transfertFieldOk()) {
+			CurrentSessionData.getOpenAccountForm()
+					.setFrais_transfertErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
+		} else {
+			CurrentSessionData.getOpenAccountForm()
+					.setFrais_transfertErrorMsg(CheckCompteAdd.generateFrais_transfertProperErrorMsg());
+		}
+	}
+
+	public static void onTypingSolde_minimum_autoriseTextField() {
+		if (CheckCompteAdd.isSolde_minimum_autoriseFieldOk()) {
+			CurrentSessionData.getOpenAccountForm()
+					.setSolde_minimum_autoriseErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
+		} else {
+			CurrentSessionData.getOpenAccountForm()
+					.setSolde_minimum_autoriseErrorMsg(CheckCompteAdd.generateSolde_minimum_autoriseProperErrorMsg());
+		}
+	}
+
+	public static void onTypingTaux_interetTextField() {
+		if (CheckCompteAdd.isTaux_interetFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setTaux_interetErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountForm().setTaux_interetErrorMsg(CheckCompteAdd.generateTauxInteretProperErrorMsg());
+			CurrentSessionData.getOpenAccountForm()
+					.setTaux_interetErrorMsg(CheckCompteAdd.generateTauxInteretProperErrorMsg());
 
 		}
 	}
 
-	public static void onLeavingPlafondTextField() {
-		if(CheckCompteAdd.isPlafondFieldOk()) {
+	public static void onTypingPlafondTextField() {
+		if (CheckCompteAdd.isPlafondFieldOk()) {
 			CurrentSessionData.getOpenAccountForm().setPlafondErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
 		} else {
 			CurrentSessionData.getOpenAccountForm().setPlafondErrorMsg(CheckCompteAdd.generatePlafondProperErrorMsg());
 		}
 	}
-	
-	public static void onLeavingSoldeTextField() {
-		if(CheckCompteAdd.isSoldeFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
-		} else {
-			CurrentSessionData.getOpenAccountForm().setSoldeErrorMsg(CheckCompteAdd.generateSoldeProperErrorMsg());
-			//System.out.println("ALLER");
-		}
-	}
-	
-	public static void onLeavingFrais_transfertTextField() {
-		if(CheckCompteAdd.isFrais_transfertFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setFrais_transfertErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
-		} else {
-			CurrentSessionData.getOpenAccountForm().setFrais_transfertErrorMsg(CheckCompteAdd.generateFrais_transfertProperErrorMsg());
-		}
-	}
-	
-	public static void onLeavingSolde_minimum_autoriseTextField() {
-		if(CheckCompteAdd.isSolde_minimum_autoriseFieldOk()) {
-			CurrentSessionData.getOpenAccountForm().setSolde_minimum_autoriseErrorMsg(CheckCompteAdd.getProperlyFilledFieldMsg());
-		} else {
-			CurrentSessionData.getOpenAccountForm().setSolde_minimum_autoriseErrorMsg(CheckCompteAdd.generateSolde_minimum_autoriseProperErrorMsg());
-		}
-	}
-	
+
 	public static void onAddingTextAnywhere() {
 		if (CheckCompteAdd.AreAllFieldOk()) {
-			CurrentSessionData.enableValidateBtn().dispose();
+			CurrentSessionData.getOpenAccountForm().enableAddClientBtn();
+		} else {
+			CurrentSessionData.getOpenAccountForm().disableAddClientBtn();
 		}
 	}
 }

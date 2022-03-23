@@ -92,19 +92,15 @@ public class DbReadQueries {
 		try {
 			while (compteResultSetFromDb.next()) {
 				if (compteResultSetFromDb.getString("id_1").equals(Client.getId())) {
-					if (compteResultSetFromDb.getString("id").contains("courant")) {
-						allCompteList.add(new Compte(
-								compteResultSetFromDb.getString("id"),
-								compteResultSetFromDb.getInt("Numero"),
-								compteResultSetFromDb.getDouble("Solde"),
-								compteResultSetFromDb.getBoolean("Actif"),
-								compteResultSetFromDb.getString("Proprietaire_tutelle"),
-								compteResultSetFromDb.getDate("Date_ouverture"),
-								compteResultSetFromDb.getString("id_1")));
-					}
-						
-					}
-					
+
+					allCompteList.add(new Compte(compteResultSetFromDb.getString("id"),
+							compteResultSetFromDb.getInt("Numero"), compteResultSetFromDb.getDouble("Solde"),
+							compteResultSetFromDb.getBoolean("Actif"),
+							compteResultSetFromDb.getString("Proprietaire_tutelle"),
+							compteResultSetFromDb.getDate("Date_ouverture"), compteResultSetFromDb.getString("id_1")));
+
+				}
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,14 +113,11 @@ public class DbReadQueries {
 		allCompteList = new ArrayList<Compte>();
 		try {
 			while (compteResultSetFromDb.next()) {
-				allCompteList.add(new Compte(
-						compteResultSetFromDb.getString("id"),
-						compteResultSetFromDb.getInt("Numero"),
-						compteResultSetFromDb.getDouble("Solde"),
+				allCompteList.add(new Compte(compteResultSetFromDb.getString("id"),
+						compteResultSetFromDb.getInt("Numero"), compteResultSetFromDb.getDouble("Solde"),
 						compteResultSetFromDb.getBoolean("Actif"),
 						compteResultSetFromDb.getString("Proprietaire_tutelle"),
-						compteResultSetFromDb.getDate("Date_ouverture"),
-						compteResultSetFromDb.getString("id_1")));
+						compteResultSetFromDb.getDate("Date_ouverture"), compteResultSetFromDb.getString("id_1")));
 			}
 
 		} catch (SQLException e) {
