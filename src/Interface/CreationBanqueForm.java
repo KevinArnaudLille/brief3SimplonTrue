@@ -57,7 +57,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					String myPass = String.valueOf(txtPasseword.getPassword());
-					ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+					ConseillerConnectionControler.onLogInBtnClicked(txtUsername.getText(), myPass);
 				}
 			}
 		});
@@ -81,7 +81,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					String myPass = String.valueOf(txtPasseword.getPassword());
-					ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+					ConseillerConnectionControler.onLogInBtnClicked(txtUsername.getText(), myPass);
 				}
 			}
 		});
@@ -94,7 +94,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			// Go to next page
 			public void actionPerformed(ActionEvent e) {
 				String myPass = String.valueOf(txtPasseword.getPassword());
-				ConseillerConnectionControler.logInBtnClicked(txtUsername.getText(), myPass);
+				ConseillerConnectionControler.onLogInBtnClicked(txtUsername.getText(), myPass);
 			}
 		});
 

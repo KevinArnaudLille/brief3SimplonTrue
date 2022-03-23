@@ -19,12 +19,11 @@ public class CurrentSessionData {
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
 	private static Compte compteToUpdate;
-	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
-	private static OuvrirCompteForm openAccountForm;
-	private static OuvrirClientForm openAccountPage;
-	private static ListeClientsForm registerCustomeInBdd;
-	private static ListeComptesForm selectClientComptesList;
+	private static ListeClientsForm connectedConseillerClientsPage;
+	private static OuvrirClientForm openClientPage;
+	private static ListeComptesForm selectClientComptesListPage;
+	private static OuvrirCompteForm openComptePage;
 	private static ModifierCompteForm updateComptePage;
 	
 	// ==== GETTERS AND SETTERS ===
@@ -44,21 +43,21 @@ public class CurrentSessionData {
 		CurrentSessionData.homePage = homePage;
 	}
 
-	public static OuvrirClientForm getOpenAccountPage() {
-		return openAccountPage;
+	public static OuvrirClientForm getOpenClientPage() {
+		return openClientPage;
 	}
 
-	public static void setOpenAccountPage(OuvrirClientForm openAccountPage) {
-		CurrentSessionData.openAccountPage = openAccountPage;
+	public static void setOpenClientPage(OuvrirClientForm openAccountPage) {
+		CurrentSessionData.openClientPage = openAccountPage;
 	}
 	
 	//GETTER ET SETTER OUVRIR UN COMPTE
-	public static OuvrirCompteForm getOpenAccountForm() {
-		return openAccountForm;
+	public static OuvrirCompteForm getOpenComptePage() {
+		return openComptePage;
 	}
 
-	public static void setOpenAccountForm(OuvrirCompteForm openAccountForm) {
-		CurrentSessionData.openAccountForm = openAccountForm;
+	public static void setOpenComptePage(OuvrirCompteForm openAccountForm) {
+		CurrentSessionData.openComptePage = openAccountForm;
 	}
 	
 	// Set the logged conseiller
@@ -81,28 +80,14 @@ public class CurrentSessionData {
 	}
 
 
-	public static void setBanqueFormPage(CreationBanqueForm openBanqueFormFrame) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public static ListeClientsForm getRegisterCustomeInBdd() {
-		return registerCustomeInBdd;
+	public static ListeComptesForm getSelectClientComptesListPage() {
+		return selectClientComptesListPage;
 	}
 
-	public static void setRegisterCustomeInBdd(ListeClientsForm registerCustomeInBdd) {
-		CurrentSessionData.registerCustomeInBdd = registerCustomeInBdd;
+	public static void setSelectClientComptesListPage(ListeComptesForm gestionCompteClient) {
+		CurrentSessionData.selectClientComptesListPage = gestionCompteClient;
 	}
 	
-	public static ListeComptesForm getGestionCompteClient() {
-		return selectClientComptesList;
-	}
-
-	public static void setGestionCompteClient(ListeComptesForm gestionCompteClient) {
-		CurrentSessionData.selectClientComptesList = gestionCompteClient;
-	}
-	
-
 	public static Client getSelectClientByClick() {
 		return selectClientByClick;
 	}

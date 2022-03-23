@@ -1,9 +1,6 @@
 package controler;
 
-import javax.swing.SwingUtilities;
-
 import Interface.ListeClientsForm;
-import Interface.OuvrirClientForm;
 import checking.CheckClientAdd;
 import db.DbCreateQueries;
 import db.DbReadQueries;
@@ -11,24 +8,25 @@ import model.Client;
 import sessionData.CurrentSessionData;
 
 public class NewClientControler {
-	public static void onAddClientClick() {
-		/*
-		 * check client informations if info good add client to db else display error
-		 * about what was wrong
-		 */
+
+	// ==== Button action functions ====
+	public static void onAddClientClicked() {
 		if (CheckClientAdd.AreAllFieldOk()) {
-			Client clientToAdd = new Client(
-					"client_0"+(DbReadQueries.dbReadAllClient().size()+1),
-					CurrentSessionData.getOpenAccountPage().getNom(),
-					CurrentSessionData.getOpenAccountPage().getPrenom(),
-					CurrentSessionData.getOpenAccountPage().getCourriel(),
-					CurrentSessionData.getOpenAccountPage().getAdresse(),
-					CurrentSessionData.getOpenAccountPage().getTel(),
-					CurrentSessionData.getConnectedConseiller().getId()
-					);
+			// Create a new client object with users data
+			Client clientToAdd = new Client("client_0" + (DbReadQueries.dbReadAllClient().size() + 1),
+					CurrentSessionData.getOpenClientPage().getNom(), CurrentSessionData.getOpenClientPage().getPrenom(),
+					CurrentSessionData.getOpenClientPage().getCourriel(),
+					CurrentSessionData.getOpenClientPage().getAdresse(),
+					CurrentSessionData.getOpenClientPage().getTel(),
+					CurrentSessionData.getConnectedConseiller().getId());
+
+			// Add the new client to db
 			DbCreateQueries.addClientToDb(clientToAdd);
-			CurrentSessionData.getOpenAccountPage().setVisible(false);
-		
+
+			// Dispose of open client frame
+			CurrentSessionData.getOpenClientPage().dispose();
+
+			// Dispose and recreate client list frame (to refresh it)
 			CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			ListeClientsForm newFrame = new ListeClientsForm();
 			CurrentSessionData.setConnectedConseillerClientsPage(newFrame);
@@ -36,55 +34,66 @@ public class NewClientControler {
 		}
 	}
 
-	public static void onCancelClick() {
-		// Close the current page
-		CurrentSessionData.getOpenAccountPage().dispose();
+	public static void onCancelClicked() {
+		// Dispose of open account frame
+		CurrentSessionData.getOpenClientPage().dispose();
 	}
 
-	public static void onLeavingNomTextField() {
+	// *******************************************************
+	// ==== Text fields functions triggered by adding text ====
+	// == NOM ==
+	public static void onTypingNomTextField() {
 		// check if field is correct
-		if(CheckClientAdd.isNomFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().setNomErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
+		if (CheckClientAdd.isNomFieldOk()) {
+			CurrentSessionData.getOpenClientPage().setNomErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountPage().setNomErrorMsg(CheckClientAdd.generateNomProperErrorMsg());
+			CurrentSessionData.getOpenClientPage().setNomErrorMsg(CheckClientAdd.generateNomProperErrorMsg());
 		}
 	}
 
-	public static void onLeavingPrenomTextField() {
-		if(CheckClientAdd.isPrenomFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().setPrenomErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
+	// == PRENOM ==
+	public static void onTypingPrenomTextField() {
+		if (CheckClientAdd.isPrenomFieldOk()) {
+			CurrentSessionData.getOpenClientPage().setPrenomErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountPage().setPrenomErrorMsg(CheckClientAdd.generatePrenomProperErrorMsg());
+			CurrentSessionData.getOpenClientPage().setPrenomErrorMsg(CheckClientAdd.generatePrenomProperErrorMsg());
 		}
 	}
 
-	public static void onLeavingCourrielTextField() {
-		if(CheckClientAdd.isCourrielFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().setCourrielErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
+	// == COURRIEL ==
+	public static void onTypingCourrielTextField() {
+		if (CheckClientAdd.isCourrielFieldOk()) {
+			CurrentSessionData.getOpenClientPage().setCourrielErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountPage().setCourrielErrorMsg(CheckClientAdd.generateCourrielProperErrorMsg());
+			CurrentSessionData.getOpenClientPage().setCourrielErrorMsg(CheckClientAdd.generateCourrielProperErrorMsg());
 		}
 	}
 
-	public static void onLeavingAdresseTextField() {
-		if(CheckClientAdd.isAdresseFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().setAdresseErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
+	// == ADRESSE ==
+	public static void onTypingAdresseTextField() {
+		if (CheckClientAdd.isAdresseFieldOk()) {
+			CurrentSessionData.getOpenClientPage().setAdresseErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountPage().setAdresseErrorMsg(CheckClientAdd.generateAdresseProperErrorMsg());
+			CurrentSessionData.getOpenClientPage().setAdresseErrorMsg(CheckClientAdd.generateAdresseProperErrorMsg());
 		}
 	}
 
-	public static void onLeavingTelTextField() {
-		if(CheckClientAdd.isTelFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().setTelErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
+	// == TEL ==
+	public static void onTypingTelTextField() {
+		if (CheckClientAdd.isTelFieldOk()) {
+			CurrentSessionData.getOpenClientPage().setTelErrorMsg(CheckClientAdd.getProperlyFilledFieldMsg());
 		} else {
-			CurrentSessionData.getOpenAccountPage().setTelErrorMsg(CheckClientAdd.generateTelProperErrorMsg());
+			CurrentSessionData.getOpenClientPage().setTelErrorMsg(CheckClientAdd.generateTelProperErrorMsg());
 		}
 	}
-	
+
+	// ==! COMBINAISON OF ALL PREVIOUS !==
+	// To enable/disable validation btn
 	public static void onAddingTextAnywhere() {
 		if (CheckClientAdd.AreAllFieldOk()) {
-			CurrentSessionData.getOpenAccountPage().enableAddClientBtn();
+			CurrentSessionData.getOpenClientPage().enableAddClientBtn();
+		} else {
+			CurrentSessionData.getOpenClientPage().disableAddClientBtn();
 		}
 	}
 }

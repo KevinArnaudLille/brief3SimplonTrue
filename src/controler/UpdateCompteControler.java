@@ -5,23 +5,28 @@ import model.CompteCourant;
 import model.CompteEpargne;
 import sessionData.CurrentSessionData;
 
+/* ==============================================
+ * IN PROGRESS
+ * ==============================================*/
+
 public class UpdateCompteControler {
 	public static void onUpdateValidationBtnCLick() {
 		if (CurrentSessionData.getCompteToUpdate() instanceof CompteCourant) {
-			DbUpdateQueries.updateCompteInfoInDb(CurrentSessionData.getCompteToUpdate(), CurrentSessionData.getUpdateComptePage().getTextFieldFraisDeTransfert().getText());
+			DbUpdateQueries.updateCompteInfoInDb(CurrentSessionData.getCompteToUpdate(),
+					CurrentSessionData.getUpdateComptePage().getTextFieldFraisDeTransfert().getText());
 		}
-		
 		if (CurrentSessionData.getCompteToUpdate() instanceof CompteEpargne) {
-			DbUpdateQueries.updateCompteInfoInDb(CurrentSessionData.getCompteToUpdate(), CurrentSessionData.getUpdateComptePage().getTextFieldTauxInteret().getText());
+			DbUpdateQueries.updateCompteInfoInDb(CurrentSessionData.getCompteToUpdate(),
+					CurrentSessionData.getUpdateComptePage().getTextFieldTauxInteret().getText());
 		}
-		
+
 		CurrentSessionData.getUpdateComptePage().dispose();
 	}
-	
+
 	public static void onCancelBtnClick() {
 		CurrentSessionData.getUpdateComptePage().dispose();
 	}
-	
+
 	public static void onAddingTextInFraisDeTransfert() {
 		String textToCheck = CurrentSessionData.getUpdateComptePage().getTextFieldFraisDeTransfert().getText();
 		if (textToCheck.isEmpty()) {
@@ -35,7 +40,7 @@ public class UpdateCompteControler {
 			CurrentSessionData.getUpdateComptePage().disablebtnUpdateCompteValidation();
 		}
 	}
-	
+
 	public static void onAddingTextInTauxInteret() {
 		String textToCheck = CurrentSessionData.getUpdateComptePage().getTextFieldTauxInteret().getText();
 		if (textToCheck.isEmpty()) {

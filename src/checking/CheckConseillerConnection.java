@@ -1,8 +1,5 @@
 package checking;
 
-import java.util.ArrayList;
-
-import db.DbReadQueries;
 import model.Conseiller;
 import sessionData.CurrentSessionData;
 
@@ -13,7 +10,7 @@ public class CheckConseillerConnection {
 	private static String errorMsgsWrongMdp = "Le mot de passe de connexion n'est pas valide.";
 	private static String errorMsgsIdentifiantMdpNotMatching = "L'identifiant et le mot de passe ne correspondent pas.";
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Getters and Setters ====
 	// Get error msg if conseiller identifiant not in db
 	public static String getErrorMsgsWrongIdentifiant() {
@@ -30,11 +27,12 @@ public class CheckConseillerConnection {
 		return errorMsgsIdentifiantMdpNotMatching;
 	}
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Checking functions ====
 	// Return if a conseiller Identifiant is in the db
 	public static boolean isConseillerIdentifiantInList(String identifiant) {
-		return CurrentSessionData.getConseillerList().stream().anyMatch(conseiller -> conseiller.getIdentifiant().equals(identifiant));
+		return CurrentSessionData.getConseillerList().stream()
+				.anyMatch(conseiller -> conseiller.getIdentifiant().equals(identifiant));
 	}
 
 	// Return if a conseiller Mdp is in the db
@@ -52,13 +50,13 @@ public class CheckConseillerConnection {
 		return false;
 	}
 
-	
 	// Check all verifications at once
 	public static boolean isConseillerConnectionValid(String identifiant, String mdp) {
-		return isConseillerIdentifiantInList(identifiant) && isConseillerMdpInList(mdp) && isConseillerMdpMatchingIdentifiant(identifiant, mdp); 
+		return isConseillerIdentifiantInList(identifiant) && isConseillerMdpInList(mdp)
+				&& isConseillerMdpMatchingIdentifiant(identifiant, mdp);
 	}
-	
-	//*******************************************************
+
+	// *******************************************************
 	// ==== Error msg generation ====
 	// Return the appropriate error msg (DEPRICATED)
 	public static String appriopriateMsgError(String identifiant, String mdp) {

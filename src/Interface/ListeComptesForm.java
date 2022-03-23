@@ -1,38 +1,24 @@
 package Interface;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.JTextComponent;
-
-import db.DbCreateQueries;
 import db.DbReadQueries;
 import db.DbUpdateQueries;
 import model.Client;
 import model.Compte;
-import model.Conseiller;
 import sessionData.CurrentSessionData;
-
 import java.awt.Color;
-import java.awt.Container;
-
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.management.remote.SubjectDelegationPermission;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ListeComptesForm extends JFrame {
 
@@ -42,12 +28,6 @@ public class ListeComptesForm extends JFrame {
 	private ButtonGroup group;
 
 	ArrayList<Compte> CompteClient;
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @param compte
-	 */
 
 	public ListeComptesForm() {
 
@@ -77,20 +57,20 @@ public class ListeComptesForm extends JFrame {
 		contentPane.add(btnBack_Back);
 		btnBack_Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CurrentSessionData.getGestionCompteClient().dispose();
+				CurrentSessionData.getSelectClientComptesListPage().dispose();
 			}
 		});
 
 		JButton btnOuvrireCompte = new JButton("Ouvrir");
 		btnOuvrireCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnOuvrireCompte.setBackground(Color.WHITE);
-		btnOuvrireCompte.setBounds(561, 160, 132, 45);
+		btnOuvrireCompte.setBounds(594, 160, 132, 45);
 		contentPane.add(btnOuvrireCompte);
 		btnOuvrireCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OuvrirCompteForm newOuvrirCompte = new OuvrirCompteForm();
-				CurrentSessionData.setOpenAccountForm(newOuvrirCompte);
-				CurrentSessionData.getOpenAccountForm().setVisible(true);
+				CurrentSessionData.setOpenComptePage(newOuvrirCompte);
+				CurrentSessionData.getOpenComptePage().setVisible(true);
 			}
 		});
 
@@ -109,7 +89,7 @@ public class ListeComptesForm extends JFrame {
 		JButton btnDbiterUnCompte = new JButton("D\u00E9biter ");
 		btnDbiterUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnDbiterUnCompte.setBackground(Color.WHITE);
-		btnDbiterUnCompte.setBounds(561, 247, 132, 45);
+		btnDbiterUnCompte.setBounds(594, 247, 132, 45);
 		contentPane.add(btnDbiterUnCompte);
 
 		JButton btnClturerCompte = new JButton("Cl\u00F4turer");
@@ -121,20 +101,20 @@ public class ListeComptesForm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
 				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
-				JOptionPane.showMessageDialog(CurrentSessionData.getGestionCompteClient(),
+				JOptionPane.showMessageDialog(CurrentSessionData.getSelectClientComptesListPage(),
 						"Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
 
-				CurrentSessionData.getGestionCompteClient().dispose();
+				CurrentSessionData.getSelectClientComptesListPage().dispose();
 				ListeComptesForm openAccountFrame = new ListeComptesForm();
-				CurrentSessionData.setGestionCompteClient(openAccountFrame);
-				CurrentSessionData.getGestionCompteClient().setVisible(true);
+				CurrentSessionData.setSelectClientComptesListPage(openAccountFrame);
+				CurrentSessionData.getSelectClientComptesListPage().setVisible(true);
 			}
 		});
 
 		JButton btnModifierCompte = new JButton("Modifier");
 		btnModifierCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnModifierCompte.setBackground(Color.WHITE);
-		btnModifierCompte.setBounds(561, 339, 132, 45);
+		btnModifierCompte.setBounds(594, 339, 132, 45);
 		contentPane.add(btnModifierCompte);
 
 		JButton btnListeComptes = new JButton("Liste des Comptes");

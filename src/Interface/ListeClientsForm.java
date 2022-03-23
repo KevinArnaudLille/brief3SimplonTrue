@@ -69,8 +69,8 @@ public class ListeClientsForm extends BaseTemplateForm {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				OuvrirClientForm openAccountFrame = new OuvrirClientForm();
-				CurrentSessionData.setOpenAccountPage(openAccountFrame);
-				CurrentSessionData.getOpenAccountPage().setVisible(true);
+				CurrentSessionData.setOpenClientPage(openAccountFrame);
+				CurrentSessionData.getOpenClientPage().setVisible(true);
 			}
 		});
 			
@@ -84,8 +84,8 @@ public class ListeClientsForm extends BaseTemplateForm {
 				
 				CurrentSessionData.setSelectClientByClick(group.getSelection().getActionCommand());
 				ListeComptesForm openAccountFrame = new ListeComptesForm();
-				CurrentSessionData.setGestionCompteClient(openAccountFrame);
-				CurrentSessionData.getGestionCompteClient().setVisible(true);
+				CurrentSessionData.setSelectClientComptesListPage(openAccountFrame);
+				CurrentSessionData.getSelectClientComptesListPage().setVisible(true);
 				CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			}
 		});

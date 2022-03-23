@@ -3,22 +3,12 @@ package Interface;
 
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-import controler.ConseillerConnectionControler;
 import controler.NewClientControler;
 import sessionData.CurrentSessionData;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -60,14 +50,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		textFieldNom.setBounds(133, 64, 682, 31);
 		getContentPane().add(textFieldNom);
 		textFieldNom.setColumns(10);
-		textFieldNom.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewClientControler.onLeavingNomTextField();
-			}
-		});
 		textFieldNom.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewClientControler.onTypingNomTextField();
 				NewClientControler.onAddingTextAnywhere();
 			}
 		});
@@ -90,14 +76,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		textFieldPrenom.setColumns(10);
 		textFieldPrenom.setBounds(159, 124, 656, 31);
 		getContentPane().add(textFieldPrenom);
-		textFieldPrenom.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewClientControler.onLeavingPrenomTextField();
-			}
-		});
 		textFieldPrenom.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewClientControler.onTypingPrenomTextField();
 				NewClientControler.onAddingTextAnywhere();
 			}
 		});
@@ -120,14 +102,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		textFieldCourriel.setColumns(10);
 		textFieldCourriel.setBounds(133, 189, 682, 31);
 		getContentPane().add(textFieldCourriel);
-		textFieldCourriel.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewClientControler.onLeavingCourrielTextField();
-			}
-		});
 		textFieldCourriel.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewClientControler.onTypingCourrielTextField();
 				NewClientControler.onAddingTextAnywhere();
 			}
 		});
@@ -150,14 +128,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		textFieldAdresse.setColumns(10);
 		textFieldAdresse.setBounds(159, 251, 656, 31);
 		getContentPane().add(textFieldAdresse);
-		textFieldAdresse.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewClientControler.onLeavingAdresseTextField();
-			}
-		});
 		textFieldAdresse.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewClientControler.onTypingAdresseTextField();
 				NewClientControler.onAddingTextAnywhere();
 			}
 		});
@@ -168,7 +142,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		adresseReturnMsg.setBounds(825, 251, 151, 31);
 		getContentPane().add(adresseReturnMsg);
 
-		// Tï¿½lï¿½phone
+		// Téléphone
 		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone :");
 		lblTlphone.setForeground(Color.WHITE);
 		lblTlphone.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -180,14 +154,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		textFieldTel.setColumns(10);
 		textFieldTel.setBounds(176, 318, 639, 31);
 		getContentPane().add(textFieldTel);
-		textFieldTel.addFocusListener(new FocusAdapter() {
-			public void focusLost(FocusEvent e) {
-				NewClientControler.onLeavingTelTextField();
-			}
-		});
 		textFieldTel.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				NewClientControler.onTypingTelTextField();
 				NewClientControler.onAddingTextAnywhere();
 			}
 		});
@@ -207,7 +177,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		getContentPane().add(btnAddClient);
 		btnAddClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewClientControler.onAddClientClick();
+				NewClientControler.onAddClientClicked();
 			}
 		});
 		btnAddClient.setEnabled(false);
@@ -219,7 +189,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		getContentPane().add(btnCancel);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewClientControler.onCancelClick();
+				NewClientControler.onCancelClicked();
 			}
 		});
 	}
@@ -227,6 +197,10 @@ public class OuvrirClientForm extends BaseTemplateForm {
 	// addClientBtn enabler
 	public void enableAddClientBtn() {
 		this.btnAddClient.setEnabled(true);
+	}
+
+	public void disableAddClientBtn() {
+		this.btnAddClient.setEnabled(false);
 	}
 	
 	// Textfields getters and setters
@@ -290,17 +264,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 	public void setTelErrorMsg(String newText) {
 		this.telReturnMsg.setText(newText);
 	}
-	
-	// For futur factorization
-	private JLabel generateJLabel(String label) {
-		return null;
-	}
 
-	private JTextField generateJTextField() {
-		return null;
-	}
-
-	
 	// MAIN FOR TESTING
 	public static void main(String[] args) {
 		CurrentSessionData.setConnectedConseiller("MPTremblay");

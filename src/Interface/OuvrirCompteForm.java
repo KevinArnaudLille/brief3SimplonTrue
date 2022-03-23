@@ -211,7 +211,7 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// quand je clique sur "valider" je supprime la page
-				NewCompteControler.onAddCompteClick();
+				NewCompteControler.onAddCompteClicked();
 			}
 		});
 
@@ -328,7 +328,7 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				NewCompteControler.onCancelClick();
+				NewCompteControler.onCancelClicked();
 			}
 		});
 	}

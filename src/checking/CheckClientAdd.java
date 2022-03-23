@@ -12,13 +12,13 @@ public class CheckClientAdd {
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";
 	private static String fieldIsNotAnEmailErrorMsg = "Email incorrect !";
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Getter ====
 	public static String getProperlyFilledFieldMsg() {
 		return properlyFilledFieldMsg;
 	}
-	
-	//*******************************************************
+
+	// *******************************************************
 	// ==== Global unitary checking function ====
 	private static boolean isStringContainSpecialCharacter(String stringToCheck) {
 		Pattern p = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
@@ -37,17 +37,17 @@ public class CheckClientAdd {
 		return isNomFieldOk() && isPrenomFieldOk() && isCourrielFieldOk() && isAdresseFieldOk() && isTelFieldOk();
 	}
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Checking specific field ====
 	// == NOM ==
 	public static boolean isNomFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getNom();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getNom();
 		return !stringToCheck.isEmpty() && !stringToCheck.contains(" ")
 				&& !isStringContainSpecialCharacter(stringToCheck);
 	}
 
 	public static String generateNomProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getNom();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getNom();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -56,13 +56,13 @@ public class CheckClientAdd {
 
 	// == PRENOM ==
 	public static boolean isPrenomFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getPrenom();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getPrenom();
 		return !stringToCheck.isEmpty() && !stringToCheck.contains(" ")
 				&& !isStringContainSpecialCharacter(stringToCheck);
 	}
 
 	public static String generatePrenomProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getPrenom();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getPrenom();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -71,12 +71,12 @@ public class CheckClientAdd {
 
 	// == COURRIEL ==
 	public static boolean isCourrielFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getCourriel();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getCourriel();
 		return !stringToCheck.isEmpty() && isStringAnEmail(stringToCheck);
 	}
 
 	public static String generateCourrielProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getCourriel();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getCourriel();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		} else if (!isStringAnEmail(stringToCheck)) {
@@ -87,12 +87,12 @@ public class CheckClientAdd {
 
 	// == ADRESSE ==
 	public static boolean isAdresseFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getAdresse();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getAdresse();
 		return !stringToCheck.isEmpty() && !isStringContainSpecialCharacter(stringToCheck);
 	}
 
 	public static String generateAdresseProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getAdresse();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getAdresse();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -101,12 +101,12 @@ public class CheckClientAdd {
 
 	// == TEL ==
 	public static boolean isTelFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getTel();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getTel();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+");
 	}
 
 	public static String generateTelProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountPage().getTel();
+		String stringToCheck = CurrentSessionData.getOpenClientPage().getTel();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}

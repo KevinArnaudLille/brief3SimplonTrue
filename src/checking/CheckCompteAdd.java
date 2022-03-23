@@ -3,9 +3,6 @@ package checking;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import Interface.ListeComptesForm;
-import Interface.OuvrirCompteForm;
 import db.DbReadQueries;
 import model.Compte;
 import sessionData.CurrentSessionData;
@@ -17,13 +14,13 @@ public class CheckCompteAdd {
 	private static String fieldIsEmptyErrorMsg = "Champ nécessaire !";
 	private static String fieldIsWrongErrorMsg = "Champ incorrect !";
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Getter ====
 	public static String getProperlyFilledFieldMsg() {
 		return properlyFilledFieldMsg;
 	}
-	
-	//*******************************************************
+
+	// *******************************************************
 	// ==== Global unitary checking function ====
 	private static boolean isStringContainSpecialCharacter(String stringToCheck) {
 		Pattern p = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
@@ -38,7 +35,7 @@ public class CheckCompteAdd {
 						|| (isPlafondFieldOk() && isTaux_interetFieldOk()));
 	}
 
-	//*******************************************************
+	// *******************************************************
 	// ==== Checking specific field ====
 	// == NUMERO ==
 	public static boolean isNumCompteAlreadyInDb(int numToCheck) {
@@ -50,14 +47,14 @@ public class CheckCompteAdd {
 
 	// == SOLDE INITIAL ==
 	public static boolean isSoldeFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getSolde();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getSolde();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+")
 				&& (Double.parseDouble(stringToCheck) <= 100000);
 
 	}
 
 	public static String generateSoldeProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getSolde();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getSolde();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -66,7 +63,7 @@ public class CheckCompteAdd {
 
 	// == PROPRIETAIRE TUTELLE ==
 	public static boolean isProprietaire_tutelleFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getProprietaire_tutelle();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getProprietaire_tutelle();
 		return !stringToCheck.contains(" ") && !isStringContainSpecialCharacter(stringToCheck);
 	}
 
@@ -76,13 +73,13 @@ public class CheckCompteAdd {
 
 	// == FRAIS TRANSFERT ==
 	public static boolean isFrais_transfertFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getFrais_transfert();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getFrais_transfert();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+")
 				&& (Double.parseDouble(stringToCheck) <= 100000);
 	}
 
 	public static String generateFrais_transfertProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getFrais_transfert();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getFrais_transfert();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -91,14 +88,14 @@ public class CheckCompteAdd {
 
 	// == SOLDE MINIMUM AUTORISE ==
 	public static boolean isSolde_minimum_autoriseFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getSolde_minimum_autorise();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+")
 				&& (Double.parseDouble(stringToCheck) <= 100000);
 
 	}
 
 	public static String generateSolde_minimum_autoriseProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getSolde_minimum_autorise();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getSolde_minimum_autorise();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -107,14 +104,14 @@ public class CheckCompteAdd {
 
 	// == TAUX INTERET ==
 	public static boolean isTaux_interetFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getTaux_interet();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getTaux_interet();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+")
 				&& (Double.parseDouble(stringToCheck) <= 100000);
 
 	}
 
 	public static String generateTauxInteretProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getTaux_interet();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getTaux_interet();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
@@ -123,14 +120,14 @@ public class CheckCompteAdd {
 
 	// == PLAFOND ==
 	public static boolean isPlafondFieldOk() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getPlafond();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getPlafond();
 		return !stringToCheck.isEmpty() && stringToCheck.matches("[0-9]+")
 				&& (Double.parseDouble(stringToCheck) <= 100000);
 
 	}
 
 	public static String generatePlafondProperErrorMsg() {
-		String stringToCheck = CurrentSessionData.getOpenAccountForm().getPlafond();
+		String stringToCheck = CurrentSessionData.getOpenComptePage().getPlafond();
 		if (stringToCheck.isEmpty()) {
 			return fieldIsEmptyErrorMsg;
 		}
