@@ -1,27 +1,14 @@
 package Interface;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JTabbedPane;
 import java.awt.Color;
-import java.awt.Panel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Toolkit;
-import javax.swing.border.LineBorder;
-
 import controler.ConseillerConnectionControler;
-import sessionData.CurrentSessionData;
-
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
@@ -29,29 +16,45 @@ import java.awt.event.KeyAdapter;
 
 public class CreationBanqueForm extends BaseTemplateForm {
 
+	// ==== Some variables declared outside constructor to allow Getters and Setters ====
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
 	private JLabel errorMsgField;
 
 	public CreationBanqueForm() {
-		
+
+		// ==== Call of BaseTemplateForm (parent class) constructor ====
 		super();
 
-		panel.setVisible(false);
+		// *******************************************************
+		// ==== Hiding header ====
+		header.setVisible(false);
+
+		// *******************************************************
+		// ==== Frame components ====
+		// == Title component ==
+		JLabel titleLabel = new JLabel("Soci\u00E9t\u00E9 d'Epargne");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 42));
+		titleLabel.setBounds(301, 77, 394, 55);
+		getContentPane().add(titleLabel);
 		
+		// == Conseiller id components ==
+		// = Conseiller id static title =
 		JPanel Username = new JPanel();
 		Username.setBackground(Color.WHITE);
 		Username.setBounds(327, 189, 352, 55);
 		getContentPane().add(Username);
 		Username.setLayout(null);
 
+		// = Conseiller id dynamic field =
 		txtUsername = new JTextField();
 		txtUsername.setBorder(null);
 		txtUsername.setFont(new Font("Arial", Font.BOLD, 20));
 		txtUsername.setText("Identifiant");
 		txtUsername.setBounds(10, 10, 215, 35);
-		Username.add(txtUsername);
 		txtUsername.setColumns(10);
+		Username.add(txtUsername);
 		txtUsername.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -61,15 +64,17 @@ public class CreationBanqueForm extends BaseTemplateForm {
 				}
 			}
 		});
-
 		txtUsername.requestFocusInWindow();
-		
+
+		// == Conseiller password components ==
+		// = Conseiller password static title =
 		JPanel Password = new JPanel();
 		Password.setBackground(Color.WHITE);
 		Password.setBounds(327, 258, 352, 55);
 		getContentPane().add(Password);
 		Password.setLayout(null);
 
+		// = Conseiller password dynamic field =
 		txtPasseword = new JPasswordField();
 		txtPasseword.setBorder(null);
 		txtPasseword.setFont(new Font("Arial", Font.BOLD, 20));
@@ -86,33 +91,29 @@ public class CreationBanqueForm extends BaseTemplateForm {
 			}
 		});
 
+		// == Connection btn ==
 		JButton btnNewButton = new JButton("CONNEXION");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(327, 335, 352, 45);
 		getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-			// Go to next page
 			public void actionPerformed(ActionEvent e) {
 				String myPass = String.valueOf(txtPasseword.getPassword());
 				ConseillerConnectionControler.onLogInBtnClicked(txtUsername.getText(), myPass);
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("Soci\u00E9t\u00E9 d'Epargne");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 42));
-		lblNewLabel.setBounds(301, 77, 394, 55);
-		getContentPane().add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setForeground(new Color(165, 42, 42));
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(10, 391, 966, 61);
-		getContentPane().add(lblNewLabel_1);
-		this.errorMsgField = lblNewLabel_1;
+		// == Error setable field component ==
+		JLabel errorFieldLabel = new JLabel("");
+		errorFieldLabel.setForeground(new Color(165, 42, 42));
+		errorFieldLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		errorFieldLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		errorFieldLabel.setBounds(10, 391, 966, 61);
+		getContentPane().add(errorFieldLabel);
+		this.errorMsgField = errorFieldLabel;
 	}
 
+	// *******************************************************
 	// ==== Setters ====
 	public void setIdentifiantTextField(String textField) {
 		this.txtUsername.setText(textField);

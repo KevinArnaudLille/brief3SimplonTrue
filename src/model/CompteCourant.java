@@ -3,13 +3,12 @@ package model;
 import java.util.Date;
 
 public class CompteCourant extends Compte {
-    private Double frais_transfert;
+	private Double frais_transfert;
 	private Double solde_minimum_autorise;
 
-	public CompteCourant(String id, int numero, Double solde, boolean actif, String proprietaire_tutelle, Date date_ouverture, String client_id, Double frais_transfert, Double solde_minimum_autorise) {
-		
-		super(id,numero,solde,actif,proprietaire_tutelle,date_ouverture,client_id);
-
+	public CompteCourant(String id, int numero, Double solde, boolean actif, String proprietaire_tutelle,
+			Date date_ouverture, String client_id, Double frais_transfert, Double solde_minimum_autorise) {
+		super(id, numero, solde, actif, proprietaire_tutelle, date_ouverture, client_id);
 		this.frais_transfert = frais_transfert;
 		this.solde_minimum_autorise = solde_minimum_autorise;
 	}

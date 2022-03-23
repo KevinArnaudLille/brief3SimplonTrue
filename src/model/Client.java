@@ -8,10 +8,9 @@ public class Client {
 	private String adresse;
 	private String telephone;
 	private String conseillerId;
-	
+
 	public Client(String id, String nom, String prenom, String courriel, String adresse, String telephone,
 			String conseillerId) {
-		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -20,7 +19,7 @@ public class Client {
 		this.telephone = telephone;
 		this.conseillerId = conseillerId;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -76,18 +75,4 @@ public class Client {
 	public void setConseillerId(String conseillerId) {
 		this.conseillerId = conseillerId;
 	}
-
-	public String getCompteCourant() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String CompteEpargne() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
 }

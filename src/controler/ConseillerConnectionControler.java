@@ -39,7 +39,7 @@ public class ConseillerConnectionControler {
 
 			// Print validation msg in console
 			System.out.println(CurrentSessionData.getConnectedConseiller().getPrenom() + " "
-					+ CurrentSessionData.getConnectedConseiller().getNom() + "est connecté.e");
+					+ CurrentSessionData.getConnectedConseiller().getNom() + " est connecté.e");
 		}
 	}
 }

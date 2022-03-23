@@ -1,7 +1,6 @@
 package model;
 
 public class Conseiller {
-
 	private String id;
 	private String nom;
 	private String prenom;
@@ -9,7 +8,6 @@ public class Conseiller {
 	private String mdp;
 
 	public Conseiller(String id, String nom, String prenom, String identifiant, String mdp) {
-		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -56,5 +54,4 @@ public class Conseiller {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-
 }
