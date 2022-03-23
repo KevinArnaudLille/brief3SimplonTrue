@@ -144,12 +144,6 @@ public class CheckCompteAdd {
 			return properlyFilledFieldMsg;
 		}
 		
-		public static void setFrame(ListeComptesForm openAccountFrame) {
-			// TODO Auto-generated method stub
-			
-		}
-	
-		
 	}
 
 
