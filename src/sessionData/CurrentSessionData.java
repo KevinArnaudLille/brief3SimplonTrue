@@ -21,7 +21,6 @@ public class CurrentSessionData {
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
 	private static Compte compteToUpdate;
-	
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static CreationBanqueForm homePage;
 	private static OuvrirCompteForm openAccountForm;
