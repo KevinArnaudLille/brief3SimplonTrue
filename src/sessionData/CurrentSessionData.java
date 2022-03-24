@@ -13,12 +13,16 @@ import model.Compte;
 import model.Conseiller;
 
 public class CurrentSessionData {
+	
+	// ==== ArrayList to store variables declaration ====
 	private static ArrayList<Conseiller> conseillerList = new ArrayList<Conseiller>();
 
+	// ==== Model to store variable declaration ====
 	private static Conseiller connectedConseiller;
 	private static Client selectClientByClick;
 	private static Compte compteToUpdate;
 
+	// ==== Page to store variable declaration ====
 	private static CreationBanqueForm homePage;
 	private static ListeClientsForm connectedConseillerClientsPage;
 	private static OuvrirClientForm openClientPage;
@@ -26,6 +30,7 @@ public class CurrentSessionData {
 	private static OuvrirCompteForm openComptePage;
 	private static ModifierCompteForm updateComptePage;
 
+	
 	// ==== GETTERS AND SETTERS ====
 	public static ArrayList<Conseiller> getConseillerList() {
 		return conseillerList;

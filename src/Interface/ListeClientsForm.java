@@ -1,36 +1,20 @@
 
 package Interface;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import db.DbReadQueries;
 import model.Client;
-import model.Compte;
 import model.Conseiller;
 import sessionData.CurrentSessionData;
-import java.awt.Color;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.util.ArrayList;
 import javax.swing.JRadioButton;
-import java.awt.Font;
-import java.awt.Window;
-import javax.swing.SwingConstants;
-import checking.CheckClientAdd;
-import controler.ConseillerConnectionControler;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ListeClientsForm extends BaseTemplateForm {
-
-	// ==== Some variables declared outside constructor to allow Getters and Setters
-	// ====
-	private ArrayList<Client> conseillerClients;
 
 	public ListeClientsForm() {
 
@@ -78,7 +62,7 @@ public class ListeClientsForm extends BaseTemplateForm {
 
 		// == Clients of Conseiller List ==
 		// = Fetching data =
-		this.conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
+		ArrayList<Client> conseillerClients = DbReadQueries.dbReadClientOfConseiller(conseiller);
 		// = Group declaration =
 		ButtonGroup group = new ButtonGroup();
 		// = Setting layout position variables =
@@ -88,7 +72,7 @@ public class ListeClientsForm extends BaseTemplateForm {
 		int JRadioBtnAndJTextFieldHeigth = 26;
 
 		// = Loop for Clients list generation =
-		for (Client client : this.conseillerClients) {
+		for (Client client : conseillerClients) {
 			JRadioButton rdbtnNewRadioButton = new JRadioButton(
 					client.getId() + " " + client.getPrenom() + " " + client.getNom());
 			rdbtnNewRadioButton.setBounds(x, y, JRadioBtnWidth, JRadioBtnAndJTextFieldHeigth);
@@ -121,15 +105,5 @@ public class ListeClientsForm extends BaseTemplateForm {
 				CurrentSessionData.getConnectedConseillerClientsPage().dispose();
 			}
 		});
-	}
-
-	// *******************************************************
-	// ==== Setters ====
-	public ArrayList<Client> getConseillerClients() {
-		return conseillerClients;
-	}
-
-	public void setConseillerClients(ArrayList<Client> conseillerClients) {
-		this.conseillerClients = conseillerClients;
 	}
 }

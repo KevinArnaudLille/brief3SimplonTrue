@@ -17,9 +17,6 @@ import java.util.ArrayList;
 
 public class ListeComptesForm extends BaseTemplateForm {
 
-	// ==== Some variables declared outside constructor to allow Getters and Setters ====
-	private ButtonGroup group;
-
 	public ListeComptesForm() {
 		
 		// ==== Call of BaseTemplateForm (parent class) constructor ====
@@ -33,14 +30,17 @@ public class ListeComptesForm extends BaseTemplateForm {
 		titlePageLabel.setText("Gestion des comptes de " + client.getPrenom() + " " + client.getNom());
 		titlePageLabel.setLocation(10, 3);
 
-
-		JButton btnBack_Back = new JButton("Quitter");
-		btnBack_Back.setBounds(842, 6, 117, 29);
-		header.add(btnBack_Back);
-		btnBack_Back.addActionListener(new ActionListener() {
+		// *******************************************************
+		// ==== Frame components ====
+		// == Return to Clients list page btn ==
+		JButton btnBackToClientList = new JButton("Quitter");
+		btnBackToClientList.setBounds(842, 6, 117, 29);
+		header.add(btnBackToClientList);
+		btnBackToClientList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// :( SHOULD BE IN A CONTROLER
 				CurrentSessionData.getSelectClientComptesListPage().dispose();
+				
 				// Create client list frame object
 				ListeClientsForm listClientPage = new ListeClientsForm();
 
@@ -52,6 +52,7 @@ public class ListeComptesForm extends BaseTemplateForm {
 			}
 		});
 
+		// == Return to Clients list page btn ==
 		JButton btnOuvrirCompte = new JButton("Ouvrir");
 		btnOuvrirCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnOuvrirCompte.setBackground(Color.WHITE);
@@ -65,43 +66,19 @@ public class ListeComptesForm extends BaseTemplateForm {
 				CurrentSessionData.getOpenComptePage().setVisible(true);
 			}
 		});
-
-
-		JButton btnCloturerCompte = new JButton("Cl\u00F4turer");
-		btnCloturerCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnCloturerCompte.setBackground(Color.WHITE);
-		btnCloturerCompte.setBounds(778, 339, 132, 45);
-		getContentPane().add(btnCloturerCompte);
-		btnCloturerCompte.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// :( SHOULD BE IN A CONTROLER
-				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
-				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
-				JOptionPane.showMessageDialog(CurrentSessionData.getSelectClientComptesListPage(),
-						"Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
-
-				CurrentSessionData.getSelectClientComptesListPage().dispose();
-				ListeComptesForm openAccountFrame = new ListeComptesForm();
-				CurrentSessionData.setSelectClientComptesListPage(openAccountFrame);
-				CurrentSessionData.getSelectClientComptesListPage().setVisible(true);
-			}
-		});
-
-		JButton btnModifierCompte = new JButton("Modifier");
-		btnModifierCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnModifierCompte.setBackground(Color.WHITE);
-		btnModifierCompte.setBounds(594, 339, 132, 45);
-		getContentPane().add(btnModifierCompte);
-		btnModifierCompte.setEnabled(false);
-
+		
+		// == Comptes of Client List ==
+		// = Fetching data =
 		ArrayList<Compte> CompteClient = DbReadQueries.dbReadClientCompteInBdd(client);
+		// = Group declaration =
+		ButtonGroup group = new ButtonGroup();
+		// = Setting layout position variables =
 		int x = 40;
 		int y = 144;
 		int JRadioBtnWidth = 500;
 		int JRadioBtnAndJTextFieldHeigth = 26;
 
-		group = new ButtonGroup();
-
+		// = Loop for Comptes list generation =
 		for (Compte compte : CompteClient) {
 			if (compte.getActif()) {
 				JRadioButton rdbtnNewRadioButton = new JRadioButton(
@@ -116,11 +93,37 @@ public class ListeComptesForm extends BaseTemplateForm {
 				y += 50;
 			}
 		}
-		
+
+		// == Closing a Compte btn ==
+		JButton btnCloturerCompte = new JButton("Cl\u00F4turer");
+		btnCloturerCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnCloturerCompte.setBackground(Color.WHITE);
+		btnCloturerCompte.setBounds(778, 339, 132, 45);
+		getContentPane().add(btnCloturerCompte);
+		btnCloturerCompte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// :( SHOULD BE IN A CONTROLER
+				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
+				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
+				JOptionPane.showMessageDialog(CurrentSessionData.getSelectClientComptesListPage(),
+						"Le compte " + CurrentSessionData.getCompteToUpdate().getId() + " a bien été clôturé.");
+				CurrentSessionData.getSelectClientComptesListPage().dispose();
+				ListeComptesForm openAccountFrame = new ListeComptesForm();
+				CurrentSessionData.setSelectClientComptesListPage(openAccountFrame);
+				CurrentSessionData.getSelectClientComptesListPage().setVisible(true);
+			}
+		});
 		
 		/* ==============================================
 		 * IN PROGRESS (CURRENTLY UNUSED)
 		 * ==============================================*/
+		JButton btnModifierCompte = new JButton("Modifier");
+		btnModifierCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnModifierCompte.setBackground(Color.WHITE);
+		btnModifierCompte.setBounds(594, 339, 132, 45);
+		getContentPane().add(btnModifierCompte);
+		btnModifierCompte.setEnabled(false);
+		
 		JButton btnCrditerUnCompte = new JButton("Cr\u00E9diter");
 		btnCrditerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnCrditerUnCompte.setBackground(Color.WHITE);

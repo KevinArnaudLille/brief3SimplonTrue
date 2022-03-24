@@ -4,14 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-//import java.util.Random;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,25 +13,23 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-//import checking.CheckClientAdd;
-import checking.CheckCompteAdd;
-import controler.NewClientControler;
-//import controler.NewClientControler;
 import controler.NewCompteControler;
-//import sessionData.CurrentSessionData;
 import sessionData.CurrentSessionData;
+
+// ++++ COMMENTS AND CLEAN TO COMPLETE
 
 public class OuvrirCompteForm extends BaseTemplateForm {
 
+	// ==== Some variables declared outside constructor to allow Getters and Setters ====
+	// == Editable fields necessary to create a new Compte ==
 	private JTextField textFieldProprietaire_tutelle;
 	private JTextField textFieldSolde;
 	private JTextField textFieldFrais_transfert;
 	private JTextField textFieldSolde_minimum_autorise;
 	private JTextField textFieldPlafond;
 	private JTextField textFieldTaux_interet;
-
-	// private JLabel IdReturnMsg;
+	
+	// == Setable error msg fields ==
 	private JLabel Proprietaire_tutelleReturnMsg;
 	private JLabel NumeroReturnMsg;
 	private JLabel SoldeReturnMsg;
@@ -45,6 +37,8 @@ public class OuvrirCompteForm extends BaseTemplateForm {
 	private JLabel Solde_minimum_autoriseReturnMsg;
 	private JLabel PlafondReturnMsg;
 	private JLabel Taux_interetReturnMsg;
+	
+	// == Setable error msg fields ==
 	private JLabel lblFrais_transfert;
 	private JLabel lblSolde_minimum_autorise;
 	private JLabel lblPlafond;

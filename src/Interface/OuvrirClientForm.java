@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import controler.NewClientControler;
-import sessionData.CurrentSessionData;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,36 +14,46 @@ import java.awt.event.KeyEvent;
 
 public class OuvrirClientForm extends BaseTemplateForm {
 
+	// ==== Some variables declared outside constructor to allow Getters and Setters ====
+	// == Editable fields necessary to create a new Client ==
 	private JTextField textFieldNom;
 	private JTextField textFieldPrenom;
 	private JTextField textFieldCourriel;
 	private JTextField textFieldAdresse;
 	private JTextField textFieldTel;
 	
+	// == Setable error msg fields ==
 	private JLabel nomReturnMsg;
 	private JLabel prenomReturnMsg;
 	private JLabel courrielReturnMsg;
 	private JLabel adresseReturnMsg;
 	private JLabel telReturnMsg;
 	
+	// == Togglable validation btn ==
 	private JButton btnAddClient;
 
 	public OuvrirClientForm() {
 
+		// ==== Call of BaseTemplateForm (parent class) constructor ====
 		super();
 
+		// *******************************************************
+		// ==== Header ====
+		// == Fetching sessions data ==
 		titlePageLabel.setText("Ajouter un nouveau client");
 		
 
-		// TEXT FIELDS
-		// To factorize (one day)
-		// Nom
+		// *******************************************************
+		// ==== Frame components ====
+		// == NOM ==
+		// = nom label = 
 		JLabel lblNom = new JLabel("Nom :");
 		lblNom.setForeground(new Color(255, 255, 255));
 		lblNom.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNom.setBounds(59, 64, 114, 31);
 		getContentPane().add(lblNom);
 
+		// = nom editable field = 
 		textFieldNom = new JTextField();
 		textFieldNom.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldNom.setBounds(133, 64, 682, 31);
@@ -58,19 +67,22 @@ public class OuvrirClientForm extends BaseTemplateForm {
 			}
 		});
 		
+		// = nom error msg = 
 		nomReturnMsg = new JLabel("");
 		nomReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		nomReturnMsg.setForeground(new Color(165, 42, 42));
 		nomReturnMsg.setBounds(825, 64, 151, 31);
 		getContentPane().add(nomReturnMsg);
 
-		// Prenom
+		// == PRENOM ==
+		// = prenom label = 
 		JLabel lblPrenom = new JLabel("Prenom :");
 		lblPrenom.setForeground(new Color(255, 255, 255));
 		lblPrenom.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblPrenom.setBounds(59, 124, 114, 31);
 		getContentPane().add(lblPrenom);
 
+		// = prenom editable field = 
 		textFieldPrenom = new JTextField();
 		textFieldPrenom.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldPrenom.setColumns(10);
@@ -84,19 +96,22 @@ public class OuvrirClientForm extends BaseTemplateForm {
 			}
 		});
 		
+		// = prenom error msg = 
 		prenomReturnMsg = new JLabel("");
 		prenomReturnMsg.setForeground(new Color(165, 42, 42));
 		prenomReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		prenomReturnMsg.setBounds(825, 124, 151, 31);
 		getContentPane().add(prenomReturnMsg);
 
-		// Courriel
+		// == COURRIEL ==
+		// = courriel label =
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblEmail.setBounds(59, 189, 114, 31);
 		getContentPane().add(lblEmail);
 
+		// = courriel editable field = 
 		textFieldCourriel = new JTextField();
 		textFieldCourriel.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldCourriel.setColumns(10);
@@ -110,19 +125,22 @@ public class OuvrirClientForm extends BaseTemplateForm {
 			}
 		});
 		
+		// = courriel error msg = 
 		courrielReturnMsg = new JLabel("");
 		courrielReturnMsg.setForeground(new Color(165, 42, 42));
 		courrielReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		courrielReturnMsg.setBounds(825, 189, 151, 31);
 		getContentPane().add(courrielReturnMsg);
 
-		// Adresse
+		// == ADRESSE ==
+		// = adresse label = 
 		JLabel lblAdresse = new JLabel("Adresse :");
 		lblAdresse.setForeground(Color.WHITE);
 		lblAdresse.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblAdresse.setBounds(59, 251, 114, 31);
 		getContentPane().add(lblAdresse);
 
+		// = adresse editable field = 
 		textFieldAdresse = new JTextField();
 		textFieldAdresse.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldAdresse.setColumns(10);
@@ -136,19 +154,22 @@ public class OuvrirClientForm extends BaseTemplateForm {
 			}
 		});
 		
+		// = adresse error msg = 
 		adresseReturnMsg = new JLabel("");
 		adresseReturnMsg.setForeground(new Color(165, 42, 42));
 		adresseReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		adresseReturnMsg.setBounds(825, 251, 151, 31);
 		getContentPane().add(adresseReturnMsg);
 
-		// Téléphone
+		// == TEL ==
+		// = tel label =
 		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone :");
 		lblTlphone.setForeground(Color.WHITE);
 		lblTlphone.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblTlphone.setBounds(59, 318, 114, 31);
 		getContentPane().add(lblTlphone);
 
+		// = tel editable field =
 		textFieldTel = new JTextField();
 		textFieldTel.setFont(new Font("Arial", Font.PLAIN, 20));
 		textFieldTel.setColumns(10);
@@ -163,14 +184,14 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		});
 		
 			
+		// = tel error msg =
 		telReturnMsg = new JLabel("");
 		telReturnMsg.setForeground(new Color(165, 42, 42));
 		telReturnMsg.setFont(new Font("Arial", Font.BOLD, 18));
 		telReturnMsg.setBounds(825, 318, 151, 31);
 		getContentPane().add(telReturnMsg);
 
-		// BUTTONS
-		// add client to db
+		// == Adding Client to db btn ==
 		btnAddClient = new JButton("Ajouter le client");
 		btnAddClient.setFont(new Font("Arial", Font.BOLD, 24));
 		btnAddClient.setBounds(230, 383, 229, 40);
@@ -182,7 +203,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		});
 		btnAddClient.setEnabled(false);
 
-		// return to previous client list page
+		// == Canceling adding btn ==
 		JButton btnCancel = new JButton("Annuler");
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 24));
 		btnCancel.setBounds(540, 383, 229, 40);
@@ -194,7 +215,8 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		});
 	}
 	
-	// addClientBtn enabler
+	// ==== GETTERS AND SETTERS ====
+	// == Adding a Client btn enabler / disabler ==
 	public void enableAddClientBtn() {
 		this.btnAddClient.setEnabled(true);
 	}
@@ -203,7 +225,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		this.btnAddClient.setEnabled(false);
 	}
 	
-	// Textfields getters and setters
+	// == Editable fields getters and setters ==
 	public String getNom() {
 		return this.textFieldNom.getText();
 	}
@@ -244,7 +266,7 @@ public class OuvrirClientForm extends BaseTemplateForm {
 		this.textFieldTel.setText(newText);
 	}
 	
-	// Error msgs setters
+	// == Error msgs setters ==
 	public void setNomErrorMsg(String newText) {
 		this.nomReturnMsg.setText(newText);
 	}
@@ -264,12 +286,4 @@ public class OuvrirClientForm extends BaseTemplateForm {
 	public void setTelErrorMsg(String newText) {
 		this.telReturnMsg.setText(newText);
 	}
-
-	// MAIN FOR TESTING
-	public static void main(String[] args) {
-		CurrentSessionData.setConnectedConseiller("MPTremblay");
-		OuvrirClientForm testFrame = new OuvrirClientForm();
-		testFrame.setVisible(true);
-	}
-
 }

@@ -88,7 +88,7 @@ public class CheckClientAdd {
 	// == ADRESSE ==
 	public static boolean isAdresseFieldOk() {
 		String stringToCheck = CurrentSessionData.getOpenClientPage().getAdresse();
-		return !stringToCheck.isEmpty() && !isStringContainSpecialCharacter(stringToCheck);
+		return !stringToCheck.isEmpty();
 	}
 
 	public static String generateAdresseProperErrorMsg() {
