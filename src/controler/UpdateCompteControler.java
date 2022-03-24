@@ -6,7 +6,7 @@ import model.CompteEpargne;
 import sessionData.CurrentSessionData;
 
 /* ==============================================
- * IN PROGRESS
+ * IN PROGRESS (CURRENTLY UNUSED)
  * ==============================================*/
 
 public class UpdateCompteControler {

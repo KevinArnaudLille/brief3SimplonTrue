@@ -1,18 +1,13 @@
 package Interface;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 import db.DbReadQueries;
 import db.DbUpdateQueries;
 import model.Client;
 import model.Compte;
 import sessionData.CurrentSessionData;
 import java.awt.Color;
-import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -20,31 +15,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ListeComptesForm extends JFrame {
+public class ListeComptesForm extends BaseTemplateForm {
 
-	private JPanel contentPane;
-	private JTextField txtGestionDesComptes;
-
+	// ==== Some variables declared outside constructor to allow Getters and Setters ====
 	private ButtonGroup group;
 
 	public ListeComptesForm() {
+		
+		// ==== Call of BaseTemplateForm (parent class) constructor ====
+		super();
 
+		// *******************************************************
+		// ==== Header ====
+		// == Fetching sessions data ==
 		Client client = CurrentSessionData.getSelectClientByClick();
-		ArrayList<Compte> CompteClient = DbReadQueries.dbReadClientCompteInBdd(client);
+		// ==== Setting header ====
+		titlePageLabel.setText("Gestion des comptes de " + client.getPrenom() + " " + client.getNom());
+		titlePageLabel.setLocation(10, 3);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 500);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 128, 128));
-		contentPane.setBorder(new LineBorder(new Color(0, 0, 128), 2));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JButton btnBack_Back = new JButton("Quitter");
-		btnBack_Back.setBounds(832, 11, 144, 35);
-		contentPane.add(btnBack_Back);
+		btnBack_Back.setBounds(842, 6, 117, 29);
+		header.add(btnBack_Back);
 		btnBack_Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// :( SHOULD BE IN A CONTROLER
 				CurrentSessionData.getSelectClientComptesListPage().dispose();
 				// Create client list frame object
 				ListeClientsForm listClientPage = new ListeClientsForm();
@@ -57,57 +52,29 @@ public class ListeComptesForm extends JFrame {
 			}
 		});
 
-		txtGestionDesComptes = new JTextField();
-		txtGestionDesComptes.setForeground(Color.WHITE);
-		txtGestionDesComptes.setHorizontalAlignment(SwingConstants.CENTER);
-		txtGestionDesComptes.setFont(new Font("Arial", Font.BOLD, 25));
-		txtGestionDesComptes.setBackground(new Color(0, 0, 128));
-		txtGestionDesComptes.setText("Gestion des comptes de " + client.getPrenom() + " " + client.getNom());
-		txtGestionDesComptes.setBounds(0, 0, 986, 52);
-		contentPane.add(txtGestionDesComptes);
-		txtGestionDesComptes.setColumns(10);
-
 		JButton btnOuvrirCompte = new JButton("Ouvrir");
 		btnOuvrirCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnOuvrirCompte.setBackground(Color.WHITE);
 		btnOuvrirCompte.setBounds(594, 160, 132, 45);
-		contentPane.add(btnOuvrirCompte);
+		getContentPane().add(btnOuvrirCompte);
 		btnOuvrirCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// :( SHOULD BE IN A CONTROLER
 				OuvrirCompteForm newOuvrirCompte = new OuvrirCompteForm();
 				CurrentSessionData.setOpenComptePage(newOuvrirCompte);
 				CurrentSessionData.getOpenComptePage().setVisible(true);
 			}
 		});
 
-		JButton btnCrditerUnCompte = new JButton("Cr\u00E9diter");
-		btnCrditerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnCrditerUnCompte.setBackground(Color.WHITE);
-		btnCrditerUnCompte.setBounds(778, 160, 132, 45);
-		contentPane.add(btnCrditerUnCompte);
-		btnCrditerUnCompte.setEnabled(false);
-
-		JButton btnTransfererDeCompte = new JButton("Transf\u00E9rer");
-		btnTransfererDeCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnTransfererDeCompte.setBackground(Color.WHITE);
-		btnTransfererDeCompte.setBounds(778, 247, 132, 45);
-		contentPane.add(btnTransfererDeCompte);
-		btnTransfererDeCompte.setEnabled(false);
-
-		JButton btnDebiterUnCompte = new JButton("D\u00E9biter ");
-		btnDebiterUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnDebiterUnCompte.setBackground(Color.WHITE);
-		btnDebiterUnCompte.setBounds(594, 247, 132, 45);
-		contentPane.add(btnDebiterUnCompte);
-		btnDebiterUnCompte.setEnabled(false);
 
 		JButton btnCloturerCompte = new JButton("Cl\u00F4turer");
 		btnCloturerCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnCloturerCompte.setBackground(Color.WHITE);
 		btnCloturerCompte.setBounds(778, 339, 132, 45);
-		contentPane.add(btnCloturerCompte);
+		getContentPane().add(btnCloturerCompte);
 		btnCloturerCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// :( SHOULD BE IN A CONTROLER
 				CurrentSessionData.setCompteToUpdate(group.getSelection().getActionCommand());
 				DbUpdateQueries.updateCompteStatusInDb(CurrentSessionData.getCompteToUpdate(), false);
 				JOptionPane.showMessageDialog(CurrentSessionData.getSelectClientComptesListPage(),
@@ -124,9 +91,10 @@ public class ListeComptesForm extends JFrame {
 		btnModifierCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnModifierCompte.setBackground(Color.WHITE);
 		btnModifierCompte.setBounds(594, 339, 132, 45);
-		contentPane.add(btnModifierCompte);
+		getContentPane().add(btnModifierCompte);
 		btnModifierCompte.setEnabled(false);
 
+		ArrayList<Compte> CompteClient = DbReadQueries.dbReadClientCompteInBdd(client);
 		int x = 40;
 		int y = 144;
 		int JRadioBtnWidth = 500;
@@ -148,5 +116,30 @@ public class ListeComptesForm extends JFrame {
 				y += 50;
 			}
 		}
+		
+		
+		/* ==============================================
+		 * IN PROGRESS (CURRENTLY UNUSED)
+		 * ==============================================*/
+		JButton btnCrditerUnCompte = new JButton("Cr\u00E9diter");
+		btnCrditerUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnCrditerUnCompte.setBackground(Color.WHITE);
+		btnCrditerUnCompte.setBounds(778, 160, 132, 45);
+		getContentPane().add(btnCrditerUnCompte);
+		btnCrditerUnCompte.setEnabled(false);
+
+		JButton btnTransfererDeCompte = new JButton("Transf\u00E9rer");
+		btnTransfererDeCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnTransfererDeCompte.setBackground(Color.WHITE);
+		btnTransfererDeCompte.setBounds(778, 247, 132, 45);
+		getContentPane().add(btnTransfererDeCompte);
+		btnTransfererDeCompte.setEnabled(false);
+
+		JButton btnDebiterUnCompte = new JButton("D\u00E9biter ");
+		btnDebiterUnCompte.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnDebiterUnCompte.setBackground(Color.WHITE);
+		btnDebiterUnCompte.setBounds(594, 247, 132, 45);
+		getContentPane().add(btnDebiterUnCompte);
+		btnDebiterUnCompte.setEnabled(false);
 	}
 }

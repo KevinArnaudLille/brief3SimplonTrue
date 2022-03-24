@@ -4,21 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import controler.NewClientControler;
 import controler.UpdateCompteControler;
 import model.CompteCourant;
 import model.CompteEpargne;
 import sessionData.CurrentSessionData;
+
+/* ==============================================
+ * IN PROGRESS (CURRENTLY UNUSED)
+ * ==============================================*/
 
 public class ModifierCompteForm extends BaseTemplateForm {
 	
@@ -26,7 +24,6 @@ public class ModifierCompteForm extends BaseTemplateForm {
 	private JLabel fraisDeTransfertReturnMsg;
 	private JTextField textFieldTauxInteret;
 	private JLabel tauxInteretReturnMsg;
-	
 	private JButton btnUpdateCompteValidation;
 	
 	public ModifierCompteForm() {
