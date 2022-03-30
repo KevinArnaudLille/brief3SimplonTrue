@@ -16,13 +16,13 @@ import java.awt.event.KeyAdapter;
 
 public class CreationBanqueForm extends BaseTemplateForm {
 
-	// ==== Some variables declared outside constructor to allow Getters and Setters ====
+	// ==== Some variables declared outside constructor to allow Getters and Setters
+	// ====
 	private JTextField txtUsername;
 	private JPasswordField txtPasseword;
 	private JLabel errorMsgField;
 
 	public CreationBanqueForm() {
-
 		// ==== Call of BaseTemplateForm (parent class) constructor ====
 		super();
 
@@ -38,7 +38,7 @@ public class CreationBanqueForm extends BaseTemplateForm {
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 42));
 		titleLabel.setBounds(301, 77, 394, 55);
 		getContentPane().add(titleLabel);
-		
+
 		// == Conseiller id components ==
 		// = Conseiller id static title =
 		JPanel Username = new JPanel();
